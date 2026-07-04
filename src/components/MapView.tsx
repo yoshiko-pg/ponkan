@@ -9,6 +9,7 @@ import { divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
 import type { Facility } from "../types";
+import { formatDate } from "../format";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
@@ -100,7 +101,7 @@ export function MapView({
                   <strong>{f.name}</strong>
                   <span className="map-popup-sub">
                     {CATEGORY_LABEL[f.category]} ・{" "}
-                    {visited ? `${store.visits[f.id].date} 訪問` : "未訪問"}
+                    {visited ? `${formatDate(store.visits[f.id].date)} 訪問` : "未訪問"}
                   </span>
                   {f.address && (
                     <span className="map-popup-sub">{f.address}</span>

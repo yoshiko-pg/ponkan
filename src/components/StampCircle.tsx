@@ -1,11 +1,7 @@
 import { CATEGORY_CODE } from "../types";
+import { formatDate } from "../format";
 import type { Facility, VisitRecord } from "../types";
 import { formatKm } from "../geo";
-
-function shortDate(iso: string): string {
-  const [, m, d] = iso.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 interface Props {
   facility: Facility;
@@ -23,7 +19,7 @@ export function StampCircle({ facility, visit, distance, onClick }: Props) {
         style={visit ? { transform: `rotate(${rotation}deg)` } : undefined}
       >
         <span className="stamp-code">{CATEGORY_CODE[facility.category]}</span>
-        {visit && <span className="stamp-date">{shortDate(visit.date)}</span>}
+        {visit && <span className="stamp-date">{formatDate(visit.date)}</span>}
       </span>
       <span className={`stamp-name ${visit ? "" : "unvisited"}`}>
         {facility.name}
