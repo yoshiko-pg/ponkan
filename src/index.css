@@ -657,7 +657,7 @@ body {
   justify-content: center;
   gap: 1px;
   transform: rotate(-6deg);
-  margin: 14px auto 6px;
+  margin: 6px auto;
 }
 
 /* 未スタンプ時のプレースホルダー: 一覧の未訪問サークルと同じ見た目でタップ可能 */
