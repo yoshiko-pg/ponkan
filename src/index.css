@@ -1,0 +1,682 @@
+:root {
+  --bg: #fff8f0;
+  --ink: #4a3b32;
+  --ink-soft: #8a7a6e;
+  --card: #ffffff;
+  --line: #f0e4d6;
+  --accent: #ff7a3c;
+  --accent-soft: #ffe8db;
+
+  --aquarium: #3aa6e8;
+  --aquarium-soft: #e3f3fd;
+  --art: #f26ca7;
+  --art-soft: #fde9f2;
+  --museum: #f5a623;
+  --museum-soft: #fef3dc;
+  --science: #46b36b;
+  --science-soft: #e6f7ec;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    'Hiragino Maru Gothic ProN', 'BIZ UDGothic', 'Hiragino Sans',
+    'Noto Sans JP', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- header ---------- */
+.header {
+  padding: 14px 16px 10px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 500;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.header h1 {
+  font-size: 22px;
+  margin: 0;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.header-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: normal;
+}
+
+.header-count {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.header-count small {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: normal;
+}
+
+.progress-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+/* ---------- layout ---------- */
+.content {
+  flex: 1;
+  padding: 4px 16px 90px;
+}
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  background: var(--card);
+  border-top: 2px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 900;
+}
+
+.tabbar button {
+  flex: 1;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  padding: 12px 4px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.tabbar button.active {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* ---------- chips ---------- */
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 14px;
+}
+
+.chip {
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.chip.active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.chip-aquarium.active {
+  border-color: var(--aquarium);
+  background: var(--aquarium);
+}
+.chip-art.active {
+  border-color: var(--art);
+  background: var(--art);
+}
+.chip-museum.active {
+  border-color: var(--museum);
+  background: var(--museum);
+}
+.chip-science.active {
+  border-color: var(--science);
+  background: var(--science);
+}
+
+.chip-add {
+  border-style: dashed;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- stamp grid ---------- */
+.stamp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 8px;
+}
+
+.stamp-cell {
+  border: none;
+  background: none;
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.stamp-circle {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed #d8cfc2;
+  background: var(--card);
+  color: #c9c2b8;
+}
+
+.stamp-emoji {
+  font-size: 30px;
+  filter: grayscale(1) opacity(0.45);
+}
+
+.stamp-date {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.stamp-circle.stamped {
+  border-style: solid;
+  animation: stamp-in 0.25s ease-out;
+}
+
+.stamp-circle.stamped .stamp-emoji {
+  filter: none;
+}
+
+.stamp-circle.stamped.cat-aquarium {
+  border-color: var(--aquarium);
+  background: var(--aquarium-soft);
+  color: var(--aquarium);
+}
+.stamp-circle.stamped.cat-art {
+  border-color: var(--art);
+  background: var(--art-soft);
+  color: var(--art);
+}
+.stamp-circle.stamped.cat-museum {
+  border-color: var(--museum);
+  background: var(--museum-soft);
+  color: var(--museum);
+}
+.stamp-circle.stamped.cat-science {
+  border-color: var(--science);
+  background: var(--science-soft);
+  color: var(--science);
+}
+
+@keyframes stamp-in {
+  0% {
+    scale: 1.6;
+    opacity: 0;
+  }
+  70% {
+    scale: 0.92;
+    opacity: 1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.stamp-name {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--ink);
+  text-align: center;
+}
+
+.stamp-name.unvisited {
+  color: var(--ink-soft);
+}
+
+.empty-note {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 40px 0;
+}
+
+/* ---------- modal ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 59, 50, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  background: var(--card);
+  width: 100%;
+  max-width: 520px;
+  max-height: 88dvh;
+  overflow-y: auto;
+  border-radius: 20px 20px 0 0;
+  padding: 22px 20px calc(24px + env(safe-area-inset-bottom));
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: var(--line);
+  color: var(--ink-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.detail-header h2 {
+  margin: 8px 0 2px;
+  font-size: 20px;
+}
+
+.add-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.detail-pref {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.cat-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.cat-badge.cat-aquarium {
+  background: var(--aquarium);
+}
+.cat-badge.cat-art {
+  background: var(--art);
+}
+.cat-badge.cat-museum {
+  background: var(--museum);
+}
+.cat-badge.cat-science {
+  background: var(--science);
+}
+
+.detail-links {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.detail-links a {
+  flex: 1;
+  text-align: center;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 6px;
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* ---------- stamp button / visit panel ---------- */
+.btn-stamp {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  margin: 8px 0 4px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-stamp:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-stamp:disabled {
+  background: #d8cfc2;
+  box-shadow: none;
+  cursor: default;
+}
+
+.btn-stamp.cat-aquarium {
+  background: var(--aquarium);
+}
+.btn-stamp.cat-art {
+  background: var(--art);
+}
+.btn-stamp.cat-museum {
+  background: var(--museum);
+}
+.btn-stamp.cat-science {
+  background: var(--science);
+}
+
+.visit-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stamped-mark {
+  align-self: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-6deg);
+  margin: 6px 0;
+}
+
+.stamped-mark span {
+  font-size: 40px;
+}
+
+.stamped-mark small {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.stamped-mark.pop {
+  animation: stamp-in 0.35s ease-out;
+}
+
+.stamped-mark.cat-aquarium {
+  border-color: var(--aquarium);
+  color: var(--aquarium);
+  background: var(--aquarium-soft);
+}
+.stamped-mark.cat-art {
+  border-color: var(--art);
+  color: var(--art);
+  background: var(--art-soft);
+}
+.stamped-mark.cat-museum {
+  border-color: var(--museum);
+  color: var(--museum);
+  background: var(--museum-soft);
+}
+.stamped-mark.cat-science {
+  border-color: var(--science);
+  color: var(--science);
+  background: var(--science-soft);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 10px;
+  background: var(--card);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.cat-select {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.btn-subtle {
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.btn-danger-link {
+  display: block;
+  margin: 14px auto 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: #d05a5a;
+  cursor: pointer;
+}
+
+/* ---------- map ---------- */
+.map-wrap {
+  position: relative;
+  margin: 0 -16px;
+}
+
+.leaflet-root {
+  height: calc(100dvh - 175px);
+  min-height: 320px;
+}
+
+.map-pin-wrap {
+  background: none;
+  border: none;
+}
+
+.map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.map-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: inherit;
+}
+
+.map-popup-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.map-popup button {
+  margin-top: 4px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 400;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.map-legend .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+/* ---------- achievements ---------- */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.badge-card {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0.65;
+}
+
+.badge-card.achieved {
+  opacity: 1;
+  border-color: var(--museum);
+  background: var(--museum-soft);
+}
+
+.badge-emoji {
+  font-size: 26px;
+}
+
+.badge-card:not(.achieved) .badge-emoji {
+  filter: grayscale(1) opacity(0.5);
+}
+
+.badge-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.badge-desc {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.badge-progress {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+.data-panel {
+  margin-top: 24px;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.data-panel h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.data-note {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.data-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.data-actions button {
+  flex: 1;
+  border: 2px solid var(--line);
+  background: var(--bg);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 13px;
+  padding: 9px;
+  cursor: pointer;
+}
