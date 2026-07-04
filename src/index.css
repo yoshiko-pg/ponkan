@@ -17,7 +17,34 @@
   --science: #34d399;
   --science-soft: rgba(52, 211, 153, 0.12);
 
+  --stamp-dim: #4a4a55;
+  --bar-bg: rgba(16, 16, 19, 0.92);
+
   color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f6f6f4;
+  --card: #ffffff;
+  --card-2: #ffffff;
+  --line: #e8e8ec;
+  --line-strong: #d6d6dd;
+  --ink: #17171a;
+  --ink-soft: #75757f;
+
+  --aquarium: #0284c7;
+  --aquarium-soft: rgba(2, 132, 199, 0.09);
+  --art: #db2777;
+  --art-soft: rgba(219, 39, 119, 0.09);
+  --museum: #d97706;
+  --museum-soft: rgba(217, 119, 6, 0.1);
+  --science: #059669;
+  --science-soft: rgba(5, 150, 105, 0.09);
+
+  --stamp-dim: #b5b5bf;
+  --bar-bg: rgba(246, 246, 244, 0.92);
+
+  color-scheme: light;
 }
 
 * {
@@ -60,6 +87,8 @@ body {
   font-style: italic;
   letter-spacing: 0.14em;
   color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logo-dot {
@@ -75,6 +104,31 @@ body {
   font-size: 10px;
   letter-spacing: 0.32em;
   color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  align-self: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: none;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--ink);
 }
 
 /* ---------- layout ---------- */
@@ -91,7 +145,7 @@ body {
   width: 100%;
   max-width: 520px;
   display: flex;
-  background: rgba(16, 16, 19, 0.92);
+  background: var(--bar-bg);
   backdrop-filter: blur(8px);
   border-top: 1px solid var(--line);
   padding-bottom: env(safe-area-inset-bottom);
@@ -294,7 +348,7 @@ body {
   justify-content: center;
   gap: 1px;
   border: 1.5px dashed var(--line-strong);
-  color: #4a4a55;
+  color: var(--stamp-dim);
 }
 
 .stamp-code {
@@ -652,7 +706,29 @@ body {
   font-weight: 800;
   font-style: italic;
   letter-spacing: 0.04em;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.map-pin.unvisited {
+  background: var(--line-strong);
+  color: var(--ink-soft);
+}
+
+.map-pin.cat-aquarium {
+  background: var(--aquarium);
+  color: var(--bg);
+}
+.map-pin.cat-art {
+  background: var(--art);
+  color: var(--bg);
+}
+.map-pin.cat-museum {
+  background: var(--museum);
+  color: var(--bg);
+}
+.map-pin.cat-science {
+  background: var(--science);
+  color: var(--bg);
 }
 
 .leaflet-popup-content-wrapper,
@@ -691,7 +767,7 @@ body {
   bottom: 12px;
   left: 12px;
   z-index: 400;
-  background: rgba(16, 16, 19, 0.85);
+  background: var(--bar-bg);
   border: 1px solid var(--line-strong);
   border-radius: 8px;
   padding: 6px 10px;
@@ -707,6 +783,14 @@ body {
   height: 10px;
   border-radius: 50%;
   margin-right: 3px;
+}
+
+.map-legend .dot.unvisited {
+  background: var(--line-strong);
+}
+
+.map-legend .dot.visited {
+  background: var(--aquarium);
 }
 
 /* ---------- achievements ---------- */

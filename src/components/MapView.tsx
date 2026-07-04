@@ -4,20 +4,13 @@ import "leaflet/dist/leaflet.css";
 import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
 import type { Facility } from "../types";
 import type { Store } from "../store";
-
-const CAT_COLOR: Record<string, string> = {
-  aquarium: "#38bdf8",
-  art: "#f472b6",
-  museum: "#fbbf24",
-  science: "#34d399",
-};
+import type { Theme } from "../useTheme";
 
 function markerIcon(f: Facility, visited: boolean) {
-  const bg = visited ? CAT_COLOR[f.category] : "#3a3a44";
-  const fg = visited ? "#101013" : "#8e8e99";
+  const cls = visited ? `cat-${f.category}` : "unvisited";
   return divIcon({
     className: "map-pin-wrap",
-    html: `<span class="map-pin" style="background:${bg};color:${fg}">${CATEGORY_CODE[f.category]}</span>`,
+    html: `<span class="map-pin ${cls}">${CATEGORY_CODE[f.category]}</span>`,
     iconSize: [32, 32],
     iconAnchor: [16, 16],
   });
@@ -25,11 +18,13 @@ function markerIcon(f: Facility, visited: boolean) {
 
 interface Props {
   store: Store;
+  theme: Theme;
   onSelect: (f: Facility) => void;
 }
 
-export function MapView({ store, onSelect }: Props) {
+export function MapView({ store, theme, onSelect }: Props) {
   const placed = store.facilities.filter((f) => f.lat != null && f.lng != null);
+  const tileStyle = theme === "dark" ? "dark_all" : "light_all";
 
   return (
     <div className="map-wrap">
@@ -40,8 +35,9 @@ export function MapView({ store, onSelect }: Props) {
         scrollWheelZoom
       >
         <TileLayer
+          key={tileStyle}
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          url={`https://basemaps.cartocdn.com/${tileStyle}/{z}/{x}/{y}{r}.png`}
         />
         {placed.map((f) => {
           const visited = Boolean(store.visits[f.id]);
@@ -71,11 +67,10 @@ export function MapView({ store, onSelect }: Props) {
       </MapContainer>
       <div className="map-legend">
         <span>
-          <i className="dot" style={{ background: "#3a3a44" }} /> 未訪問
+          <i className="dot unvisited" /> 未訪問
         </span>
         <span>
-          <i className="dot" style={{ background: "#38bdf8" }} />{" "}
-          訪問済み(カテゴリ色)
+          <i className="dot visited" /> 訪問済み(カテゴリ色)
         </span>
       </div>
     </div>

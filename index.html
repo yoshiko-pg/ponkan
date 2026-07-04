@@ -9,6 +9,10 @@
     />
     <meta name="theme-color" content="#101013" />
     <title>PONKAN — museum stamp rally</title>
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("ponkan:theme") === "light" ? "light" : "dark";
+    </script>
   </head>
   <body>
     <div id="root"></div>

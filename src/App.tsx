@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStore } from "./store";
+import { useTheme } from "./useTheme";
 import type { Facility } from "./types";
 import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
@@ -11,6 +12,7 @@ type Tab = "book" | "map" | "badges";
 
 export default function App() {
   const store = useStore();
+  const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
   const [selected, setSelected] = useState<Facility | null>(null);
   const [adding, setAdding] = useState(false);
@@ -28,6 +30,44 @@ export default function App() {
           <span className="logo-dot" />
         </h1>
         <span className="header-sub">MUSEUM STAMP RALLY</span>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggle}
+          aria-label={
+            theme === "dark"
+              ? "ライトモードに切り替え"
+              : "ダークモードに切り替え"
+          }
+        >
+          {theme === "dark" ? (
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4" />
+            </svg>
+          ) : (
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+            </svg>
+          )}
+        </button>
       </header>
 
       <main className="content">
@@ -38,7 +78,9 @@ export default function App() {
             onAdd={() => setAdding(true)}
           />
         )}
-        {tab === "map" && <MapView store={store} onSelect={setSelected} />}
+        {tab === "map" && (
+          <MapView store={store} theme={theme} onSelect={setSelected} />
+        )}
         {tab === "badges" && <Achievements store={store} />}
       </main>
 
