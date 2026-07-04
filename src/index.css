@@ -364,13 +364,9 @@ body {
 }
 
 .stamp-circle.stamped.cat-aquarium {
-  border-color: rgba(14, 165, 233, 0.86);
-  background:
-    linear-gradient(rgba(2, 132, 199, 0.1), rgba(2, 132, 199, 0.1)),
-    url("/stamps/aquarium.png") center / cover;
-  color: #dff6ff;
-  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.16);
-  text-shadow: 0 1px 4px rgba(0, 21, 42, 0.75);
+  border-color: var(--aquarium);
+  background: var(--aquarium-soft);
+  color: var(--aquarium);
 }
 .stamp-circle.stamped.cat-art {
   border-color: var(--art);
@@ -682,13 +678,9 @@ body {
 }
 
 .stamped-mark.cat-aquarium {
-  border-color: rgba(14, 165, 233, 0.86);
-  color: #dff6ff;
-  background:
-    linear-gradient(rgba(2, 132, 199, 0.1), rgba(2, 132, 199, 0.1)),
-    url("/stamps/aquarium.png") center / cover;
-  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.16);
-  text-shadow: 0 1px 4px rgba(0, 21, 42, 0.75);
+  border-color: var(--aquarium);
+  color: var(--aquarium);
+  background: var(--aquarium-soft);
 }
 .stamped-mark.cat-art {
   border-color: var(--art);
