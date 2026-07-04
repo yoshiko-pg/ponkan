@@ -1,29 +1,28 @@
 import { CATEGORIES, CATEGORY_LABEL } from "../types";
 import type { Category } from "../types";
 
-export type CategoryFilter = Category | "all";
-
+// 複数選択トグル。何も選択されていないときは全カテゴリ表示(ALL)扱い
 interface Props {
-  filter: CategoryFilter;
-  onChange: (filter: CategoryFilter) => void;
+  selected: Category[];
+  onChange: (selected: Category[]) => void;
 }
 
-export function CategoryChips({ filter, onChange }: Props) {
+export function CategoryChips({ selected, onChange }: Props) {
+  const toggle = (cat: Category) =>
+    onChange(
+      selected.includes(cat)
+        ? selected.filter((c) => c !== cat)
+        : [...selected, cat],
+    );
+
   return (
     <div className="chips">
-      <button
-        type="button"
-        className={`chip ${filter === "all" ? "active" : ""}`}
-        onClick={() => onChange("all")}
-      >
-        ALL
-      </button>
       {CATEGORIES.map((cat) => (
         <button
           type="button"
           key={cat}
-          className={`chip chip-${cat} ${filter === cat ? "active" : ""}`}
-          onClick={() => onChange(cat)}
+          className={`chip chip-${cat} ${selected.includes(cat) ? "active" : ""}`}
+          onClick={() => toggle(cat)}
         >
           <i className="dot" />
           {CATEGORY_LABEL[cat]}

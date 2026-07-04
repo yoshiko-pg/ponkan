@@ -8,9 +8,8 @@ import {
 import { divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
-import type { Facility } from "../types";
+import type { Category, Facility } from "../types";
 import { CategoryChips } from "./CategoryChips";
-import type { CategoryFilter } from "./CategoryChips";
 import { formatDate } from "../format";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
@@ -53,8 +52,8 @@ function PickHandler({
 interface Props {
   store: Store;
   theme: Theme;
-  filter: CategoryFilter;
-  onFilterChange: (filter: CategoryFilter) => void;
+  filter: Category[];
+  onFilterChange: (filter: Category[]) => void;
   picking: boolean;
   onPickPoint: (lat: number, lng: number) => void;
   onCancelPick: () => void;
@@ -75,14 +74,14 @@ export function MapView({
     (f) =>
       f.lat != null &&
       f.lng != null &&
-      (filter === "all" || f.category === filter),
+      (filter.length === 0 || filter.includes(f.category)),
   );
   const tileStyle = theme === "dark" ? "dark_all" : "light_all";
 
   return (
     <div className="map-wrap">
       <div className="map-chips">
-        <CategoryChips filter={filter} onChange={onFilterChange} />
+        <CategoryChips selected={filter} onChange={onFilterChange} />
       </div>
       <MapContainer
         center={[35.85, 139.75]}

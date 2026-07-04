@@ -6,7 +6,7 @@ import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
 import { Sidebar } from "./components/Sidebar";
 import { FacilityDetail } from "./components/FacilityDetail";
-import type { CategoryFilter } from "./components/CategoryChips";
+import type { Category } from "./types";
 
 type Tab = "book" | "map";
 
@@ -14,7 +14,7 @@ export default function App() {
   const store = useStore();
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
-  const [filter, setFilter] = useState<CategoryFilter>("all");
+  const [filter, setFilter] = useState<Category[]>([]);
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pickingHome, setPickingHome] = useState(false);
@@ -31,7 +31,6 @@ export default function App() {
           PONKAN
           <span className="logo-dot" />
         </h1>
-        <span className="header-sub">MUSEUM STAMP RALLY</span>
         <button
           type="button"
           className="icon-btn"

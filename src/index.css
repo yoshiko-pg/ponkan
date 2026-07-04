@@ -101,17 +101,6 @@ body {
   background: var(--accent);
 }
 
-.header-sub {
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  color: var(--ink-soft);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  flex: 1;
-}
-
 .icon-btn {
   margin-left: auto;
   align-self: center;
@@ -828,7 +817,6 @@ body {
   color: var(--ink-soft);
   font-size: 11px;
   font-style: normal;
-  opacity: 0.75;
   box-shadow: none;
 }
 
