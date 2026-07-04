@@ -1,17 +1,19 @@
-import { useState } from "react";
-import { CATEGORIES, CATEGORY_LABEL } from "../types";
-import type { Category, Facility } from "../types";
+import { CATEGORY_LABEL } from "../types";
+import type { Facility } from "../types";
 import type { Store } from "../store";
 import { distanceKm } from "../geo";
 import { StampCircle } from "./StampCircle";
+import { CategoryChips } from "./CategoryChips";
+import type { CategoryFilter } from "./CategoryChips";
 
 interface Props {
   store: Store;
+  filter: CategoryFilter;
+  onFilterChange: (filter: CategoryFilter) => void;
   onSelect: (f: Facility) => void;
 }
 
-export function StampBook({ store, onSelect }: Props) {
-  const [filter, setFilter] = useState<Category | "all">("all");
+export function StampBook({ store, filter, onFilterChange, onSelect }: Props) {
   const { home, rangeKm } = store;
 
   // 基準地点があれば距離を計算(座標なしの施設は null のまま残す)
@@ -40,26 +42,7 @@ export function StampBook({ store, onSelect }: Props) {
   return (
     <div className="stamp-book">
       <div className="book-head">
-        <div className="chips">
-          <button
-            type="button"
-            className={`chip ${filter === "all" ? "active" : ""}`}
-            onClick={() => setFilter("all")}
-          >
-            ALL
-          </button>
-          {CATEGORIES.map((cat) => (
-            <button
-              type="button"
-              key={cat}
-              className={`chip chip-${cat} ${filter === cat ? "active" : ""}`}
-              onClick={() => setFilter(cat)}
-            >
-              <i className="dot" />
-              {CATEGORY_LABEL[cat]}
-            </button>
-          ))}
-        </div>
+        <CategoryChips filter={filter} onChange={onFilterChange} />
 
         <div className="count-row">
           <span className="count-label">

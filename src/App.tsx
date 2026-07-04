@@ -6,6 +6,7 @@ import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
 import { Sidebar } from "./components/Sidebar";
 import { FacilityDetail } from "./components/FacilityDetail";
+import type { CategoryFilter } from "./components/CategoryChips";
 
 type Tab = "book" | "map";
 
@@ -13,6 +14,7 @@ export default function App() {
   const store = useStore();
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
+  const [filter, setFilter] = useState<CategoryFilter>("all");
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pickingHome, setPickingHome] = useState(false);
@@ -51,11 +53,20 @@ export default function App() {
       </header>
 
       <main className="content">
-        {tab === "book" && <StampBook store={store} onSelect={setSelected} />}
+        {tab === "book" && (
+          <StampBook
+            store={store}
+            filter={filter}
+            onFilterChange={setFilter}
+            onSelect={setSelected}
+          />
+        )}
         {tab === "map" && (
           <MapView
             store={store}
             theme={theme}
+            filter={filter}
+            onFilterChange={setFilter}
             picking={pickingHome}
             onPickPoint={(lat, lng) => {
               store.setHome({ lat, lng });
