@@ -1,5 +1,6 @@
 import { CATEGORY_CODE } from "../types";
 import type { Facility, VisitRecord } from "../types";
+import { formatKm } from "../geo";
 
 function shortDate(iso: string): string {
   const [, m, d] = iso.split("-");
@@ -9,10 +10,11 @@ function shortDate(iso: string): string {
 interface Props {
   facility: Facility;
   visit?: VisitRecord;
+  distance?: number | null;
   onClick: () => void;
 }
 
-export function StampCircle({ facility, visit, onClick }: Props) {
+export function StampCircle({ facility, visit, distance, onClick }: Props) {
   const rotation = (hash(facility.id) % 13) - 6;
   return (
     <button className="stamp-cell" onClick={onClick} type="button">
@@ -26,6 +28,9 @@ export function StampCircle({ facility, visit, onClick }: Props) {
       <span className={`stamp-name ${visit ? "" : "unvisited"}`}>
         {facility.name}
       </span>
+      {distance != null && (
+        <span className="stamp-dist">{formatKm(distance)}</span>
+      )}
     </button>
   );
 }

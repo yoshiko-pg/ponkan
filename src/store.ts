@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { SEED_FACILITIES } from "./data/facilities";
-import type { Facility, StoreData, VisitRecord } from "./types";
+import type { Facility, HomePoint, StoreData, VisitRecord } from "./types";
 
 const STORAGE_KEY = "ponkan:v1";
 
-const EMPTY: StoreData = { visits: {}, custom: [], hidden: [] };
+const EMPTY: StoreData = {
+  visits: {},
+  custom: [],
+  hidden: [],
+  home: null,
+  rangeKm: null,
+};
 
 function load(): StoreData {
   try {
@@ -15,6 +21,8 @@ function load(): StoreData {
       visits: parsed.visits ?? {},
       custom: parsed.custom ?? [],
       hidden: parsed.hidden ?? [],
+      home: parsed.home ?? null,
+      rangeKm: parsed.rangeKm ?? null,
     };
   } catch {
     return EMPTY;
@@ -80,6 +88,14 @@ export function useStore() {
     });
   }, []);
 
+  const setHome = useCallback((home: HomePoint | null) => {
+    setData((d) => ({ ...d, home, rangeKm: home ? d.rangeKm : null }));
+  }, []);
+
+  const setRangeKm = useCallback((rangeKm: number | null) => {
+    setData((d) => ({ ...d, rangeKm }));
+  }, []);
+
   const exportJson = useCallback(() => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
       type: "application/json",
@@ -102,6 +118,8 @@ export function useStore() {
         visits: parsed.visits ?? {},
         custom: parsed.custom ?? [],
         hidden: parsed.hidden ?? [],
+        home: parsed.home ?? null,
+        rangeKm: parsed.rangeKm ?? null,
       });
       return true;
     } catch {
@@ -112,6 +130,10 @@ export function useStore() {
   return {
     facilities,
     visits: data.visits,
+    home: data.home,
+    rangeKm: data.rangeKm,
+    setHome,
+    setRangeKm,
     stamp,
     unstamp,
     updateVisit,

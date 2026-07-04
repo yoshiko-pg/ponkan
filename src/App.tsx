@@ -15,6 +15,7 @@ export default function App() {
   const [tab, setTab] = useState<Tab>("book");
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [pickingHome, setPickingHome] = useState(false);
 
   // 選択中の施設が削除された場合に備えて最新の参照を取り直す
   const selectedFacility = selected
@@ -52,7 +53,17 @@ export default function App() {
       <main className="content">
         {tab === "book" && <StampBook store={store} onSelect={setSelected} />}
         {tab === "map" && (
-          <MapView store={store} theme={theme} onSelect={setSelected} />
+          <MapView
+            store={store}
+            theme={theme}
+            picking={pickingHome}
+            onPickPoint={(lat, lng) => {
+              store.setHome({ lat, lng });
+              setPickingHome(false);
+            }}
+            onCancelPick={() => setPickingHome(false)}
+            onSelect={setSelected}
+          />
         )}
       </main>
 
@@ -78,6 +89,11 @@ export default function App() {
           store={store}
           theme={theme}
           onToggleTheme={toggle}
+          onPickOnMap={() => {
+            setMenuOpen(false);
+            setTab("map");
+            setPickingHome(true);
+          }}
           onClose={() => setMenuOpen(false)}
         />
       )}

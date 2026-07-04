@@ -420,6 +420,13 @@ body {
   color: var(--ink-soft);
 }
 
+.stamp-dist {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
 .empty-note {
   text-align: center;
   color: var(--ink-soft);
@@ -767,6 +774,43 @@ body {
   color: var(--bg);
 }
 
+.map-pin.home {
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 16px;
+  font-style: normal;
+}
+
+.map-pick-banner {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bar-bg);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 8px 8px 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.map-pick-banner button {
+  border: none;
+  border-radius: 999px;
+  background: var(--line-strong);
+  color: var(--ink);
+  font: inherit;
+  font-size: 11px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
   background: var(--card-2);
@@ -910,6 +954,15 @@ body {
 .data-actions {
   display: flex;
   gap: 8px;
+}
+
+.range-chips {
+  padding: 12px 0 0;
+}
+
+.chip:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .data-actions button {

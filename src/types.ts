@@ -18,11 +18,20 @@ export interface VisitRecord {
   memo: string;
 }
 
+export interface HomePoint {
+  lat: number;
+  lng: number;
+}
+
 export interface StoreData {
   visits: Record<string, VisitRecord>;
   custom: Facility[];
   hidden: string[];
+  home: HomePoint | null;
+  rangeKm: number | null;
 }
+
+export const RANGE_OPTIONS = [30, 60, 100];
 
 export const CATEGORY_LABEL: Record<Category, string> = {
   aquarium: "水族館",

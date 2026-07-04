@@ -1,4 +1,10 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from "react-leaflet";
 import { divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
@@ -18,13 +24,46 @@ function markerIcon(f: Facility, visited: boolean) {
   });
 }
 
+const HOME_ICON = divIcon({
+  className: "map-pin-wrap",
+  html: `<span class="map-pin home">⌂</span>`,
+  iconSize: [30, 30],
+  iconAnchor: [15, 15],
+});
+
+// 基準地点の設定モード中だけ地図クリックを拾う
+function PickHandler({
+  enabled,
+  onPick,
+}: {
+  enabled: boolean;
+  onPick: (lat: number, lng: number) => void;
+}) {
+  useMapEvents({
+    click: (e) => {
+      if (enabled) onPick(e.latlng.lat, e.latlng.lng);
+    },
+  });
+  return null;
+}
+
 interface Props {
   store: Store;
   theme: Theme;
+  picking: boolean;
+  onPickPoint: (lat: number, lng: number) => void;
+  onCancelPick: () => void;
   onSelect: (f: Facility) => void;
 }
 
-export function MapView({ store, theme, onSelect }: Props) {
+export function MapView({
+  store,
+  theme,
+  picking,
+  onPickPoint,
+  onCancelPick,
+  onSelect,
+}: Props) {
   const placed = store.facilities.filter((f) => f.lat != null && f.lng != null);
   const tileStyle = theme === "dark" ? "dark_all" : "light_all";
 
@@ -41,6 +80,13 @@ export function MapView({ store, theme, onSelect }: Props) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url={`https://basemaps.cartocdn.com/${tileStyle}/{z}/{x}/{y}{r}.png`}
         />
+        <PickHandler enabled={picking} onPick={onPickPoint} />
+        {store.home && (
+          <Marker
+            position={[store.home.lat, store.home.lng]}
+            icon={HOME_ICON}
+          />
+        )}
         {placed.map((f) => {
           const visited = Boolean(store.visits[f.id]);
           return (
@@ -71,6 +117,14 @@ export function MapView({ store, theme, onSelect }: Props) {
           );
         })}
       </MapContainer>
+      {picking && (
+        <div className="map-pick-banner">
+          <span>地図をタップして基準地点を設定</span>
+          <button type="button" onClick={onCancelPick}>
+            キャンセル
+          </button>
+        </div>
+      )}
       <div className="map-legend">
         <span>
           <i className="dot pending" /> 未訪問(カテゴリ色)

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { RANGE_OPTIONS } from "../types";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
@@ -6,11 +7,35 @@ interface Props {
   store: Store;
   theme: Theme;
   onToggleTheme: () => void;
+  onPickOnMap: () => void;
   onClose: () => void;
 }
 
-export function Sidebar({ store, theme, onToggleTheme, onClose }: Props) {
+export function Sidebar({
+  store,
+  theme,
+  onToggleTheme,
+  onPickOnMap,
+  onClose,
+}: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
+
+  const useCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      window.alert("この端末では現在地を取得できません");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        store.setHome({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+      },
+      () => {
+        window.alert(
+          "現在地を取得できませんでした。位置情報の許可を確認してください",
+        );
+      },
+    );
+  };
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
@@ -71,6 +96,55 @@ export function Sidebar({ store, theme, onToggleTheme, onClose }: Props) {
               </svg>
             )}
           </button>
+        </section>
+
+        <section className="menu-section">
+          <h3>LOCATION</h3>
+          <p className="menu-text">
+            {store.home
+              ? `基準地点: ${store.home.lat.toFixed(3)}, ${store.home.lng.toFixed(3)}`
+              : "自宅などの基準地点を登録すると、一覧を距離で絞り込み・近い順に並べられます。"}
+          </p>
+          <div className="data-actions">
+            <button type="button" onClick={useCurrentLocation}>
+              現在地を使う
+            </button>
+            <button type="button" onClick={onPickOnMap}>
+              地図で選ぶ
+            </button>
+          </div>
+          <div className="chips range-chips">
+            {RANGE_OPTIONS.map((km) => (
+              <button
+                type="button"
+                key={km}
+                className={`chip ${store.rangeKm === km ? "active" : ""}`}
+                disabled={!store.home}
+                onClick={() =>
+                  store.setRangeKm(store.rangeKm === km ? null : km)
+                }
+              >
+                {km}km以内
+              </button>
+            ))}
+            <button
+              type="button"
+              className={`chip ${store.rangeKm == null ? "active" : ""}`}
+              disabled={!store.home}
+              onClick={() => store.setRangeKm(null)}
+            >
+              制限なし
+            </button>
+          </div>
+          {store.home && (
+            <button
+              type="button"
+              className="btn-subtle"
+              onClick={() => store.setHome(null)}
+            >
+              基準地点をクリア
+            </button>
+          )}
         </section>
 
         <section className="menu-section">

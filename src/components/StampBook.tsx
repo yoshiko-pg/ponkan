@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CATEGORIES, CATEGORY_LABEL } from "../types";
 import type { Category, Facility } from "../types";
 import type { Store } from "../store";
+import { distanceKm } from "../geo";
 import { StampCircle } from "./StampCircle";
 
 interface Props {
@@ -11,11 +12,29 @@ interface Props {
 
 export function StampBook({ store, onSelect }: Props) {
   const [filter, setFilter] = useState<Category | "all">("all");
+  const { home, rangeKm } = store;
 
-  const shown = store.facilities.filter(
-    (f) => filter === "all" || f.category === filter,
+  // 基準地点があれば距離を計算(座標なしの施設は null のまま残す)
+  const withDistance = store.facilities.map((f) => ({
+    facility: f,
+    distance:
+      home && f.lat != null && f.lng != null
+        ? distanceKm(home, { lat: f.lat, lng: f.lng })
+        : null,
+  }));
+
+  const shown = withDistance.filter(
+    ({ facility, distance }) =>
+      (filter === "all" || facility.category === filter) &&
+      (rangeKm == null || distance == null || distance <= rangeKm),
   );
-  const visited = shown.filter((f) => store.visits[f.id]).length;
+  if (home) {
+    shown.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+  }
+
+  const visited = shown.filter(
+    ({ facility }) => store.visits[facility.id],
+  ).length;
   const pct = shown.length > 0 ? Math.round((visited / shown.length) * 100) : 0;
 
   return (
@@ -45,6 +64,7 @@ export function StampBook({ store, onSelect }: Props) {
         <div className="count-row">
           <span className="count-label">
             {filter === "all" ? "ALL SPOTS" : CATEGORY_LABEL[filter]}
+            {home && rangeKm != null && ` ・ ${rangeKm}KM圏内`}
           </span>
           <span className="count-num">
             {visited}
@@ -60,17 +80,18 @@ export function StampBook({ store, onSelect }: Props) {
       </div>
 
       <div className="stamp-grid">
-        {shown.map((f) => (
+        {shown.map(({ facility, distance }) => (
           <StampCircle
-            key={f.id}
-            facility={f}
-            visit={store.visits[f.id]}
-            onClick={() => onSelect(f)}
+            key={facility.id}
+            facility={facility}
+            visit={store.visits[facility.id]}
+            distance={distance}
+            onClick={() => onSelect(facility)}
           />
         ))}
       </div>
       {shown.length === 0 && (
-        <p className="empty-note">このカテゴリの施設はまだありません</p>
+        <p className="empty-note">条件に合う施設がありません</p>
       )}
     </div>
   );
