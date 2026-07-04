@@ -256,12 +256,13 @@ body {
   background: var(--science);
 }
 
-/* Tierチップ: カテゴリ行の直下に寄せ、ドットの大きさで規模を表す */
-.chips.tier-chips {
+/* 2行目以降のチップ行(Tier・距離)は直前の行に寄せる */
+.chips + .chips {
   padding-top: 0;
   margin-top: -8px;
 }
 
+/* Tierチップはドットの大きさで規模を表す */
 .chip-tier1 .dot {
   width: 9px;
   height: 9px;
@@ -1064,15 +1065,6 @@ body {
 .data-actions {
   display: flex;
   gap: 8px;
-}
-
-.range-chips {
-  padding: 12px 0 0;
-}
-
-.chip:disabled {
-  opacity: 0.4;
-  cursor: default;
 }
 
 .data-actions button {

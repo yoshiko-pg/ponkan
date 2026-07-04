@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { RANGE_OPTIONS } from "../types";
 import { requestCurrentLocation } from "../geo";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
@@ -99,29 +98,6 @@ export function Sidebar({
             </button>
             <button type="button" onClick={onPickOnMap}>
               地図で選ぶ
-            </button>
-          </div>
-          <div className="chips range-chips">
-            {RANGE_OPTIONS.map((km) => (
-              <button
-                type="button"
-                key={km}
-                className={`chip ${store.rangeKm === km ? "active" : ""}`}
-                disabled={!store.home}
-                onClick={() =>
-                  store.setRangeKm(store.rangeKm === km ? null : km)
-                }
-              >
-                {km}km以内
-              </button>
-            ))}
-            <button
-              type="button"
-              className={`chip ${store.rangeKm == null ? "active" : ""}`}
-              disabled={!store.home}
-              onClick={() => store.setRangeKm(null)}
-            >
-              制限なし
             </button>
           </div>
           {store.home && (

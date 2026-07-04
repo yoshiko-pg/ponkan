@@ -16,7 +16,7 @@ export function TierChips({ selected, onChange }: Props) {
     );
 
   return (
-    <div className="chips tier-chips">
+    <div className="chips">
       {TIERS.map((tier) => (
         <button
           type="button"

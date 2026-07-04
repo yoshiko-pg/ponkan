@@ -5,6 +5,7 @@ import { distanceKm, requestCurrentLocation } from "../geo";
 import { StampCircle } from "./StampCircle";
 import { CategoryChips } from "./CategoryChips";
 import { TierChips } from "./TierChips";
+import { RangeChips } from "./RangeChips";
 
 interface Props {
   store: Store;
@@ -58,6 +59,7 @@ export function StampBook({
       <div className="book-head">
         <CategoryChips selected={filter} onChange={onFilterChange} />
         <TierChips selected={tierFilter} onChange={onTierFilterChange} />
+        {home && <RangeChips rangeKm={rangeKm} onChange={store.setRangeKm} />}
 
         <div className="count-row">
           <span className="count-label">
