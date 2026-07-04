@@ -16,7 +16,7 @@ import type { Theme } from "../useTheme";
 
 // 未訪問(=これから行く場所)を目立たせ、訪問済みは控えめに表示する
 function markerIcon(f: Facility, visited: boolean) {
-  const cls = visited ? "visited" : `cat-${f.category}`;
+  const cls = visited ? `visited cat-${f.category}` : `cat-${f.category}`;
   const size = visited ? 22 : 32;
   return divIcon({
     className: "map-pin-wrap",

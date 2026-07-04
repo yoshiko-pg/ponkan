@@ -812,14 +812,6 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-.map-pin.visited {
-  background: var(--line-strong);
-  color: var(--ink-soft);
-  font-size: 11px;
-  font-style: normal;
-  box-shadow: none;
-}
-
 .map-pin.cat-aquarium {
   background: var(--aquarium);
   color: var(--bg);
@@ -835,6 +827,30 @@ body {
 .map-pin.cat-science {
   background: var(--science);
   color: var(--bg);
+}
+
+/* 訪問済み: 未訪問の色反転(白地+カテゴリ色のふち・✓)。cat-*より後に置いて上書き */
+.map-pin.visited {
+  background: var(--card);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.map-pin.visited.cat-aquarium {
+  border-color: var(--aquarium);
+  color: var(--aquarium);
+}
+.map-pin.visited.cat-art {
+  border-color: var(--art);
+  color: var(--art);
+}
+.map-pin.visited.cat-museum {
+  border-color: var(--museum);
+  color: var(--museum);
+}
+.map-pin.visited.cat-science {
+  border-color: var(--science);
+  color: var(--science);
 }
 
 .map-pin.home {
@@ -933,7 +949,9 @@ body {
 }
 
 .map-legend .dot.done {
-  background: var(--line-strong);
+  background: var(--card);
+  border: 2px solid var(--aquarium);
+  box-sizing: border-box;
 }
 
 /* ---------- sidebar ---------- */
