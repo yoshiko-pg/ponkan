@@ -639,45 +639,7 @@ body {
   text-decoration: none;
 }
 
-/* ---------- stamp button / visit panel ---------- */
-.btn-stamp {
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  padding: 16px;
-  font: inherit;
-  font-size: 19px;
-  font-weight: 800;
-  font-style: italic;
-  letter-spacing: 0.16em;
-  color: var(--bg);
-  cursor: pointer;
-  margin: 8px 0 4px;
-}
-
-.btn-stamp:active {
-  transform: scale(0.98);
-}
-
-.btn-stamp:disabled {
-  background: var(--line-strong);
-  color: var(--ink-soft);
-  cursor: default;
-}
-
-.btn-stamp.cat-aquarium {
-  background: var(--aquarium);
-}
-.btn-stamp.cat-art {
-  background: var(--art);
-}
-.btn-stamp.cat-museum {
-  background: var(--museum);
-}
-.btn-stamp.cat-science {
-  background: var(--science);
-}
-
+/* ---------- visit panel ---------- */
 .visit-panel {
   display: flex;
   flex-direction: column;
@@ -696,6 +658,17 @@ body {
   gap: 1px;
   transform: rotate(-6deg);
   margin: 14px auto 6px;
+}
+
+/* 未スタンプ時のプレースホルダー: 一覧の未訪問サークルと同じ見た目でタップ可能 */
+.stamped-mark.unstamped {
+  border: 1.5px dashed var(--line-strong);
+  background: none;
+  color: var(--stamp-dim);
+  font: inherit;
+  padding: 0;
+  transform: none;
+  cursor: pointer;
 }
 
 .stamped-mark .stamp-code {

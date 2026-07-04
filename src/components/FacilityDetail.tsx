@@ -98,7 +98,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
           {!facility.address && <p className="detail-pref">{facility.pref}</p>}
         </div>
 
-        {visit && (
+        {visit ? (
           <div
             className={`stamped-mark cat-${facility.category} ${justStamped ? "pop" : ""}`}
           >
@@ -111,6 +111,17 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
               ))}
             </span>
           </div>
+        ) : (
+          <button
+            type="button"
+            className="stamped-mark unstamped"
+            onClick={handleStamp}
+            aria-label="スタンプを押す"
+          >
+            <span className="stamp-code">
+              {CATEGORY_CODE[facility.category]}
+            </span>
+          </button>
         )}
 
         {visit && editing && (
@@ -175,16 +186,6 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             GOOGLE MAPS
           </a>
         </div>
-
-        {!visit && (
-          <button
-            type="button"
-            className={`btn-stamp cat-${facility.category}`}
-            onClick={handleStamp}
-          >
-            PON!
-          </button>
-        )}
       </div>
     </div>
   );
