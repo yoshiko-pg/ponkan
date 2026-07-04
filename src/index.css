@@ -70,13 +70,14 @@ body {
 
 /* ---------- header ---------- */
 .header {
-  padding: 18px 16px 6px;
+  padding: 0 16px;
+  height: 56px;
   position: sticky;
   top: 0;
   background: var(--bg);
   z-index: 500;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
 }
 
@@ -171,12 +172,21 @@ body {
   border-top-color: var(--accent);
 }
 
-/* ---------- chips ---------- */
+/* ---------- book head (sticky: chips + count + progress) ---------- */
+.book-head {
+  position: sticky;
+  top: 56px;
+  z-index: 400;
+  background: var(--bg);
+  margin: 0 -16px;
+  padding: 0 16px 14px;
+}
+
 .chips {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  padding: 10px 0 14px;
+  padding: 6px 0 14px;
 }
 
 .chip {
@@ -289,7 +299,6 @@ body {
   height: 4px;
   border-radius: 2px;
   background: var(--line);
-  margin-bottom: 22px;
   overflow: hidden;
 }
 
@@ -317,6 +326,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px 8px;
+  padding-top: 20px;
 }
 
 .stamp-cell {

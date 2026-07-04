@@ -20,41 +20,43 @@ export function StampBook({ store, onSelect }: Props) {
 
   return (
     <div className="stamp-book">
-      <div className="chips">
-        <button
-          type="button"
-          className={`chip ${filter === "all" ? "active" : ""}`}
-          onClick={() => setFilter("all")}
-        >
-          ALL
-        </button>
-        {CATEGORIES.map((cat) => (
+      <div className="book-head">
+        <div className="chips">
           <button
             type="button"
-            key={cat}
-            className={`chip chip-${cat} ${filter === cat ? "active" : ""}`}
-            onClick={() => setFilter(cat)}
+            className={`chip ${filter === "all" ? "active" : ""}`}
+            onClick={() => setFilter("all")}
           >
-            <i className="dot" />
-            {CATEGORY_LABEL[cat]}
+            ALL
           </button>
-        ))}
-      </div>
+          {CATEGORIES.map((cat) => (
+            <button
+              type="button"
+              key={cat}
+              className={`chip chip-${cat} ${filter === cat ? "active" : ""}`}
+              onClick={() => setFilter(cat)}
+            >
+              <i className="dot" />
+              {CATEGORY_LABEL[cat]}
+            </button>
+          ))}
+        </div>
 
-      <div className="count-row">
-        <span className="count-label">
-          {filter === "all" ? "ALL SPOTS" : CATEGORY_LABEL[filter]}
-        </span>
-        <span className="count-num">
-          {visited}
-          <small> / {shown.length}</small>
-        </span>
-      </div>
-      <div className="progress-track">
-        <div
-          className={`progress-fill ${filter !== "all" ? `fill-${filter}` : ""}`}
-          style={{ width: `${pct}%` }}
-        />
+        <div className="count-row">
+          <span className="count-label">
+            {filter === "all" ? "ALL SPOTS" : CATEGORY_LABEL[filter]}
+          </span>
+          <span className="count-num">
+            {visited}
+            <small> / {shown.length}</small>
+          </span>
+        </div>
+        <div className="progress-track">
+          <div
+            className={`progress-fill ${filter !== "all" ? `fill-${filter}` : ""}`}
+            style={{ width: `${pct}%` }}
+          />
+        </div>
       </div>
 
       <div className="stamp-grid">
