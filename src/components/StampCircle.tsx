@@ -1,5 +1,5 @@
 import { CATEGORY_CODE } from "../types";
-import { formatDate } from "../format";
+import { formatDateLines } from "../format";
 import type { Facility, VisitRecord } from "../types";
 import { formatKm } from "../geo";
 
@@ -19,7 +19,13 @@ export function StampCircle({ facility, visit, distance, onClick }: Props) {
         style={visit ? { transform: `rotate(${rotation}deg)` } : undefined}
       >
         <span className="stamp-code">{CATEGORY_CODE[facility.category]}</span>
-        {visit && <span className="stamp-date">{formatDate(visit.date)}</span>}
+        {visit && (
+          <span className="stamp-date">
+            {formatDateLines(visit.date).map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </span>
+        )}
       </span>
       <span className={`stamp-name ${visit ? "" : "unvisited"}`}>
         {facility.name}

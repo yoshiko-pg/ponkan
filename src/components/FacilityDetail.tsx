@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
-import { formatDate } from "../format";
+import { formatDateLines } from "../format";
 import type { Facility } from "../types";
 import type { Store } from "../store";
 
@@ -105,7 +105,11 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             <span className="stamp-code">
               {CATEGORY_CODE[facility.category]}
             </span>
-            <span className="stamp-date">{formatDate(visit.date)}</span>
+            <span className="stamp-date">
+              {formatDateLines(visit.date).map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </span>
           </div>
         )}
 

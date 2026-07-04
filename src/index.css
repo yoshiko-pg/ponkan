@@ -352,9 +352,14 @@ body {
 }
 
 .stamp-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .stamp-circle.stamped {
@@ -364,9 +369,17 @@ body {
 }
 
 .stamp-circle.stamped.cat-aquarium {
-  border-color: var(--aquarium);
-  background: var(--aquarium-soft);
+  border: none;
+  background: url("/stamps/aquarium.png") 51% 36% / 118% no-repeat;
   color: var(--aquarium);
+}
+.stamp-circle.stamped.cat-aquarium .stamp-code {
+  display: none;
+}
+/* 画像スタンプの中央の空白は円の中心よりやや下にある */
+.stamp-circle.stamped.cat-aquarium .stamp-date,
+.stamped-mark.cat-aquarium .stamp-date {
+  translate: 0 6px;
 }
 .stamp-circle.stamped.cat-art {
   border-color: var(--art);
@@ -694,9 +707,12 @@ body {
 }
 
 .stamped-mark.cat-aquarium {
-  border-color: var(--aquarium);
+  border: none;
   color: var(--aquarium);
-  background: var(--aquarium-soft);
+  background: url("/stamps/aquarium.png") 51% 36% / 118% no-repeat;
+}
+.stamped-mark.cat-aquarium .stamp-code {
+  display: none;
 }
 .stamped-mark.cat-art {
   border-color: var(--art);
