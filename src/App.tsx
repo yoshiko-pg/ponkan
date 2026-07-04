@@ -57,6 +57,10 @@ export default function App() {
             store={store}
             filter={filter}
             onFilterChange={setFilter}
+            onPickOnMap={() => {
+              setTab("map");
+              setPickingHome(true);
+            }}
             onSelect={setSelected}
           />
         )}

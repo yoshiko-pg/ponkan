@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { RANGE_OPTIONS } from "../types";
+import { requestCurrentLocation } from "../geo";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
@@ -21,20 +22,7 @@ export function Sidebar({
   const fileRef = useRef<HTMLInputElement>(null);
 
   const useCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      window.alert("この端末では現在地を取得できません");
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        store.setHome({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-      },
-      () => {
-        window.alert(
-          "現在地を取得できませんでした。位置情報の許可を確認してください",
-        );
-      },
-    );
+    requestCurrentLocation(store.setHome);
   };
 
   const handleImport = (file: File) => {

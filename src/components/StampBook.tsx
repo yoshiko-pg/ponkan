@@ -1,7 +1,7 @@
 import { CATEGORIES, CATEGORY_LABEL } from "../types";
 import type { Category, Facility } from "../types";
 import type { Store } from "../store";
-import { distanceKm } from "../geo";
+import { distanceKm, requestCurrentLocation } from "../geo";
 import { StampCircle } from "./StampCircle";
 import { CategoryChips } from "./CategoryChips";
 
@@ -9,10 +9,17 @@ interface Props {
   store: Store;
   filter: Category[];
   onFilterChange: (filter: Category[]) => void;
+  onPickOnMap: () => void;
   onSelect: (f: Facility) => void;
 }
 
-export function StampBook({ store, filter, onFilterChange, onSelect }: Props) {
+export function StampBook({
+  store,
+  filter,
+  onFilterChange,
+  onPickOnMap,
+  onSelect,
+}: Props) {
   const { home, rangeKm } = store;
 
   // 基準地点があれば距離を計算(座標なしの施設は null のまま残す)
@@ -64,6 +71,25 @@ export function StampBook({ store, filter, onFilterChange, onSelect }: Props) {
           />
         </div>
       </div>
+
+      {!home && (
+        <div className="home-prompt">
+          <p className="home-prompt-text">
+            自宅などの基準地点を登録すると、一覧を距離で絞り込み・近い順に並べられます。
+          </p>
+          <div className="data-actions">
+            <button
+              type="button"
+              onClick={() => requestCurrentLocation(store.setHome)}
+            >
+              現在地を使う
+            </button>
+            <button type="button" onClick={onPickOnMap}>
+              地図で選ぶ
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="stamp-grid">
         {shown.map(({ facility, distance }) => (

@@ -422,6 +422,22 @@ body {
   padding: 40px 0;
 }
 
+/* ---------- home prompt (基準地点の未登録案内) ---------- */
+.home-prompt {
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.home-prompt-text {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
 /* ---------- modal ---------- */
 .modal-backdrop {
   position: fixed;
