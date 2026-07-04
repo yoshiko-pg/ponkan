@@ -31,7 +31,10 @@ export interface StoreData {
   rangeKm: number | null;
 }
 
-export const RANGE_OPTIONS = [30, 60, 100];
+export const RANGE_OPTIONS = [30, 50, 100];
+
+// 基準地点を設定したときの初期絞り込み距離
+export const DEFAULT_RANGE_KM = 50;
 
 export const CATEGORY_LABEL: Record<Category, string> = {
   aquarium: "水族館",

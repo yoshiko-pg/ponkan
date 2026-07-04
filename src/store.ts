@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { SEED_FACILITIES } from "./data/facilities";
+import { DEFAULT_RANGE_KM, RANGE_OPTIONS } from "./types";
 import type { Facility, HomePoint, StoreData, VisitRecord } from "./types";
 
 const STORAGE_KEY = "ponkan:v1";
@@ -12,6 +13,15 @@ const EMPTY: StoreData = {
   rangeKm: null,
 };
 
+// 選択肢の変更(60km→50kmなど)で無効になった保存値を近い選択肢に丸める
+function normalizeRangeKm(rangeKm: number | null | undefined): number | null {
+  if (rangeKm == null) return null;
+  if (RANGE_OPTIONS.includes(rangeKm)) return rangeKm;
+  return RANGE_OPTIONS.reduce((a, b) =>
+    Math.abs(b - rangeKm) < Math.abs(a - rangeKm) ? b : a,
+  );
+}
+
 function load(): StoreData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -22,7 +32,7 @@ function load(): StoreData {
       custom: parsed.custom ?? [],
       hidden: parsed.hidden ?? [],
       home: parsed.home ?? null,
-      rangeKm: parsed.rangeKm ?? null,
+      rangeKm: normalizeRangeKm(parsed.rangeKm),
     };
   } catch {
     return EMPTY;
@@ -89,7 +99,12 @@ export function useStore() {
   }, []);
 
   const setHome = useCallback((home: HomePoint | null) => {
-    setData((d) => ({ ...d, home, rangeKm: home ? d.rangeKm : null }));
+    // 基準地点を設定したら絞り込みは50kmから始める(解除したらリセット)
+    setData((d) => ({
+      ...d,
+      home,
+      rangeKm: home ? (d.rangeKm ?? DEFAULT_RANGE_KM) : null,
+    }));
   }, []);
 
   const setRangeKm = useCallback((rangeKm: number | null) => {
@@ -119,7 +134,7 @@ export function useStore() {
         custom: parsed.custom ?? [],
         hidden: parsed.hidden ?? [],
         home: parsed.home ?? null,
-        rangeKm: parsed.rangeKm ?? null,
+        rangeKm: normalizeRangeKm(parsed.rangeKm),
       });
       return true;
     } catch {
