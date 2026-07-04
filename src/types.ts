@@ -55,3 +55,14 @@ export const CATEGORY_CODE: Record<Category, string> = {
 };
 
 export const CATEGORIES: Category[] = ["aquarium", "art", "museum", "science"];
+
+export const TIERS: Tier[] = [1, 2, 3];
+
+// ラベル文言は検討中。TIER_LABEL の参照先を切り替えて比較できる
+export const TIER_LABEL_SETS: Record<string, Record<Tier, string>> = {
+  dendo: { 1: "殿堂", 2: "定番", 3: "穴場" },
+  wazawaza: { 1: "わざわざ", 2: "よりみち", 3: "ふらっと" },
+  major: { 1: "MAJOR", 2: "BASIC", 3: "LOCAL" },
+};
+
+export const TIER_LABEL: Record<Tier, string> = TIER_LABEL_SETS.major;

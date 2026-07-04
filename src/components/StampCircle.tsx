@@ -1,4 +1,4 @@
-import { CATEGORY_CODE } from "../types";
+import { CATEGORY_CODE, TIER_LABEL } from "../types";
 import { formatDateLines } from "../format";
 import type { Facility, VisitRecord } from "../types";
 import { formatKm } from "../geo";
@@ -30,8 +30,14 @@ export function StampCircle({ facility, visit, distance, onClick }: Props) {
       <span className={`stamp-name ${visit ? "" : "unvisited"}`}>
         {facility.name}
       </span>
-      {distance != null && (
-        <span className="stamp-dist">{formatKm(distance)}</span>
+      {(facility.tier != null || distance != null) && (
+        <span className="stamp-dist">
+          {facility.tier != null && (
+            <span className="stamp-tier">{TIER_LABEL[facility.tier]}</span>
+          )}
+          {facility.tier != null && distance != null && " ・ "}
+          {distance != null && formatKm(distance)}
+        </span>
       )}
     </button>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
+import { CATEGORY_CODE, CATEGORY_LABEL, TIER_LABEL } from "../types";
 import { formatDateLines } from "../format";
 import type { Facility } from "../types";
 import type { Store } from "../store";
@@ -94,6 +94,9 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             {CATEGORY_CODE[facility.category]} —{" "}
             {CATEGORY_LABEL[facility.category]}
           </span>
+          {facility.tier != null && (
+            <span className="tier-badge">{TIER_LABEL[facility.tier]}</span>
+          )}
           <h2>{facility.name}</h2>
           {!facility.address && <p className="detail-pref">{facility.pref}</p>}
         </div>

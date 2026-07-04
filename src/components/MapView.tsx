@@ -8,8 +8,9 @@ import {
 import { divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
-import type { Category, Facility } from "../types";
+import type { Category, Facility, Tier } from "../types";
 import { CategoryChips } from "./CategoryChips";
+import { TierChips } from "./TierChips";
 import { formatDate } from "../format";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
@@ -54,6 +55,8 @@ interface Props {
   theme: Theme;
   filter: Category[];
   onFilterChange: (filter: Category[]) => void;
+  tierFilter: Tier[];
+  onTierFilterChange: (tierFilter: Tier[]) => void;
   picking: boolean;
   onPickPoint: (lat: number, lng: number) => void;
   onCancelPick: () => void;
@@ -65,16 +68,21 @@ export function MapView({
   theme,
   filter,
   onFilterChange,
+  tierFilter,
+  onTierFilterChange,
   picking,
   onPickPoint,
   onCancelPick,
   onSelect,
 }: Props) {
+  // Tierで絞り込むときは未分類(カスタム追加分)は表示しない
   const placed = store.facilities.filter(
     (f) =>
       f.lat != null &&
       f.lng != null &&
-      (filter.length === 0 || filter.includes(f.category)),
+      (filter.length === 0 || filter.includes(f.category)) &&
+      (tierFilter.length === 0 ||
+        (f.tier != null && tierFilter.includes(f.tier))),
   );
   const tileStyle = theme === "dark" ? "dark_all" : "light_all";
 
@@ -82,6 +90,7 @@ export function MapView({
     <div className="map-wrap">
       <div className="map-chips">
         <CategoryChips selected={filter} onChange={onFilterChange} />
+        <TierChips selected={tierFilter} onChange={onTierFilterChange} />
       </div>
       <MapContainer
         center={[35.85, 139.75]}
@@ -114,7 +123,9 @@ export function MapView({
                   <strong>{f.name}</strong>
                   <span className="map-popup-sub">
                     {CATEGORY_LABEL[f.category]} ・{" "}
-                    {visited ? `${formatDate(store.visits[f.id].date)} 訪問` : "未訪問"}
+                    {visited
+                      ? `${formatDate(store.visits[f.id].date)} 訪問`
+                      : "未訪問"}
                   </span>
                   {f.address && (
                     <span className="map-popup-sub">{f.address}</span>

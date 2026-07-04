@@ -1,14 +1,17 @@
-import { CATEGORIES, CATEGORY_LABEL } from "../types";
-import type { Category, Facility } from "../types";
+import { CATEGORIES, CATEGORY_LABEL, TIERS, TIER_LABEL } from "../types";
+import type { Category, Facility, Tier } from "../types";
 import type { Store } from "../store";
 import { distanceKm, requestCurrentLocation } from "../geo";
 import { StampCircle } from "./StampCircle";
 import { CategoryChips } from "./CategoryChips";
+import { TierChips } from "./TierChips";
 
 interface Props {
   store: Store;
   filter: Category[];
   onFilterChange: (filter: Category[]) => void;
+  tierFilter: Tier[];
+  onTierFilterChange: (tierFilter: Tier[]) => void;
   onPickOnMap: () => void;
   onSelect: (f: Facility) => void;
 }
@@ -17,6 +20,8 @@ export function StampBook({
   store,
   filter,
   onFilterChange,
+  tierFilter,
+  onTierFilterChange,
   onPickOnMap,
   onSelect,
 }: Props) {
@@ -31,9 +36,12 @@ export function StampBook({
         : null,
   }));
 
+  // Tierで絞り込むときは未分類(カスタム追加分)は表示しない
   const shown = withDistance.filter(
     ({ facility, distance }) =>
       (filter.length === 0 || filter.includes(facility.category)) &&
+      (tierFilter.length === 0 ||
+        (facility.tier != null && tierFilter.includes(facility.tier))) &&
       (rangeKm == null || distance == null || distance <= rangeKm),
   );
   if (home) {
@@ -49,14 +57,20 @@ export function StampBook({
     <div className="stamp-book">
       <div className="book-head">
         <CategoryChips selected={filter} onChange={onFilterChange} />
+        <TierChips selected={tierFilter} onChange={onTierFilterChange} />
 
         <div className="count-row">
           <span className="count-label">
-            {filter.length === 0
+            {filter.length === 0 && tierFilter.length === 0
               ? "ALL SPOTS"
-              : CATEGORIES.filter((c) => filter.includes(c))
-                  .map((c) => CATEGORY_LABEL[c])
-                  .join("・")}
+              : [
+                  ...CATEGORIES.filter((c) => filter.includes(c)).map(
+                    (c) => CATEGORY_LABEL[c],
+                  ),
+                  ...TIERS.filter((t) => tierFilter.includes(t)).map(
+                    (t) => TIER_LABEL[t],
+                  ),
+                ].join("・")}
             {home && rangeKm != null && ` ・ ${rangeKm}KM圏内`}
           </span>
           <span className="count-num">

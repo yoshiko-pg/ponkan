@@ -6,7 +6,7 @@ import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
 import { Sidebar } from "./components/Sidebar";
 import { FacilityDetail } from "./components/FacilityDetail";
-import type { Category } from "./types";
+import type { Category, Tier } from "./types";
 
 type Tab = "book" | "map";
 
@@ -15,6 +15,7 @@ export default function App() {
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
   const [filter, setFilter] = useState<Category[]>([]);
+  const [tierFilter, setTierFilter] = useState<Tier[]>([]);
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pickingHome, setPickingHome] = useState(false);
@@ -57,6 +58,8 @@ export default function App() {
             store={store}
             filter={filter}
             onFilterChange={setFilter}
+            tierFilter={tierFilter}
+            onTierFilterChange={setTierFilter}
             onPickOnMap={() => {
               setTab("map");
               setPickingHome(true);
@@ -70,6 +73,8 @@ export default function App() {
             theme={theme}
             filter={filter}
             onFilterChange={setFilter}
+            tierFilter={tierFilter}
+            onTierFilterChange={setTierFilter}
             picking={pickingHome}
             onPickPoint={(lat, lng) => {
               store.setHome({ lat, lng });
