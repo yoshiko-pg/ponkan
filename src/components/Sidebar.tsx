@@ -148,18 +148,6 @@ export function Sidebar({
         </section>
 
         <section className="menu-section">
-          <h3>ABOUT</h3>
-          <p className="menu-text">
-            関東近郊の水族館・美術館・博物館・科学館をめぐる自分用スタンプラリー。
-            行った施設を開いて「PON!」でスタンプが押せます。
-          </p>
-          <p className="menu-text">
-            訪問記録・メモはこの端末のブラウザ(localStorage)にのみ保存されます。
-            座標・住所はおおよその値です。
-          </p>
-        </section>
-
-        <section className="menu-section">
           <h3>DATA</h3>
           <p className="menu-text">
             訪問記録・メモ・リスト編集を含む全データをJSONでバックアップ/復元できます。
@@ -183,6 +171,18 @@ export function Sidebar({
               }}
             />
           </div>
+        </section>
+
+        <section className="menu-section">
+          <h3>ABOUT</h3>
+          <p className="menu-text">
+            関東近郊の水族館・美術館・博物館・科学館をめぐる自分用スタンプラリー。
+            行った施設を開いて「PON!」でスタンプが押せます。
+          </p>
+          <p className="menu-text">
+            訪問記録・メモはこの端末のブラウザ(localStorage)にのみ保存されます。
+            座標・住所はおおよその値です。
+          </p>
         </section>
       </aside>
     </div>
