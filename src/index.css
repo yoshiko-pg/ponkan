@@ -418,10 +418,6 @@ body {
   text-align: center;
 }
 
-.stamp-name.unvisited {
-  color: var(--ink-soft);
-}
-
 .stamp-dist {
   font-size: 10px;
   font-weight: 600;
