@@ -1,5 +1,8 @@
 export type Category = "aquarium" | "art" | "museum" | "science";
 
+// 1: 全国区の目的地 / 2: 地域の主要館 / 3: 小規模・ニッチ
+export type Tier = 1 | 2 | 3;
+
 export interface Facility {
   id: string;
   name: string;
@@ -11,6 +14,7 @@ export interface Facility {
   lng?: number;
   url?: string;
   custom?: boolean;
+  tier?: Tier;
 }
 
 export interface VisitRecord {
