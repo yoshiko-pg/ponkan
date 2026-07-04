@@ -141,7 +141,7 @@ export function Sidebar({
           <h3>ABOUT</h3>
           <p className="menu-text">
             関東近郊の水族館・美術館・博物館・科学館をめぐる自分用スタンプラリー。
-            行った施設を開いて「PON!」でスタンプが押せます。
+            行った施設を開いてスタンプが押せます。
           </p>
           <p className="menu-text">
             訪問記録・メモはこの端末のブラウザ(localStorage)にのみ保存されます。
