@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CATEGORIES, CATEGORY_EMOJI, CATEGORY_LABEL } from "../types";
+import { CATEGORIES, CATEGORY_LABEL } from "../types";
 import type { Category } from "../types";
 import type { Store } from "../store";
 
@@ -63,7 +63,8 @@ export function AddFacility({ store, onClose }: Props) {
                 className={`chip chip-${cat} ${category === cat ? "active" : ""}`}
                 onClick={() => setCategory(cat)}
               >
-                {CATEGORY_EMOJI[cat]} {CATEGORY_LABEL[cat]}
+                <i className="dot" />
+                {CATEGORY_LABEL[cat]}
               </button>
             ))}
           </div>

@@ -40,16 +40,16 @@ export function Achievements({ store }: Props) {
       </div>
 
       <div className="data-panel">
-        <h3>データ</h3>
+        <h3>DATA</h3>
         <p className="data-note">
           記録はこの端末のブラウザに保存されます。バックアップはJSONで書き出せます。
         </p>
         <div className="data-actions">
           <button type="button" onClick={store.exportJson}>
-            ⬇️ エクスポート
+            EXPORT
           </button>
           <button type="button" onClick={() => fileRef.current?.click()}>
-            ⬆️ インポート
+            IMPORT
           </button>
           <input
             ref={fileRef}

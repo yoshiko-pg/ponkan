@@ -15,10 +15,6 @@ export default function App() {
   const [selected, setSelected] = useState<Facility | null>(null);
   const [adding, setAdding] = useState(false);
 
-  const total = store.facilities.length;
-  const visited = store.facilities.filter((f) => store.visits[f.id]).length;
-  const pct = total > 0 ? Math.round((visited / total) * 100) : 0;
-
   // 選択中の施設が削除された場合に備えて最新の参照を取り直す
   const selectedFacility = selected
     ? (store.facilities.find((f) => f.id === selected.id) ?? null)
@@ -27,17 +23,11 @@ export default function App() {
   return (
     <div className="app">
       <header className="header">
-        <div className="header-row">
-          <h1>
-            ぽんかん <span className="header-sub">ミュージアムスタンプ帳</span>
-          </h1>
-          <span className="header-count">
-            {visited} <small>/ {total} 館</small>
-          </span>
-        </div>
-        <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${pct}%` }} />
-        </div>
+        <h1 className="logo">
+          PONKAN
+          <span className="logo-dot" />
+        </h1>
+        <span className="header-sub">MUSEUM STAMP RALLY</span>
       </header>
 
       <main className="content">
@@ -58,21 +48,21 @@ export default function App() {
           className={tab === "book" ? "active" : ""}
           onClick={() => setTab("book")}
         >
-          📖 スタンプ帳
+          STAMPS
         </button>
         <button
           type="button"
           className={tab === "map" ? "active" : ""}
           onClick={() => setTab("map")}
         >
-          🗺️ マップ
+          MAP
         </button>
         <button
           type="button"
           className={tab === "badges" ? "active" : ""}
           onClick={() => setTab("badges")}
         >
-          🏆 実績
+          AWARDS
         </button>
       </nav>
 

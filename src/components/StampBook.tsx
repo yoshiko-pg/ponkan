@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CATEGORIES, CATEGORY_EMOJI, CATEGORY_LABEL } from "../types";
+import { CATEGORIES, CATEGORY_LABEL } from "../types";
 import type { Category, Facility } from "../types";
 import type { Store } from "../store";
 import { StampCircle } from "./StampCircle";
@@ -16,6 +16,8 @@ export function StampBook({ store, onSelect, onAdd }: Props) {
   const shown = store.facilities.filter(
     (f) => filter === "all" || f.category === filter,
   );
+  const visited = shown.filter((f) => store.visits[f.id]).length;
+  const pct = shown.length > 0 ? Math.round((visited / shown.length) * 100) : 0;
 
   return (
     <div className="stamp-book">
@@ -25,7 +27,7 @@ export function StampBook({ store, onSelect, onAdd }: Props) {
           className={`chip ${filter === "all" ? "active" : ""}`}
           onClick={() => setFilter("all")}
         >
-          すべて
+          ALL
         </button>
         {CATEGORIES.map((cat) => (
           <button
@@ -34,13 +36,31 @@ export function StampBook({ store, onSelect, onAdd }: Props) {
             className={`chip chip-${cat} ${filter === cat ? "active" : ""}`}
             onClick={() => setFilter(cat)}
           >
-            {CATEGORY_EMOJI[cat]} {CATEGORY_LABEL[cat]}
+            <i className="dot" />
+            {CATEGORY_LABEL[cat]}
           </button>
         ))}
         <button type="button" className="chip chip-add" onClick={onAdd}>
           ＋ 追加
         </button>
       </div>
+
+      <div className="count-row">
+        <span className="count-label">
+          {filter === "all" ? "ALL SPOTS" : CATEGORY_LABEL[filter]}
+        </span>
+        <span className="count-num">
+          {visited}
+          <small> / {shown.length}</small>
+        </span>
+      </div>
+      <div className="progress-track">
+        <div
+          className={`progress-fill ${filter !== "all" ? `fill-${filter}` : ""}`}
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+
       <div className="stamp-grid">
         {shown.map((f) => (
           <StampCircle

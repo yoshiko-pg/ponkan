@@ -1,4 +1,4 @@
-import { CATEGORY_EMOJI } from "../types";
+import { CATEGORY_CODE } from "../types";
 import type { Facility, VisitRecord } from "../types";
 
 function shortDate(iso: string): string {
@@ -20,7 +20,7 @@ export function StampCircle({ facility, visit, onClick }: Props) {
         className={`stamp-circle cat-${facility.category} ${visit ? "stamped" : ""}`}
         style={visit ? { transform: `rotate(${rotation}deg)` } : undefined}
       >
-        <span className="stamp-emoji">{CATEGORY_EMOJI[facility.category]}</span>
+        <span className="stamp-code">{CATEGORY_CODE[facility.category]}</span>
         {visit && <span className="stamp-date">{shortDate(visit.date)}</span>}
       </span>
       <span className={`stamp-name ${visit ? "" : "unvisited"}`}>

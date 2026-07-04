@@ -1,24 +1,25 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { CATEGORY_EMOJI, CATEGORY_LABEL } from "../types";
+import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
 import type { Facility } from "../types";
 import type { Store } from "../store";
 
 const CAT_COLOR: Record<string, string> = {
-  aquarium: "#3aa6e8",
-  art: "#f26ca7",
-  museum: "#f5a623",
-  science: "#46b36b",
+  aquarium: "#38bdf8",
+  art: "#f472b6",
+  museum: "#fbbf24",
+  science: "#34d399",
 };
 
 function markerIcon(f: Facility, visited: boolean) {
-  const bg = visited ? CAT_COLOR[f.category] : "#c9c2b8";
+  const bg = visited ? CAT_COLOR[f.category] : "#3a3a44";
+  const fg = visited ? "#101013" : "#8e8e99";
   return divIcon({
     className: "map-pin-wrap",
-    html: `<span class="map-pin" style="background:${bg}">${CATEGORY_EMOJI[f.category]}</span>`,
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
+    html: `<span class="map-pin" style="background:${bg};color:${fg}">${CATEGORY_CODE[f.category]}</span>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
   });
 }
 
@@ -39,8 +40,8 @@ export function MapView({ store, onSelect }: Props) {
         scrollWheelZoom
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
         {placed.map((f) => {
           const visited = Boolean(store.visits[f.id]);
@@ -57,9 +58,7 @@ export function MapView({ store, onSelect }: Props) {
                     {CATEGORY_LABEL[f.category]} ・ {f.pref}
                   </span>
                   <span className="map-popup-sub">
-                    {visited
-                      ? `✅ ${store.visits[f.id].date} 訪問`
-                      : "⬜ 未訪問"}
+                    {visited ? `${store.visits[f.id].date} 訪問` : "未訪問"}
                   </span>
                   <button type="button" onClick={() => onSelect(f)}>
                     詳細を開く
@@ -72,10 +71,10 @@ export function MapView({ store, onSelect }: Props) {
       </MapContainer>
       <div className="map-legend">
         <span>
-          <i className="dot" style={{ background: "#c9c2b8" }} /> 未訪問
+          <i className="dot" style={{ background: "#3a3a44" }} /> 未訪問
         </span>
         <span>
-          <i className="dot" style={{ background: "#3aa6e8" }} />{" "}
+          <i className="dot" style={{ background: "#38bdf8" }} />{" "}
           訪問済み(カテゴリ色)
         </span>
       </div>

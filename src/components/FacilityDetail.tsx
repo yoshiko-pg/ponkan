@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CATEGORY_EMOJI, CATEGORY_LABEL } from "../types";
+import { CATEGORY_CODE, CATEGORY_LABEL } from "../types";
 import type { Facility } from "../types";
 import type { Store } from "../store";
 
@@ -39,7 +39,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
         </button>
         <div className="detail-header">
           <span className={`cat-badge cat-${facility.category}`}>
-            {CATEGORY_EMOJI[facility.category]}{" "}
+            {CATEGORY_CODE[facility.category]} —{" "}
             {CATEGORY_LABEL[facility.category]}
           </span>
           <h2>{facility.name}</h2>
@@ -48,10 +48,10 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
 
         <div className="detail-links">
           <a href={facility.url ?? searchUrl} target="_blank" rel="noreferrer">
-            🔗 公式サイト
+            OFFICIAL SITE
           </a>
           <a href={mapUrl} target="_blank" rel="noreferrer">
-            🗺️ 地図で見る
+            GOOGLE MAPS
           </a>
         </div>
 
@@ -60,8 +60,8 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             <div
               className={`stamped-mark cat-${facility.category} ${justStamped ? "pop" : ""}`}
             >
-              <span>{CATEGORY_EMOJI[facility.category]}</span>
-              <small>訪問済み</small>
+              <span>{CATEGORY_CODE[facility.category]}</span>
+              <small>VISITED</small>
             </div>
             <label className="field">
               訪問日
@@ -98,7 +98,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             className={`btn-stamp cat-${facility.category}`}
             onClick={handleStamp}
           >
-            ポンッと押す
+            PON!
           </button>
         )}
 

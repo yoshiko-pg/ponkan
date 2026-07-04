@@ -29,6 +29,13 @@ export const CATEGORY_LABEL: Record<Category, string> = {
   science: "科学館",
 };
 
+export const CATEGORY_CODE: Record<Category, string> = {
+  aquarium: "AQ",
+  art: "ART",
+  museum: "MUS",
+  science: "SCI",
+};
+
 export const CATEGORY_EMOJI: Record<Category, string> = {
   aquarium: "🐠",
   art: "🎨",
