@@ -38,11 +38,4 @@ export const CATEGORY_CODE: Record<Category, string> = {
   science: "SCI",
 };
 
-export const CATEGORY_EMOJI: Record<Category, string> = {
-  aquarium: "🐠",
-  art: "🎨",
-  museum: "🏛️",
-  science: "🔭",
-};
-
 export const CATEGORIES: Category[] = ["aquarium", "art", "museum", "science"];

@@ -4,10 +4,10 @@ import { useTheme } from "./useTheme";
 import type { Facility } from "./types";
 import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
-import { Achievements } from "./components/Achievements";
+import { DataPanel } from "./components/DataPanel";
 import { FacilityDetail } from "./components/FacilityDetail";
 
-type Tab = "book" | "map" | "badges";
+type Tab = "book" | "map";
 
 export default function App() {
   const store = useStore();
@@ -69,11 +69,15 @@ export default function App() {
       </header>
 
       <main className="content">
-        {tab === "book" && <StampBook store={store} onSelect={setSelected} />}
+        {tab === "book" && (
+          <>
+            <StampBook store={store} onSelect={setSelected} />
+            <DataPanel store={store} />
+          </>
+        )}
         {tab === "map" && (
           <MapView store={store} theme={theme} onSelect={setSelected} />
         )}
-        {tab === "badges" && <Achievements store={store} />}
       </main>
 
       <nav className="tabbar">
@@ -90,13 +94,6 @@ export default function App() {
           onClick={() => setTab("map")}
         >
           MAP
-        </button>
-        <button
-          type="button"
-          className={tab === "badges" ? "active" : ""}
-          onClick={() => setTab("badges")}
-        >
-          AWARDS
         </button>
       </nav>
 

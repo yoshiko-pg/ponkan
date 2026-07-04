@@ -819,57 +819,7 @@ body {
   background: var(--line-strong);
 }
 
-/* ---------- achievements ---------- */
-.badge-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding-top: 10px;
-}
-
-.badge-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  opacity: 0.55;
-}
-
-.badge-card.achieved {
-  opacity: 1;
-  border-color: var(--accent);
-  background: rgba(255, 107, 44, 0.08);
-}
-
-.badge-emoji {
-  font-size: 24px;
-}
-
-.badge-card:not(.achieved) .badge-emoji {
-  filter: grayscale(1) opacity(0.5);
-}
-
-.badge-name {
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.badge-desc {
-  font-size: 11px;
-  color: var(--ink-soft);
-}
-
-.badge-progress {
-  font-size: 12px;
-  font-weight: 800;
-  font-style: italic;
-  color: var(--accent);
-  margin-top: 2px;
-}
-
+/* ---------- data panel ---------- */
 .data-panel {
   margin-top: 24px;
   background: var(--card);
