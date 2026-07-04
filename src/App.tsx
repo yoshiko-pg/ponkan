@@ -6,7 +6,6 @@ import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
 import { Achievements } from "./components/Achievements";
 import { FacilityDetail } from "./components/FacilityDetail";
-import { AddFacility } from "./components/AddFacility";
 
 type Tab = "book" | "map" | "badges";
 
@@ -15,7 +14,6 @@ export default function App() {
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
   const [selected, setSelected] = useState<Facility | null>(null);
-  const [adding, setAdding] = useState(false);
 
   // 選択中の施設が削除された場合に備えて最新の参照を取り直す
   const selectedFacility = selected
@@ -71,13 +69,7 @@ export default function App() {
       </header>
 
       <main className="content">
-        {tab === "book" && (
-          <StampBook
-            store={store}
-            onSelect={setSelected}
-            onAdd={() => setAdding(true)}
-          />
-        )}
+        {tab === "book" && <StampBook store={store} onSelect={setSelected} />}
         {tab === "map" && (
           <MapView store={store} theme={theme} onSelect={setSelected} />
         )}
@@ -115,7 +107,6 @@ export default function App() {
           onClose={() => setSelected(null)}
         />
       )}
-      {adding && <AddFacility store={store} onClose={() => setAdding(false)} />}
     </div>
   );
 }

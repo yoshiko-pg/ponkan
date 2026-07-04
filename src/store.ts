@@ -66,14 +66,6 @@ export function useStore() {
     });
   }, []);
 
-  const addFacility = useCallback((f: Omit<Facility, "id" | "custom">) => {
-    const id = `custom-${Math.random().toString(36).slice(2, 10)}`;
-    setData((d) => ({
-      ...d,
-      custom: [...d.custom, { ...f, id, custom: true }],
-    }));
-  }, []);
-
   const removeFacility = useCallback((id: string) => {
     setData((d) => {
       const visits = { ...d.visits };
@@ -123,7 +115,6 @@ export function useStore() {
     stamp,
     unstamp,
     updateVisit,
-    addFacility,
     removeFacility,
     exportJson,
     importJson,

@@ -5,6 +5,8 @@ export interface Facility {
   name: string;
   category: Category;
   pref: string;
+  address?: string;
+  station?: string;
   lat?: number;
   lng?: number;
   url?: string;

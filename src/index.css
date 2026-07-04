@@ -257,12 +257,6 @@ body {
   background: var(--science);
 }
 
-.chip-add {
-  border-style: dashed;
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
 /* ---------- count / progress ---------- */
 .count-row {
   display: flex;
@@ -506,6 +500,34 @@ body {
   background: var(--science-soft);
 }
 
+.detail-info {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+.info-value {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .detail-links {
   display: flex;
   gap: 8px;
@@ -709,9 +731,13 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-.map-pin.unvisited {
+.map-pin.visited {
   background: var(--line-strong);
   color: var(--ink-soft);
+  font-size: 11px;
+  font-style: normal;
+  opacity: 0.75;
+  box-shadow: none;
 }
 
 .map-pin.cat-aquarium {
@@ -785,12 +811,12 @@ body {
   margin-right: 3px;
 }
 
-.map-legend .dot.unvisited {
-  background: var(--line-strong);
+.map-legend .dot.pending {
+  background: var(--aquarium);
 }
 
-.map-legend .dot.visited {
-  background: var(--aquarium);
+.map-legend .dot.done {
+  background: var(--line-strong);
 }
 
 /* ---------- achievements ---------- */

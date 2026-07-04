@@ -43,8 +43,25 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             {CATEGORY_LABEL[facility.category]}
           </span>
           <h2>{facility.name}</h2>
-          <p className="detail-pref">{facility.pref}</p>
+          {!facility.address && <p className="detail-pref">{facility.pref}</p>}
         </div>
+
+        {(facility.address || facility.station) && (
+          <div className="detail-info">
+            {facility.address && (
+              <div className="info-row">
+                <span className="info-label">ADDRESS</span>
+                <span className="info-value">{facility.address}</span>
+              </div>
+            )}
+            {facility.station && (
+              <div className="info-row">
+                <span className="info-label">STATION</span>
+                <span className="info-value">{facility.station}</span>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="detail-links">
           <a href={facility.url ?? searchUrl} target="_blank" rel="noreferrer">

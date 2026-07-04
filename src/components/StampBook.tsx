@@ -7,10 +7,9 @@ import { StampCircle } from "./StampCircle";
 interface Props {
   store: Store;
   onSelect: (f: Facility) => void;
-  onAdd: () => void;
 }
 
-export function StampBook({ store, onSelect, onAdd }: Props) {
+export function StampBook({ store, onSelect }: Props) {
   const [filter, setFilter] = useState<Category | "all">("all");
 
   const shown = store.facilities.filter(
@@ -40,9 +39,6 @@ export function StampBook({ store, onSelect, onAdd }: Props) {
             {CATEGORY_LABEL[cat]}
           </button>
         ))}
-        <button type="button" className="chip chip-add" onClick={onAdd}>
-          ＋ 追加
-        </button>
       </div>
 
       <div className="count-row">

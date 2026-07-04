@@ -6,13 +6,15 @@ import type { Facility } from "../types";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
+// 未訪問(=これから行く場所)を目立たせ、訪問済みは控えめに表示する
 function markerIcon(f: Facility, visited: boolean) {
-  const cls = visited ? `cat-${f.category}` : "unvisited";
+  const cls = visited ? "visited" : `cat-${f.category}`;
+  const size = visited ? 22 : 32;
   return divIcon({
     className: "map-pin-wrap",
-    html: `<span class="map-pin ${cls}">${CATEGORY_CODE[f.category]}</span>`,
-    iconSize: [32, 32],
-    iconAnchor: [16, 16],
+    html: `<span class="map-pin ${cls}">${visited ? "✓" : CATEGORY_CODE[f.category]}</span>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
   });
 }
 
@@ -51,11 +53,15 @@ export function MapView({ store, theme, onSelect }: Props) {
                 <div className="map-popup">
                   <strong>{f.name}</strong>
                   <span className="map-popup-sub">
-                    {CATEGORY_LABEL[f.category]} ・ {f.pref}
-                  </span>
-                  <span className="map-popup-sub">
+                    {CATEGORY_LABEL[f.category]} ・{" "}
                     {visited ? `${store.visits[f.id].date} 訪問` : "未訪問"}
                   </span>
+                  {f.address && (
+                    <span className="map-popup-sub">{f.address}</span>
+                  )}
+                  {f.station && (
+                    <span className="map-popup-sub">最寄り: {f.station}</span>
+                  )}
                   <button type="button" onClick={() => onSelect(f)}>
                     詳細を開く
                   </button>
@@ -67,10 +73,10 @@ export function MapView({ store, theme, onSelect }: Props) {
       </MapContainer>
       <div className="map-legend">
         <span>
-          <i className="dot unvisited" /> 未訪問
+          <i className="dot pending" /> 未訪問(カテゴリ色)
         </span>
         <span>
-          <i className="dot visited" /> 訪問済み(カテゴリ色)
+          <i className="dot done" /> 訪問済み
         </span>
       </div>
     </div>
