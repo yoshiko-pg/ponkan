@@ -13,6 +13,8 @@ export const ART_TIER1: Facility[] = [
     lat: 35.7154,
     lng: 139.7756,
     url: "https://www.nmwa.go.jp/",
+    description:
+    "松方コレクションを核に、西洋絵画・彫刻を中世末期から20世紀初頭までたどれる美術館。ル・コルビュジエ設計の本館も見どころです。",
   },
   {
     id: "nact",
@@ -25,6 +27,8 @@ export const ART_TIER1: Facility[] = [
     lat: 35.6652,
     lng: 139.7263,
     url: "https://www.nact.jp/",
+    description:
+    "所蔵品を持たず、多彩な企画展や公募展を展開するアートセンター。黒川紀章による波打つガラス建築と開放的な館内空間も印象的です。",
   },
   {
     id: "momat",
@@ -37,6 +41,8 @@ export const ART_TIER1: Facility[] = [
     lat: 35.6905,
     lng: 139.7546,
     url: "https://www.momat.go.jp/",
+    description:
+    "明治以降から現代までの日本近現代美術を体系的に紹介する美術館。絵画、彫刻、写真、映像など幅広い所蔵作品を通して時代の流れを楽しめます。",
   },
   {
     id: "mori-art",
@@ -49,6 +55,8 @@ export const ART_TIER1: Facility[] = [
     lat: 35.6605,
     lng: 139.7292,
     url: "https://www.mori.art.museum/",
+    description:
+    "現代アートを中心に、建築、デザイン、映像など国際的な視点の展覧会を展開。大規模なインスタレーションや社会性のある企画に触れられます。",
   },
   {
     id: "ghibli-museum",
@@ -61,6 +69,8 @@ export const ART_TIER1: Facility[] = [
     lat: 35.6962,
     lng: 139.5704,
     url: "https://www.ghibli-museum.jp/",
+    description:
+    "スタジオジブリの世界観を体験できる美術館。アニメーション制作の仕組みや短編上映、遊び心のある展示空間が魅力です。",
   },
   {
     id: "chokoku-no-mori",
@@ -73,6 +83,8 @@ export const ART_TIER1: Facility[] = [
     lat: 35.2445,
     lng: 139.0506,
     url: "https://www.hakone-oam.or.jp/",
+    description:
+    "自然の中で彫刻作品を鑑賞できる野外美術館。ピカソ館をはじめ、屋内外に点在する作品を散策しながら楽しめます。",
   },
   {
     id: "pola-museum",
@@ -85,5 +97,7 @@ export const ART_TIER1: Facility[] = [
     lat: 35.2583,
     lng: 139.0479,
     url: "https://www.polamuseum.or.jp/",
+    description:
+    "印象派を中心とする西洋絵画や日本の洋画、化粧道具などを収蔵する美術館。光を取り込む建築と森に溶け込む静かな雰囲気が特徴です。",
   },
 ];
