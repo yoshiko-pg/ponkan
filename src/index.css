@@ -792,6 +792,14 @@ body {
   color: var(--ink);
 }
 
+.detail-description {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  text-align: left;
+  color: var(--ink-soft);
+}
+
 .btn-done {
   width: 100%;
   border: 1px solid var(--line-strong);

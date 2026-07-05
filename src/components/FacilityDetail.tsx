@@ -127,6 +127,10 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
           </button>
         )}
 
+        {facility.description && (
+          <p className="detail-description">{facility.description}</p>
+        )}
+
         {visit && editing && (
           <div className="visit-panel">
             <label className="field">
