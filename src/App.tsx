@@ -20,11 +20,7 @@ function loadFilter(): Category[] {
   try {
     const parsed = JSON.parse(localStorage.getItem(FILTER_KEY) ?? "[]");
     if (!Array.isArray(parsed)) return [];
-    // 旧カテゴリ "science" は "museum"(博物・科学館)に統合された
-    const migrated = parsed.map((c) => (c === "science" ? "museum" : c));
-    return [...new Set(migrated)].filter((c): c is Category =>
-      CATEGORIES.includes(c as Category),
-    );
+    return parsed.filter((c): c is Category => CATEGORIES.includes(c));
   } catch {
     return [];
   }
