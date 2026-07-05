@@ -396,13 +396,13 @@ body {
 }
 .stamp-circle.stamped.cat-aquarium .stamp-date,
 .stamped-mark.cat-aquarium .stamp-date {
-  translate: 0 2px;
+  translate: 0 0;
   color: #0050a8;
 }
 /* artのみ空白が右上にある */
 .stamp-circle.stamped.cat-art .stamp-date,
 .stamped-mark.cat-art .stamp-date {
-  translate: 4px -22px;
+  translate: 4px -26px;
   color: #e83888;
 }
 .stamp-circle.stamped.cat-museum .stamp-date,
