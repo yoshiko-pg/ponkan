@@ -400,6 +400,10 @@ body {
 .stamp-circle.stamped.cat-aquarium .stamp-date,
 .stamped-mark.cat-aquarium .stamp-date {
   translate: 0 6px;
+  /* 行間をデフォルト(1.2em)から2pxつめる */
+  line-height: calc(1.2em - 2px);
+  /* スタンプ画像のソリッド部分と同じ色 */
+  color: #0064bb;
 }
 .stamp-circle.stamped.cat-art {
   border-color: var(--art);
