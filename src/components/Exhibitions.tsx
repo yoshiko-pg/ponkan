@@ -38,6 +38,8 @@ function ExhibitionCard({
   facility,
   upcoming,
   endingSoon,
+  bookmarked,
+  onToggleBookmark,
   onZoom,
   onSelectFacility,
 }: {
@@ -45,6 +47,8 @@ function ExhibitionCard({
   facility: Facility | undefined;
   upcoming: boolean;
   endingSoon: boolean;
+  bookmarked: boolean;
+  onToggleBookmark: () => void;
   onZoom: (imageUrl: string) => void;
   onSelectFacility: (f: Facility) => void;
 }) {
@@ -53,34 +57,41 @@ function ExhibitionCard({
 
   return (
     <div className="expo-card">
-      {hasImage ? (
+      <div className="expo-poster">
+        {hasImage ? (
+          <button
+            type="button"
+            className="expo-zoom"
+            onClick={() => onZoom(exhibition.imageUrl!)}
+            aria-label="ポスターを拡大表示"
+          >
+            <img
+              src={exhibition.imageUrl}
+              alt=""
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              onError={() => setImgFailed(true)}
+            />
+          </button>
+        ) : (
+          <span className="expo-noimg">ART</span>
+        )}
+        {upcoming && <span className="expo-badge">開催予定</span>}
+        {!upcoming && endingSoon && (
+          <span className="expo-badge soon">まもなく終了</span>
+        )}
         <button
           type="button"
-          className="expo-poster"
-          onClick={() => onZoom(exhibition.imageUrl!)}
-          aria-label="ポスターを拡大表示"
+          className={`expo-bookmark ${bookmarked ? "active" : ""}`}
+          onClick={onToggleBookmark}
+          aria-pressed={bookmarked}
+          aria-label={bookmarked ? "ブックマークを外す" : "ブックマークする"}
         >
-          <img
-            src={exhibition.imageUrl}
-            alt=""
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            onError={() => setImgFailed(true)}
-          />
-          {upcoming && <span className="expo-badge">開催予定</span>}
-          {!upcoming && endingSoon && (
-            <span className="expo-badge soon">まもなく終了</span>
-          )}
+          <svg viewBox="0 0 24 30" width="22" height="28" aria-hidden="true">
+            <path d="M2 0h20v29l-10-8-10 8z" />
+          </svg>
         </button>
-      ) : (
-        <div className="expo-poster">
-          <span className="expo-noimg">ART</span>
-          {upcoming && <span className="expo-badge">開催予定</span>}
-          {!upcoming && endingSoon && (
-            <span className="expo-badge soon">まもなく終了</span>
-          )}
-        </div>
-      )}
+      </div>
       <div className="expo-meta">
         {facility && (
           <button
@@ -114,6 +125,8 @@ export function Exhibitions({ store, onSelect }: Props) {
   // ポスター拡大表示中の画像URL
   const [zoomed, setZoomed] = useState<string | null>(null);
 
+  const bookmarks = new Set(store.expoBookmarks);
+
   // 対象は美術館 tier1/2(非表示にした施設は除く)
   const targets = store.facilities.filter(
     (f) => f.category === "art" && (f.tier === 1 || f.tier === 2),
@@ -127,12 +140,22 @@ export function Exhibitions({ store, onSelect }: Props) {
   const isUpcoming = (ex: Exhibition) =>
     ex.startDate != null && ex.startDate > today;
 
+  // ブックマーク済みを先頭に、あとは会期順
+  const byBookmark = (a: Exhibition, b: Exhibition) =>
+    Number(bookmarks.has(b.url)) - Number(bookmarks.has(a.url));
+
   const showing = active
     .filter((ex) => !isUpcoming(ex))
-    .sort((a, b) => (a.endDate ?? "9999").localeCompare(b.endDate ?? "9999"));
+    .sort(
+      (a, b) =>
+        byBookmark(a, b) ||
+        (a.endDate ?? "9999").localeCompare(b.endDate ?? "9999"),
+    );
   const upcoming = active
     .filter(isUpcoming)
-    .sort((a, b) => a.startDate!.localeCompare(b.startDate!));
+    .sort(
+      (a, b) => byBookmark(a, b) || a.startDate!.localeCompare(b.startDate!),
+    );
 
   const covered = new Set(active.map((ex) => ex.facilityId));
   const noInfo = targets.filter((f) => !covered.has(f.id));
@@ -144,6 +167,8 @@ export function Exhibitions({ store, onSelect }: Props) {
       facility={byId.get(ex.facilityId)}
       upcoming={isUp}
       endingSoon={!isUp && ex.endDate != null && ex.endDate <= soonLimit}
+      bookmarked={bookmarks.has(ex.url)}
+      onToggleBookmark={() => store.toggleExpoBookmark(ex.url)}
       onZoom={setZoomed}
       onSelectFacility={onSelect}
     />

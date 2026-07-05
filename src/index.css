@@ -958,20 +958,72 @@ body {
   display: block;
 }
 
-button.expo-poster {
+/* ポスター部分いっぱいに広がる拡大表示ボタン */
+.expo-zoom {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  display: block;
+  width: 100%;
+  height: 100%;
   cursor: zoom-in;
 }
 
-.expo-poster img {
+.expo-zoom img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
+/* ポスター右上に重ねるしおり */
+.expo-bookmark {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  padding: 0 6px 8px;
+  border: none;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.expo-bookmark svg path {
+  fill: rgba(20, 20, 24, 0.45);
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 1.5;
+  transition:
+    fill 0.15s ease,
+    stroke 0.15s ease;
+}
+
+.expo-bookmark.active svg {
+  animation: bookmark-in 0.25s ease-out;
+}
+
+.expo-bookmark.active svg path {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+@keyframes bookmark-in {
+  0% {
+    scale: 1.4;
+  }
+  70% {
+    scale: 0.9;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 .expo-noimg {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;

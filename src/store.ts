@@ -11,6 +11,7 @@ const EMPTY: StoreData = {
   hidden: [],
   home: null,
   rangeKm: null,
+  expoBookmarks: [],
 };
 
 // 選択肢の変更(60km→50kmなど)で無効になった保存値を近い選択肢に丸める
@@ -33,6 +34,7 @@ function load(): StoreData {
       hidden: parsed.hidden ?? [],
       home: parsed.home ?? null,
       rangeKm: normalizeRangeKm(parsed.rangeKm),
+      expoBookmarks: parsed.expoBookmarks ?? [],
     };
   } catch {
     return EMPTY;
@@ -111,6 +113,16 @@ export function useStore() {
     setData((d) => ({ ...d, rangeKm }));
   }, []);
 
+  // 特別展のブックマークをトグルする(キーは展覧会ページのURL)
+  const toggleExpoBookmark = useCallback((url: string) => {
+    setData((d) => ({
+      ...d,
+      expoBookmarks: d.expoBookmarks.includes(url)
+        ? d.expoBookmarks.filter((u) => u !== url)
+        : [...d.expoBookmarks, url],
+    }));
+  }, []);
+
   const exportJson = useCallback(() => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
       type: "application/json",
@@ -135,6 +147,7 @@ export function useStore() {
         hidden: parsed.hidden ?? [],
         home: parsed.home ?? null,
         rangeKm: normalizeRangeKm(parsed.rangeKm),
+        expoBookmarks: parsed.expoBookmarks ?? [],
       });
       return true;
     } catch {
@@ -147,8 +160,10 @@ export function useStore() {
     visits: data.visits,
     home: data.home,
     rangeKm: data.rangeKm,
+    expoBookmarks: data.expoBookmarks,
     setHome,
     setRangeKm,
+    toggleExpoBookmark,
     stamp,
     unstamp,
     updateVisit,

@@ -51,6 +51,8 @@ export interface StoreData {
   hidden: string[];
   home: HomePoint | null;
   rangeKm: number | null;
+  // ブックマークした特別展(Exhibition.url をキーにする)
+  expoBookmarks: string[];
 }
 
 export const RANGE_OPTIONS = [30, 50, 100];
