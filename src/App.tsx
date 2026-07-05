@@ -11,9 +11,11 @@ import type { Category, Tier } from "./types";
 type Tab = "book" | "map";
 
 const FILTER_KEY = "ponkan:filter";
+const TIER_FILTER_KEY = "ponkan:tierFilter";
 const CATEGORIES: Category[] = ["aquarium", "art", "museum", "science"];
+const TIERS: Tier[] = [1, 2, 3];
 
-// 直近のカテゴリ絞り込みを復元する(不正値は無視)
+// 直近の絞り込みを復元する(不正値は無視)。距離(rangeKm)は store 側で永続化される
 function loadFilter(): Category[] {
   try {
     const parsed = JSON.parse(localStorage.getItem(FILTER_KEY) ?? "[]");
@@ -24,17 +26,30 @@ function loadFilter(): Category[] {
   }
 }
 
+function loadTierFilter(): Tier[] {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(TIER_FILTER_KEY) ?? "[]");
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((t): t is Tier => TIERS.includes(t));
+  } catch {
+    return [];
+  }
+}
+
 export default function App() {
   const store = useStore();
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
   const [filter, setFilter] = useState<Category[]>(loadFilter);
-  const [tierFilter, setTierFilter] = useState<Tier[]>([]);
+  const [tierFilter, setTierFilter] = useState<Tier[]>(loadTierFilter);
 
-  // カテゴリ絞り込みが変わるたびに保存する
+  // カテゴリ・Tier絞り込みが変わるたびに保存する
   useEffect(() => {
     localStorage.setItem(FILTER_KEY, JSON.stringify(filter));
   }, [filter]);
+  useEffect(() => {
+    localStorage.setItem(TIER_FILTER_KEY, JSON.stringify(tierFilter));
+  }, [tierFilter]);
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pickingHome, setPickingHome] = useState(false);
