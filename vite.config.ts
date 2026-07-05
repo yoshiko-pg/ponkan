@@ -51,6 +51,8 @@ export default defineConfig({
         ],
       },
       workbox: {
+        // 拡張子つきURL(og-image.jpg等)はSPAフォールバックさせず実ファイルを返す
+        navigateFallbackDenylist: [/\/[^/?]+\.[^/?]+$/],
         // 地図タイルはキャッシュしすぎないよう上限を設ける
         runtimeCaching: [
           {
