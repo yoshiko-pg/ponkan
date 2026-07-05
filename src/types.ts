@@ -18,6 +18,23 @@ export interface Facility {
   description?: string;
 }
 
+// 特別展・企画展。scripts/fetch-exhibitions.ts が生成する exhibitions.json の1件分
+export interface Exhibition {
+  facilityId: string;
+  title: string;
+  // 展覧会の詳細ページ(専用サイト > 施設内特設ページ)
+  url: string;
+  // ポスター・キービジュアル画像(取得できなかった場合は undefined)
+  imageUrl?: string;
+  startDate?: string; // YYYY-MM-DD
+  endDate?: string; // YYYY-MM-DD
+}
+
+export interface ExhibitionData {
+  updatedAt: string; // YYYY-MM-DD
+  exhibitions: Exhibition[];
+}
+
 export interface VisitRecord {
   date: string; // YYYY-MM-DD
   memo: string;
