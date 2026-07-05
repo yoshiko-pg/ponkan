@@ -6,7 +6,7 @@ const KEY = "ponkan:theme";
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() =>
-    localStorage.getItem(KEY) === "light" ? "light" : "dark",
+    localStorage.getItem(KEY) === "dark" ? "dark" : "light",
   );
 
   useEffect(() => {

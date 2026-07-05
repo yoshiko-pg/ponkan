@@ -150,14 +150,6 @@ export function MapView({
           </button>
         </div>
       )}
-      <div className="map-legend">
-        <span>
-          <i className="dot pending" /> 未訪問(カテゴリ色)
-        </span>
-        <span>
-          <i className="dot done" /> 訪問済み
-        </span>
-      </div>
     </div>
   );
 }
