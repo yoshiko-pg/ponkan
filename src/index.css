@@ -370,32 +370,45 @@ body {
   animation: stamp-in 0.25s ease-out;
 }
 
-.stamp-circle.stamped.cat-aquarium {
-  border: none;
-  background: url("/stamps/aquarium.png") 51% 36% / 118% no-repeat;
-  color: var(--aquarium);
-}
-.stamp-circle.stamped.cat-aquarium .stamp-code {
+.stamp-circle.stamped .stamp-code {
   display: none;
 }
-/* 画像スタンプの中央の空白は円の中心よりやや下にある */
-.stamp-circle.stamped.cat-aquarium .stamp-date,
-.stamped-mark.cat-aquarium .stamp-date {
-  translate: 0 6px;
-  /* 行間をデフォルト(1.2em)から2pxつめる */
-  line-height: calc(1.2em - 2px);
-  /* スタンプ画像のソリッド部分と同じ色 */
-  color: #0064bb;
+.stamp-circle.stamped.cat-aquarium {
+  border: none;
+  background: url("/stamps/aquarium.png") center / 100% no-repeat;
+  color: var(--aquarium);
 }
 .stamp-circle.stamped.cat-art {
-  border-color: var(--art);
-  background: var(--art-soft);
+  border: none;
+  background: url("/stamps/art.png") center / 100% no-repeat;
   color: var(--art);
 }
 .stamp-circle.stamped.cat-museum {
-  border-color: var(--museum);
-  background: var(--museum-soft);
+  border: none;
+  background: url("/stamps/museum.png") center / 100% no-repeat;
   color: var(--museum);
+}
+/* 日付はスタンプ画像ごとの空白部分に置き、色は画像のソリッド部分に合わせる */
+.stamp-circle.stamped .stamp-date,
+.stamped-mark .stamp-date {
+  /* 行間をデフォルト(1.2em)から2pxつめる */
+  line-height: calc(1.2em - 2px);
+}
+.stamp-circle.stamped.cat-aquarium .stamp-date,
+.stamped-mark.cat-aquarium .stamp-date {
+  translate: 0 2px;
+  color: #0050a8;
+}
+/* artのみ空白が右上にある */
+.stamp-circle.stamped.cat-art .stamp-date,
+.stamped-mark.cat-art .stamp-date {
+  translate: 4px -22px;
+  color: #e83888;
+}
+.stamp-circle.stamped.cat-museum .stamp-date,
+.stamped-mark.cat-museum .stamp-date {
+  translate: 0 7px;
+  color: #188838;
 }
 
 @keyframes stamp-in {
@@ -688,23 +701,23 @@ body {
   animation: stamp-in 0.35s ease-out;
 }
 
+.stamped-mark:not(.unstamped) .stamp-code {
+  display: none;
+}
 .stamped-mark.cat-aquarium {
   border: none;
   color: var(--aquarium);
-  background: url("/stamps/aquarium.png") 51% 36% / 118% no-repeat;
-}
-.stamped-mark.cat-aquarium .stamp-code {
-  display: none;
+  background: url("/stamps/aquarium.png") center / 100% no-repeat;
 }
 .stamped-mark.cat-art {
-  border-color: var(--art);
+  border: none;
   color: var(--art);
-  background: var(--art-soft);
+  background: url("/stamps/art.png") center / 100% no-repeat;
 }
 .stamped-mark.cat-museum {
-  border-color: var(--museum);
+  border: none;
   color: var(--museum);
-  background: var(--museum-soft);
+  background: url("/stamps/museum.png") center / 100% no-repeat;
 }
 
 .field {
