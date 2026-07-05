@@ -13,6 +13,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.7171,
     lng: 139.7727,
     url: "https://www.tobikan.jp/",
+    description:
+      "上野公園にある東京都の美術館。企画展や公募団体展の会場として親しまれ、多彩な展覧会が同時開催される。前川國男設計のレンガ色の建築も見どころ。",
   },
   {
     id: "mot",
@@ -25,6 +27,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6797,
     lng: 139.8078,
     url: "https://www.mot-art-museum.jp/",
+    description:
+      "現代美術を専門とする都立館。国内外の現代アートを幅広く収蔵し、大規模な企画展を数多く開催。広々とした空間と充実した美術図書室も魅力。",
   },
   {
     id: "suntory-museum",
@@ -37,6 +41,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6664,
     lng: 139.7307,
     url: "https://www.suntory.co.jp/sma/",
+    description:
+      "「生活の中の美」をテーマに、日本の絵画・陶磁・漆工・ガラスなど古美術を中心に収蔵。隈研吾設計の和モダンな空間で企画展を展開する。",
   },
   {
     id: "artizon",
@@ -49,6 +55,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6779,
     lng: 139.7699,
     url: "https://www.artizon.museum/",
+    description:
+      "旧ブリヂストン美術館。印象派や日本近代洋画、古代美術まで幅広い石橋財団コレクションを誇る。2020年開館の明るく開放的な建築が特徴。",
   },
   {
     id: "mimt",
@@ -61,6 +69,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.679,
     lng: 139.7634,
     url: "https://mimt.jp/",
+    description:
+      "ジョサイア・コンドル設計の赤煉瓦建築を復元した美術館。トゥールーズ=ロートレックなど19世紀近代美術を軸に企画展を開催。中庭も心地よい。",
   },
   {
     id: "nezu-museum",
@@ -73,6 +83,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6622,
     lng: 139.7175,
     url: "https://www.nezu-muse.or.jp/",
+    description:
+      "実業家・根津嘉一郎の東洋古美術コレクションを核とし、国宝「燕子花図屏風」で名高い。隈研吾設計の建築と広大な日本庭園が調和する。",
   },
   {
     id: "2121-design-sight",
@@ -85,6 +97,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6693,
     lng: 139.729,
     url: "https://www.2121designsight.jp/",
+    description:
+      "安藤忠雄設計、三宅一生らが関わるデザイン専門施設。「デザインの視点」をテーマにユニークな企画展を開催し、日常を新鮮に見せる展示が魅力。",
   },
   {
     id: "yokohama-museum",
@@ -97,6 +111,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.4573,
     lng: 139.6304,
     url: "https://yokohama.art.museum/",
+    description:
+      "みなとみらいの中核をなす美術館。近現代美術を幅広く収蔵し、写真コレクションも充実。丹下健三設計の左右対称の重厚な建築が印象的。",
   },
   {
     id: "ueno-royal-museum",
@@ -109,6 +125,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.7118,
     lng: 139.7745,
     url: "https://www.ueno-mori.org/",
+    description:
+      "上野公園内にある美術館。日本画から現代美術まで話題性の高い企画展や公募展を開催。VOCA展など若手作家の登竜門としても知られる。",
   },
   {
     id: "teien-art-museum",
@@ -121,6 +139,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6371,
     lng: 139.7192,
     url: "https://www.teien-art-museum.ne.jp/",
+    description:
+      "旧朝香宮邸のアール・デコ建築そのものが見どころの美術館。優美な内装を舞台に、装飾芸術やデザインをテーマにした企画展を開催。庭園も美しい。",
   },
   {
     id: "top-museum",
@@ -133,6 +153,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6421,
     lng: 139.7135,
     url: "https://topmuseum.jp/",
+    description:
+      "日本初の写真・映像専門の公立美術館。国内外の写真作品を体系的に収蔵し、写真史をたどる企画展や現代作家の展示、映像上映を行う。",
   },
   {
     id: "sumida-hokusai",
@@ -145,6 +167,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6958,
     lng: 139.8005,
     url: "https://hokusai-museum.jp/",
+    description:
+      "墨田ゆかりの葛飾北斎に特化した美術館。「冨嶽三十六景」など代表作や肉筆画を紹介し、制作風景の再現展示も人気。妹島和世設計の建築も注目。",
   },
   {
     id: "yamatane-museum",
@@ -157,6 +181,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6524,
     lng: 139.7163,
     url: "https://www.yamatane-museum.jp/",
+    description:
+      "近代・現代日本画専門の美術館。速水御舟《炎舞》をはじめ竹内栖鳳や上村松園らの名品を収蔵。季節に合わせた企画展と落ち着いた空間が魅力。",
   },
   {
     id: "ota-memorial",
@@ -169,6 +195,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6702,
     lng: 139.7043,
     url: "https://www.ukiyoe-ota-muse.jp/",
+    description:
+      "浮世絵専門の美術館。太田清藏が集めた肉筆画・版画を核に、月替わりで多彩な企画展を開催。畳敷きの展示室など和の趣ある空間で鑑賞できる。",
   },
   {
     id: "sompo-museum",
@@ -181,6 +209,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6925,
     lng: 139.6957,
     url: "https://www.sompo-museum.org/",
+    description:
+      "ゴッホ《ひまわり》の所蔵で知られる美術館。東郷青児作品や西洋近代絵画を収蔵し、2020年に新社屋へ移転。落ち着いた展示空間で企画展を行う。",
   },
   {
     id: "tokyo-station-gallery",
@@ -193,6 +223,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6816,
     lng: 139.7665,
     url: "https://www.ejrcf.or.jp/gallery/",
+    description:
+      "東京駅丸の内駅舎内にある美術館。創建時の赤煉瓦壁がそのまま残る展示室が最大の特徴。近代美術やデザインなど幅広い企画展を開催する。",
   },
   {
     id: "setagaya-art-museum",
@@ -205,6 +237,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6352,
     lng: 139.6219,
     url: "https://www.setagayaartmuseum.or.jp/",
+    description:
+      "砧公園の緑に囲まれた美術館。世田谷ゆかりの作家やナイーブ・アートを収蔵し、幅広いジャンルの企画展を開催。内井昭蔵設計の建築も見どころ。",
   },
   {
     id: "opera-city-gallery",
@@ -217,6 +251,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6832,
     lng: 139.6864,
     url: "https://www.operacity.jp/ag/",
+    description:
+      "現代美術を中心に、建築やデザインの意欲的な企画展を開催。難波田龍起コレクションを常設展示する。高層複合施設内にある洗練された空間。",
   },
   {
     id: "seikado-bunko",
@@ -229,6 +265,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6774,
     lng: 139.7614,
     url: "https://www.seikado.or.jp/",
+    description:
+      "岩崎家が集めた東洋古美術を収蔵し、国宝「曜変天目(稲葉天目)」で名高い。重要文化財・明治生命館の重厚な建築を舞台に名品を展示する。",
   },
   {
     id: "moma-kanagawa-hayama",
@@ -241,6 +279,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.263,
     lng: 139.5852,
     url: "https://www.moma.pref.kanagawa.jp/",
+    description:
+      "海辺に建つ県立近代美術館。近現代美術を収蔵し、質の高い企画展を開催。相模湾を望むロケーションと自然光を活かした開放的な建築が魅力。",
   },
   {
     id: "taro-okamoto-museum",
@@ -253,6 +293,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6136,
     lng: 139.5603,
     url: "https://www.taromuseum.jp/",
+    description:
+      "「芸術は爆発だ」で知られる岡本太郎の作品を収蔵する美術館。絵画・彫刻を通じて力強い世界観に触れられる。生田緑地の自然に囲まれて建つ。",
   },
   {
     id: "okada-museum",
@@ -265,6 +307,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.2433,
     lng: 139.067,
     url: "https://www.okada-museum.com/",
+    description:
+      "箱根最大級の私設美術館。日本・東洋の絵画や陶磁、仏像など幅広い古美術を収蔵。巨大な風神雷神図の壁画や足湯、庭園も楽しめる。",
   },
   {
     id: "hakone-glass-forest",
@@ -277,6 +321,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.257,
     lng: 139.0312,
     url: "https://www.hakone-garasunomori.jp/",
+    description:
+      "ヴェネチアン・グラスを中心に紹介する美術館。中世から現代までの繊細なガラス工芸を展示し、庭園にきらめくガラスのオブジェも見どころ。",
   },
   {
     id: "hakone-lalique",
@@ -288,6 +334,9 @@ export const ART_TIER2: Facility[] = [
     station: "箱根湯本駅からバス(仙石案内所前)",
     lat: 35.2609,
     lng: 139.023,
+    url: "https://www.lalique-museum.com/",
+    description:
+      "アール・ヌーヴォー／アール・デコの巨匠ルネ・ラリックの作品を約1500点収蔵。宝飾やガラス工芸に加え、内装を手がけたオリエント急行のサロンカーも展示。",
   },
   {
     id: "yokosuka-museum",
@@ -300,6 +349,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.2641,
     lng: 139.7202,
     url: "https://www.yokosuka-moa.jp/",
+    description:
+      "東京湾を望む海辺の美術館。日本近現代美術や谷内六郎の作品を収蔵し、開放的なガラス張りの建築が印象的。周囲の自然と一体化した空間が魅力。",
   },
   {
     id: "momas",
@@ -311,6 +362,9 @@ export const ART_TIER2: Facility[] = [
     station: "北浦和駅(JR京浜東北線)",
     lat: 35.8744,
     lng: 139.6462,
+    url: "https://www.momas.jp/",
+    description:
+      "黒川紀章設計の建築で知られる県立近代美術館。モネやピカソら近代の名品を収蔵し、名作椅子に自由に座れる「椅子の美術館」としても親しまれる。",
   },
   {
     id: "kadokawa-musashino-museum",
@@ -323,6 +377,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.798,
     lng: 139.5181,
     url: "https://kadcul.com/",
+    description:
+      "隈研吾設計の巨石のような建築が象徴的な複合文化施設。約8mの巨大書架「本棚劇場」が圧巻で、図書館・美術館・博物館が融合した独創的な空間。",
   },
   {
     id: "omiya-bonsai-museum",
@@ -335,6 +391,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.9301,
     lng: 139.6291,
     url: "https://www.bonsai-art-museum.jp/",
+    description:
+      "世界初の公立盆栽美術館。名品盆栽の展示に加え、盆器や水石、浮世絵など盆栽文化を多角的に紹介。四季折々の姿を庭園でじっくり鑑賞できる。",
   },
   {
     id: "chiba-pref-museum-art",
@@ -346,6 +404,9 @@ export const ART_TIER2: Facility[] = [
     station: "千葉みなと駅",
     lat: 35.6012,
     lng: 140.1042,
+    url: "https://www.chiba-muse.or.jp/ART/",
+    description:
+      "千葉ゆかりの美術を体系的に収集する県立美術館。浅井忠ら地元作家の作品を核に企画展を開催。大高正人設計の平屋建築と緑豊かな庭園が特徴。",
   },
   {
     id: "chiba-city-museum-art",
@@ -358,6 +419,8 @@ export const ART_TIER2: Facility[] = [
     lat: 35.6059,
     lng: 140.1213,
     url: "https://www.ccma-net.jp/",
+    description:
+      "浮世絵と房総ゆかりの美術、現代美術を柱に収蔵。歴史的建築「さや堂ホール」を内部に保存した美術館で、多彩な企画展を開催する。",
   },
   {
     id: "hoki-museum",
@@ -370,5 +433,7 @@ export const ART_TIER2: Facility[] = [
     lat: 35.5482,
     lng: 140.2688,
     url: "https://www.hoki-museum.jp/",
+    description:
+      "写実絵画専門の私立美術館。現代作家による精緻な写実作品を数多く収蔵・展示する。宙に浮くような細長い回廊状の建築も大きな見どころ。",
   },
 ];

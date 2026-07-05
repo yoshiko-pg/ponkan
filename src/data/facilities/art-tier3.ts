@@ -12,6 +12,9 @@ export const ART_TIER3: Facility[] = [
     station: "中村橋駅(西武池袋線)",
     lat: 35.7322,
     lng: 139.6283,
+    url: "https://www.neribun.or.jp/museum.html",
+    description:
+      "日本の近現代美術を軸に、浮世絵から洋画・絵本まで幅広く収集する区立館。約6,700点の所蔵を背景に、独自の視点による企画展を年数回開催する。",
   },
   {
     id: "machida-hanga-museum",
@@ -23,6 +26,9 @@ export const ART_TIER3: Facility[] = [
     station: "町田駅",
     lat: 35.545,
     lng: 139.4463,
+    url: "https://hanga-museum.jp/",
+    description:
+      "世界でも数少ない版画専門館。奈良時代から現代まで、北斎・広重やデューラー・ピカソら国内外の版画3万点超を収蔵し、版画の歴史と技法を多面的にたどれる。",
   },
   {
     id: "senoku-hakukokan-tokyo",
@@ -35,6 +41,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.6651,
     lng: 139.7413,
     url: "https://sen-oku.or.jp/tokyo/",
+    description:
+      "住友家伝来のコレクションを公開する美術館。世界的評価を得る中国古代青銅器を核に、書画・近代陶磁・茶道具・能面など約3,500件を所蔵する。",
   },
   {
     id: "toguri-museum",
@@ -47,6 +55,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.6597,
     lng: 139.693,
     url: "https://www.toguri-museum.or.jp/",
+    description:
+      "東洋陶磁専門の私立美術館。古伊万里・鍋島焼を中心に中国・朝鮮陶磁を含む約7,000点を所蔵。常設は設けず、テーマを絞った企画展を年4回程度開催する。",
   },
   {
     id: "moma-kanagawa-kamakura",
@@ -59,6 +69,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.3252,
     lng: 139.5559,
     url: "https://www.moma.pref.kanagawa.jp/",
+    description:
+      "大髙正人設計による1984年開館の別館。2階が張り出す軽やかな建築が特徴で、緑豊かな敷地には現代彫刻を野外展示。県立近代美術館の所蔵を生かした企画展を開く。",
   },
   {
     id: "narukawa-museum",
@@ -70,6 +82,9 @@ export const ART_TIER3: Facility[] = [
     station: "箱根湯本駅からバス(元箱根港)",
     lat: 35.199,
     lng: 139.0296,
+    url: "http://www.narukawamuseum.co.jp/",
+    description:
+      "現代日本画に絞った私立美術館。山本丘人の代表作を核に、平山郁夫・堀文子ら約4,000点を収蔵し季節ごとに展示替え。芦ノ湖と富士を望む眺望も見どころ。",
   },
   {
     id: "hiratsuka-museum",
@@ -81,6 +96,9 @@ export const ART_TIER3: Facility[] = [
     station: "平塚駅からバス/徒歩20分",
     lat: 35.3352,
     lng: 139.3524,
+    url: "https://www.city.hiratsuka.kanagawa.jp/art-muse/index.html",
+    description:
+      "「湘南の美術・光」をテーマに、地元ゆかりの作家を中心に収集。鳥海青児を軸とする近代洋画や、安田靫彦ら院展作家の日本画など、明治から現代まで幅広く所蔵する。",
   },
   {
     id: "chigasaki-museum",
@@ -92,6 +110,9 @@ export const ART_TIER3: Facility[] = [
     station: "茅ヶ崎駅",
     lat: 35.3237,
     lng: 139.4073,
+    url: "https://www.chigasaki-museum.jp/",
+    description:
+      "萬鐵五郎や小山敬三など茅ヶ崎ゆかりの作家を中心に約2,000点を収蔵。飛び立つ鳥の翼を思わせる屋根が特徴の建築で、自然光を取り込む明るく開放的な空間が広がる。",
   },
   {
     id: "sogo-museum",
@@ -103,6 +124,9 @@ export const ART_TIER3: Facility[] = [
     station: "横浜駅",
     lat: 35.4658,
     lng: 139.6252,
+    url: "https://sogo-museum.jp/",
+    description:
+      "日本初の百貨店内登録博物館として1985年に開館。鈴木信太郎らの油彩・水彩を所蔵し、洋画・日本画・工芸・書など幅広いジャンルの企画展を年約10本開催する。",
   },
   {
     id: "kaburaki-kiyokata",
@@ -114,6 +138,9 @@ export const ART_TIER3: Facility[] = [
     station: "鎌倉駅",
     lat: 35.3214,
     lng: 139.5524,
+    url: "http://www.kamakura-arts.or.jp/kaburaki/",
+    description:
+      "近代日本画の巨匠・鏑木清方の旧居跡に建つ記念館。旧宅の部材を用いて復元した画室や格子戸が往時を伝え、市井の人々を描いた優美な作品を展示替えで紹介する。",
   },
   {
     id: "urawa-art-museum",
@@ -125,6 +152,9 @@ export const ART_TIER3: Facility[] = [
     station: "浦和駅",
     lat: 35.8599,
     lng: 139.6543,
+    url: "https://www.city.saitama.lg.jp/urawa-art-museum/",
+    description:
+      "「地域ゆかりの作家」と「本をめぐるアート」を柱とする美術館。瑛九ら浦和画家に加え、ピカソやマティスの挿絵本などブック・アートの収集で独自の分野を築く。",
   },
   {
     id: "kawagoe-art-museum",
@@ -136,6 +166,9 @@ export const ART_TIER3: Facility[] = [
     station: "本川越駅からバス",
     lat: 35.9243,
     lng: 139.489,
+    url: "https://www.city.kawagoe.saitama.jp/artmuseum/",
+    description:
+      "郷土ゆかりの作家を中心に約2,100点を収蔵。名誉市民の洋画家・相原求一朗の記念室を設け、彼が属した新制作協会の猪熊弦一郎らの作品も系統立てて所蔵する。",
   },
   {
     id: "atlia",
@@ -147,6 +180,9 @@ export const ART_TIER3: Facility[] = [
     station: "川口駅",
     lat: 35.804,
     lng: 139.7166,
+    url: "https://atlia.jp/",
+    description:
+      "サッポロビール工場跡の公園に建つ、収蔵品を持たないアート施設。企画展に加えワークショップや貸しギャラリーを通じ、市民が新しい表現に出会う創作の拠点となる。",
   },
   {
     id: "yaoko-kawagoe-museum",
@@ -158,6 +194,9 @@ export const ART_TIER3: Facility[] = [
     station: "川越駅・本川越駅からバス",
     lat: 35.9282,
     lng: 139.4901,
+    url: "https://www.yaoko-net.com/museum/",
+    description:
+      "現代リアリズムの巨匠と称される洋画家・三栖右嗣の作品を展示する記念館。伊東豊雄の設計による建築で、2つの展示室とラウンジなど4つの空間で構成される。",
   },
   {
     id: "toyama-kinenkan",
@@ -170,6 +209,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.982,
     lng: 139.4993,
     url: "https://www.e-kinenkan.com/",
+    description:
+      "日興證券創立者・遠山元一が母のために築いた邸宅を公開。豪農風・書院造・数奇屋を併せた国重要文化財の近代和風建築が見どころで、日中の書画や陶磁など約11,000点を所蔵する。",
   },
   {
     id: "sakura-city-museum",
@@ -181,6 +222,9 @@ export const ART_TIER3: Facility[] = [
     station: "京成佐倉駅",
     lat: 35.7202,
     lng: 140.2233,
+    url: "https://www.city.sakura.lg.jp/section/museum/",
+    description:
+      "大正期の旧川崎銀行佐倉支店(県指定有形文化財)の赤煉瓦建築をエントランスに生かす美術館。佐倉・房総ゆかりの作家を中心に収集し、静謐な雰囲気で名品を紹介する。",
   },
   {
     id: "ichihara-lakeside-museum",
@@ -193,6 +237,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.3734,
     lng: 140.1256,
     url: "https://lsm-ichihara.jp/",
+    description:
+      "既存建物をコンクリート躯体まで剥き出しに改修し、スチールの壁を挿入した独創的な建築が特徴。吹き抜けの展示室で現代アートの企画展を開き、屋外の恒久展示も楽しめる。",
   },
   {
     id: "naritasan-shodo-museum",
@@ -205,6 +251,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.7892,
     lng: 140.3242,
     url: "https://www.naritashodo.jp/",
+    description:
+      "成田山公園の池畔に建つ書の総合美術館。江戸から現代の書を軸に古筆・古写経・中国拓本など6,000点超を所蔵し、全長約13mの巨大拓本「紀泰山銘」が圧巻。",
   },
   {
     id: "higashiyama-kaii-kinenkan",
@@ -216,6 +264,9 @@ export const ART_TIER3: Facility[] = [
     station: "下総中山駅(JR総武線)",
     lat: 35.7233,
     lng: 139.9412,
+    url: "https://www.city.ichikawa.lg.jp/site/higashiyama/",
+    description:
+      "生涯の大半を市川で過ごした日本画家・東山魁夷を顕彰する記念館。留学の地ドイツに着想した八角塔のある西洋風建築で、日本画やリトグラフ、木版画などを展示する。",
   },
   {
     id: "andersen-kodomo-museum",
@@ -228,6 +279,8 @@ export const ART_TIER3: Facility[] = [
     lat: 35.75,
     lng: 140.0334,
     url: "https://www.park-funabashi.or.jp/and/",
+    description:
+      "公園内にある体験型の子ども美術館。版画・染・織・陶芸・木工など8つのアトリエで創作を楽しめ、絵画から建築まで実力派作家の作品を紹介する展示室も備える。",
   },
   {
     id: "hishikawa-moronobu-kinenkan",
@@ -239,5 +292,8 @@ export const ART_TIER3: Facility[] = [
     station: "保田駅(JR内房線)",
     lat: 35.188,
     lng: 139.8419,
+    url: "https://www.town.kyonan.chiba.jp/soshiki/19/",
+    description:
+      "「見返り美人図」で知られる浮世絵の祖・菱川師宣の出身地に建つ記念館。師宣の生涯と江戸での活動をたどり、肉筆掛軸や絵入り本のほか、広重ら他の浮世絵師の作品も展示する。",
   },
 ];
