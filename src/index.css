@@ -769,10 +769,10 @@ body {
 
 .btn-done {
   width: 100%;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--accent);
   border-radius: 10px;
-  background: none;
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--bg);
   font: inherit;
   font-size: 13px;
   font-weight: 700;
