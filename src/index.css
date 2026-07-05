@@ -1250,6 +1250,12 @@ body {
   cursor: pointer;
 }
 
+.menu-link {
+  box-sizing: border-box;
+  text-decoration: none;
+  margin-top: 12px;
+}
+
 .menu-text {
   margin: 0 0 8px;
   font-size: 12.5px;
