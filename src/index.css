@@ -396,7 +396,7 @@ body {
 }
 .stamp-circle.stamped.cat-aquarium .stamp-date,
 .stamped-mark.cat-aquarium .stamp-date {
-  translate: 0 0;
+  translate: 0 5px;
   color: #0050a8;
 }
 /* artのみ空白が右上にある */
