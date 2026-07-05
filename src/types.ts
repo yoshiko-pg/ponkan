@@ -63,7 +63,7 @@ export const DEFAULT_RANGE_KM = 50;
 export const CATEGORY_LABEL: Record<Category, string> = {
   aquarium: "水族館",
   art: "美術館",
-  museum: "博物・科学館",
+  museum: "博物館",
 };
 
 export const CATEGORY_CODE: Record<Category, string> = {

@@ -140,7 +140,7 @@ export function Sidebar({
         <section className="menu-section">
           <h3>ABOUT</h3>
           <p className="menu-text">
-            関東近郊の水族館・美術館・博物・科学館をめぐる自分用スタンプラリー。
+            関東近郊の水族館・美術館・博物館をめぐる自分用スタンプラリー。
             行った施設を開いてスタンプが押せます。
           </p>
           <p className="menu-text">

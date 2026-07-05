@@ -63,17 +63,23 @@ export function StampBook({
 
         <div className="count-row">
           <span className="count-label">
-            {filter.length === 0 && tierFilter.length === 0
-              ? "ALL SPOTS"
-              : [
-                  ...CATEGORIES.filter((c) => filter.includes(c)).map(
-                    (c) => CATEGORY_LABEL[c],
-                  ),
-                  ...TIERS.filter((t) => tierFilter.includes(t)).map(
-                    (t) => TIER_LABEL[t],
-                  ),
-                ].join("・")}
-            {home && rangeKm != null && ` ・ ${rangeKm}KM圏内`}
+            {(() => {
+              // 全選択は絞り込みなしと同じなので条件として表示しない
+              const conds = [
+                ...(filter.length > 0 && filter.length < CATEGORIES.length
+                  ? CATEGORIES.filter((c) => filter.includes(c)).map(
+                      (c) => CATEGORY_LABEL[c],
+                    )
+                  : []),
+                ...(tierFilter.length > 0 && tierFilter.length < TIERS.length
+                  ? TIERS.filter((t) => tierFilter.includes(t)).map(
+                      (t) => TIER_LABEL[t],
+                    )
+                  : []),
+              ];
+              const label = conds.length === 0 ? "ALL SPOTS" : conds.join("・");
+              return home && rangeKm != null ? `${label}・${rangeKm}KM` : label;
+            })()}
           </span>
           <span className="count-num">
             {visited}
