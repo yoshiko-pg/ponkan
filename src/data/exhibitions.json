@@ -81,14 +81,6 @@
     },
     {
       "facilityId": "tobikan",
-      "title": "東京都美術館開館100周年記念 アンドリュー・ワイエス展",
-      "url": "https://www.tobikan.jp/exhibition/2026_wyeth.html",
-      "imageUrl": "https://tobikan.jp/media/img/poster/2026_wyeth_l.jpg",
-      "startDate": "2026-04-28",
-      "endDate": "2026-07-05"
-    },
-    {
-      "facilityId": "tobikan",
       "title": "東京都美術館開館100周年記念 この場所の風景―上野・大牟田・ブエノスアイレス",
       "url": "https://www.tobikan.jp/exhibition/2026_viewsofthisplace.html",
       "imageUrl": "https://tobikan.jp/media/img/poster/2026_viewsofthisplace_l.jpg",
@@ -504,7 +496,7 @@
       "facilityId": "omiya-bonsai-museum",
       "title": "企画展「盆石の美－座して佳境をめぐる」",
       "url": "https://www.bonsai-art-museum.jp/ja/exhibition/exhibition-11574/",
-      "imageUrl": "https://www.bonsai-art-museum.jp/wp-content/uploads/2025/03/e3b9d03298bfc4387c93f5f8f7cae3d8-300x194.jpg",
+      "imageUrl": "https://www.bonsai-art-museum.jp/wp-content/uploads/2026/07/e70c01ba667f95b976eaa1b807ba9bdd-212x300.jpg",
       "startDate": "2026-09-04",
       "endDate": "2026-09-16"
     },
