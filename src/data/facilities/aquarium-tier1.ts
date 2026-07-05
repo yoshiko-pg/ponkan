@@ -13,6 +13,8 @@ export const AQUARIUM_TIER1: Facility[] = [
     lat: 35.6398,
     lng: 139.863,
     url: "https://www.tokyo-zoo.net/zoo/kasai/",
+    description:
+      "葛西臨海公園内にある大型水族館。クロマグロが群泳する大水槽や、国内最大級のペンギン展示が見どころ。",
   },
   {
     id: "aqua-park-shinagawa",
@@ -25,6 +27,8 @@ export const AQUARIUM_TIER1: Facility[] = [
     lat: 35.6277,
     lng: 139.7367,
     url: "https://www.aqua-park.jp/",
+    description:
+      "品川駅近くの都市型水族館。光・音・水の演出とイルカが共演するドルフィンパフォーマンスが人気。",
   },
   {
     id: "hakkeijima",
@@ -37,6 +41,8 @@ export const AQUARIUM_TIER1: Facility[] = [
     lat: 35.3379,
     lng: 139.6469,
     url: "https://www.seaparadise.co.jp/",
+    description:
+      "4つの水族館とアトラクション、レストランなどを備えた複合型海洋レジャー施設。1日過ごしやすい規模感が魅力。",
   },
   {
     id: "enosui",
@@ -49,6 +55,8 @@ export const AQUARIUM_TIER1: Facility[] = [
     lat: 35.3103,
     lng: 139.4785,
     url: "https://www.enosui.com/",
+    description:
+      "相模湾をテーマにした展示が充実した江の島近くの水族館。相模湾大水槽やクラゲ展示が代表的。",
   },
   {
     id: "kamogawa-seaworld",
@@ -61,6 +69,8 @@ export const AQUARIUM_TIER1: Facility[] = [
     lat: 35.114,
     lng: 140.1148,
     url: "https://www.kamogawa-seaworld.jp/",
+    description:
+      "太平洋を望む水族館テーマパーク。シャチ、イルカ、ベルーガ、アシカなどのパフォーマンスが大きな見どころ。",
   },
   {
     id: "aquaworld-oarai",
@@ -73,5 +83,7 @@ export const AQUARIUM_TIER1: Facility[] = [
     lat: 36.3186,
     lng: 140.5766,
     url: "https://www.aquaworld-oarai.com/",
+    description:
+      "関東有数の大型水族館。サメの飼育・研究に力を入れており、多種多様なサメ展示や大水槽が楽しめる。",
   },
 ];

@@ -15,6 +15,7 @@ export interface Facility {
   url?: string;
   custom?: boolean;
   tier?: Tier;
+  description?: string;
 }
 
 export interface VisitRecord {

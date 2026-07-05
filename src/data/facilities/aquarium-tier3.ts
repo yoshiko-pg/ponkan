@@ -12,6 +12,9 @@ export const AQUARIUM_TIER3: Facility[] = [
     station: "羽生駅(東武伊勢崎線)からタクシー",
     lat: 36.1585,
     lng: 139.5487,
+    url: "https://www.parks.or.jp/suizokukan/",
+    description:
+      "川の上流・中流・下流の生きものや希少淡水魚を展示する、淡水魚中心の水族館。コツメカワウソの渓流展示なども見どころ。",
   },
   {
     id: "inokashira-suiseibutsukan",
@@ -24,6 +27,8 @@ export const AQUARIUM_TIER3: Facility[] = [
     lat: 35.6996,
     lng: 139.5731,
     url: "https://www.tokyo-zoo.net/zoo/ino/",
+    description:
+      "日本でもっとも古い淡水生物の水族館。ミヤコタナゴやゲンゴロウ、オオサンショウウオ、ミズグモなど希少・個性派の生きものを見られる。",
   },
   {
     id: "itabashi-nettai-shokubutsukan",
@@ -35,6 +40,9 @@ export const AQUARIUM_TIER3: Facility[] = [
     station: "高島平駅(都営三田線)",
     lat: 35.7869,
     lng: 139.6567,
+    url: "https://www.seibu-la.co.jp/nettaikan/",
+    description:
+      "東南アジアの熱帯雨林を体感できる植物館。地下のミニ水族館では、海水・汽水・淡水の魚や水辺の生きものを比較しながら楽しめる。",
   },
   {
     id: "adachi-seibutsuen",
@@ -47,6 +55,8 @@ export const AQUARIUM_TIER3: Facility[] = [
     lat: 35.7937,
     lng: 139.8031,
     url: "https://seibutuen.jp/",
+    description:
+      "昆虫・魚・両生類・爬虫類・哺乳類まで幅広く展示する生物園。金魚の大水槽と、一年中チョウが飛ぶ大温室が見どころ。",
   },
   {
     id: "hakone-en-aquarium",
@@ -58,6 +68,9 @@ export const AQUARIUM_TIER3: Facility[] = [
     station: "小田原駅・箱根湯本駅からバス",
     lat: 35.2052,
     lng: 139.0263,
+    url: "https://www.princehotels.co.jp/amuse/hakone-en/suizokukan/",
+    description:
+      "海水の大水槽を持つ水族館としては日本一標高が高い“森の中の水族館”。バイカルアザラシとゴマフアザラシを間近で見られる。",
   },
   {
     id: "aquarium-sagamihara",
@@ -70,6 +83,8 @@ export const AQUARIUM_TIER3: Facility[] = [
     lat: 35.5452,
     lng: 139.3396,
     url: "https://sagamigawa-fureai.com/",
+    description:
+      "水源から河口までの流れを長さ40mの水槽で表現する、川の生態系に特化した科学館。生きもの展示と参加型展示で楽しく学べる。",
   },
   {
     id: "katsuura-kaichu-tenbouto",
@@ -81,6 +96,9 @@ export const AQUARIUM_TIER3: Facility[] = [
     station: "鵜原駅(JR外房線)",
     lat: 35.1414,
     lng: 140.3372,
+    url: "https://www.katsuura.org/",
+    description:
+      "自然の海そのものを観察する海中展望塔。海中展望室の窓から、季節ごとに変わる魚や海底の様子を眺められる。",
   },
   {
     id: "sambanze-gakushukan",
@@ -93,5 +111,7 @@ export const AQUARIUM_TIER3: Facility[] = [
     lat: 35.6759,
     lng: 139.9605,
     url: "https://www.sambanze.jp/",
+    description:
+      "干潟の生きものや生態系を学べる体験型の環境学習館。生きた生きものの観察や、ワークショップ・フィールドワークが楽しめる。",
   },
 ];
