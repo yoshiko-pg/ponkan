@@ -153,7 +153,10 @@ export function Sidebar({
             target="_blank"
             rel="noreferrer"
           >
-            <span>GitHub</span>
+            <span>
+              GitHub
+              <span className="expo-title-arrow"> ↗</span>
+            </span>
             <svg
               width="16"
               height="16"
