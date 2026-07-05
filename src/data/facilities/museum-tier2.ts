@@ -1,6 +1,6 @@
 import type { Facility } from "../../types";
 
-// 博物館 / Tier 2 (BASIC)
+// 博物・科学館(博物館系)/ Tier 2 (BASIC)
 export const MUSEUM_TIER2: Facility[] = [
   {
     id: "tatemonoen",

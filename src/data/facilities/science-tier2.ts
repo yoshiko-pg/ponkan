@@ -1,11 +1,11 @@
 import type { Facility } from "../../types";
 
-// 科学館 / Tier 2 (BASIC)
+// 博物・科学館(科学館系)/ Tier 2 (BASIC)
 export const SCIENCE_TIER2: Facility[] = [
   {
     id: "kagaku-gijutsukan",
     name: "科学技術館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "東京都",
     address: "東京都千代田区北の丸公園2-1",
@@ -17,7 +17,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "tamarokuto",
     name: "多摩六都科学館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "東京都",
     address: "東京都西東京市芝久保町5-10-64",
@@ -29,7 +29,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "hamagin-space",
     name: "はまぎん こども宇宙科学館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "神奈川県",
     address: "神奈川県横浜市磯子区洋光台5-2-1",
@@ -40,7 +40,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "mitsubishi-minatomirai",
     name: "三菱みなとみらい技術館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "神奈川県",
     address: "神奈川県横浜市西区みなとみらい3-3-1 三菱重工横浜ビル",
@@ -51,7 +51,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "chiba-kagakukan",
     name: "千葉市科学館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "千葉県",
     address: "千葉県千葉市中央区中央4-5-1 Qiball(きぼーる)内",
@@ -62,7 +62,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "tsukuba-expo-center",
     name: "つくばエキスポセンター",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "茨城県",
     address: "茨城県つくば市吾妻2-9",
@@ -74,7 +74,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "jaxa-tsukuba",
     name: "JAXA 筑波宇宙センター",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "茨城県",
     address: "茨城県つくば市千現2-1-1",
@@ -85,7 +85,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "tokorozawa-koku",
     name: "所沢航空発祥記念館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "埼玉県",
     address: "埼玉県所沢市並木1-13 所沢航空記念公園内",
@@ -96,7 +96,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "tochigi-kodomo-kagakukan",
     name: "栃木県子ども総合科学館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "栃木県",
     address: "栃木県宇都宮市西川田町567",
@@ -107,7 +107,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "gas-tenani",
     name: "がすてなーに ガスの科学館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "東京都",
     address: "東京都江東区豊洲6-1-1",
@@ -119,7 +119,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "tenq",
     name: "Space Travelium TeNQ",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "東京都",
     address: "東京都文京区後楽1-3-61 東京ドームシティ 黄色いビル6F",
@@ -130,7 +130,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "jaxa-sagamihara",
     name: "JAXA相模原キャンパス 宇宙科学探査交流棟",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "神奈川県",
     address: "神奈川県相模原市中央区由野台3-1-1",
@@ -141,7 +141,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "chiba-gendai-sangyo",
     name: "千葉県立現代産業科学館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "千葉県",
     address: "千葉県市川市鬼高1-1-3",
@@ -152,7 +152,7 @@ export const SCIENCE_TIER2: Facility[] = [
   {
     id: "aeromuseum",
     name: "航空科学博物館",
-    category: "science",
+    category: "museum",
     tier: 2,
     pref: "千葉県",
     address: "千葉県山武郡芝山町岩山111-3",

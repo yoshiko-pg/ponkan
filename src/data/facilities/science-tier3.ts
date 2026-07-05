@@ -1,11 +1,11 @@
 import type { Facility } from "../../types";
 
-// 科学館 / Tier 3 (LOCAL)
+// 博物・科学館(科学館系)/ Tier 3 (LOCAL)
 export const SCIENCE_TIER3: Facility[] = [
   {
     id: "minato-kagakukan",
     name: "港区立みなと科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都港区虎ノ門3-6-9",
@@ -17,7 +17,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "kisho-kagakukan",
     name: "気象庁 気象科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都港区虎ノ門3-6-9 気象庁2F",
@@ -28,7 +28,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "mizu-no-kagakukan",
     name: "東京都水の科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都江東区有明3-1-8",
@@ -39,7 +39,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "niji-no-gesuidokan",
     name: "虹の下水道館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都江東区有明2-3-5 有明水再生センター5F",
@@ -50,7 +50,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "tepia",
     name: "TEPIA先端技術館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都港区北青山2-8-44",
@@ -61,7 +61,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "itabashi-kyoiku-kagakukan",
     name: "板橋区立教育科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都板橋区常盤台4-14-1",
@@ -72,7 +72,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "galaxcity",
     name: "ギャラクシティ",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都足立区栗原1-3-1",
@@ -84,7 +84,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "cosmo-planetarium-shibuya",
     name: "コスモプラネタリウム渋谷",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "東京都",
     address: "東京都渋谷区桜丘町23-21 渋谷区文化総合センター大和田12F",
@@ -95,7 +95,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "kawasaki-sora-to-midori",
     name: "かわさき宙と緑の科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "神奈川県",
     address: "神奈川県川崎市多摩区枡形7-1-2 生田緑地内",
@@ -107,7 +107,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "toshiba-mirai-kagakukan",
     name: "東芝未来科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "神奈川県",
     address: "神奈川県川崎市幸区堀川町72-34 スマートコミュニティセンター2F",
@@ -118,7 +118,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "atsugi-kodomo-kagakukan",
     name: "神奈川工科大学厚木市子ども科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "神奈川県",
     address: "神奈川県厚木市中町1-1-3 厚木シティプラザ7F",
@@ -129,7 +129,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "shonandai-kodomokan",
     name: "湘南台文化センターこども館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "神奈川県",
     address: "神奈川県藤沢市湘南台1-8",
@@ -140,7 +140,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "saitama-uchu-kagakukan",
     name: "さいたま市青少年宇宙科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "埼玉県",
     address: "埼玉県さいたま市浦和区駒場2-3-45",
@@ -151,7 +151,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "kawaguchi-science-museum",
     name: "川口市立科学館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "埼玉県",
     address: "埼玉県川口市上青木3-12-18 SKIPシティ内",
@@ -162,7 +162,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "koshigaya-miracle",
     name: "越谷市科学技術体験センター ミラクル",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "埼玉県",
     address: "埼玉県越谷市新越谷1-59",
@@ -173,7 +173,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "kazo-miraikan",
     name: "加須未来館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "埼玉県",
     address: "埼玉県加須市外野350",
@@ -184,7 +184,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "saitama-uchu-gekijo",
     name: "さいたま市宇宙劇場",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "埼玉県",
     address: "埼玉県さいたま市大宮区錦町682-2 JACK大宮内",
@@ -195,7 +195,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "shiroi-planetarium",
     name: "白井市文化センター プラネタリウム",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "千葉県",
     address: "千葉県白井市復1148-8",
@@ -206,7 +206,7 @@ export const SCIENCE_TIER3: Facility[] = [
   {
     id: "teganuma-mizu-no-yakata",
     name: "手賀沼親水広場 水の館",
-    category: "science",
+    category: "museum",
     tier: 3,
     pref: "千葉県",
     address: "千葉県我孫子市高野山新田193",

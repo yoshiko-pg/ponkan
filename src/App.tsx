@@ -12,7 +12,7 @@ type Tab = "book" | "map";
 
 const FILTER_KEY = "ponkan:filter";
 const TIER_FILTER_KEY = "ponkan:tierFilter";
-const CATEGORIES: Category[] = ["aquarium", "art", "museum", "science"];
+const CATEGORIES: Category[] = ["aquarium", "art", "museum"];
 const TIERS: Tier[] = [1, 2, 3];
 
 // 直近の絞り込みを復元する(不正値は無視)。距離(rangeKm)は store 側で永続化される
@@ -20,7 +20,11 @@ function loadFilter(): Category[] {
   try {
     const parsed = JSON.parse(localStorage.getItem(FILTER_KEY) ?? "[]");
     if (!Array.isArray(parsed)) return [];
-    return parsed.filter((c): c is Category => CATEGORIES.includes(c));
+    // 旧カテゴリ "science" は "museum"(博物・科学館)に統合された
+    const migrated = parsed.map((c) => (c === "science" ? "museum" : c));
+    return [...new Set(migrated)].filter((c): c is Category =>
+      CATEGORIES.includes(c as Category),
+    );
   } catch {
     return [];
   }

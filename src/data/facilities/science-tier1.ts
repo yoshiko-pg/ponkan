@@ -1,11 +1,11 @@
 import type { Facility } from "../../types";
 
-// 科学館 / Tier 1 (MAJOR)
+// 博物・科学館(科学館系)/ Tier 1 (MAJOR)
 export const SCIENCE_TIER1: Facility[] = [
   {
     id: "miraikan",
     name: "日本科学未来館",
-    category: "science",
+    category: "museum",
     tier: 1,
     pref: "東京都",
     address: "東京都江東区青海2-3-6",

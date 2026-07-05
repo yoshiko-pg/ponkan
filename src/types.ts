@@ -1,4 +1,4 @@
-export type Category = "aquarium" | "art" | "museum" | "science";
+export type Category = "aquarium" | "art" | "museum";
 
 // 1: 全国区の目的地 / 2: 地域の主要館 / 3: 小規模・ニッチ
 export type Tier = 1 | 2 | 3;
@@ -44,18 +44,16 @@ export const DEFAULT_RANGE_KM = 50;
 export const CATEGORY_LABEL: Record<Category, string> = {
   aquarium: "水族館",
   art: "美術館",
-  museum: "博物館",
-  science: "科学館",
+  museum: "博物・科学館",
 };
 
 export const CATEGORY_CODE: Record<Category, string> = {
   aquarium: "AQ",
   art: "ART",
   museum: "MUS",
-  science: "SCI",
 };
 
-export const CATEGORIES: Category[] = ["aquarium", "art", "museum", "science"];
+export const CATEGORIES: Category[] = ["aquarium", "art", "museum"];
 
 export const TIERS: Tier[] = [1, 2, 3];
 

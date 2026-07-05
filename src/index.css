@@ -12,10 +12,8 @@
   --aquarium-soft: rgba(56, 189, 248, 0.12);
   --art: #f472b6;
   --art-soft: rgba(244, 114, 182, 0.12);
-  --museum: #fbbf24;
-  --museum-soft: rgba(251, 191, 36, 0.12);
-  --science: #34d399;
-  --science-soft: rgba(52, 211, 153, 0.12);
+  --museum: #34d399;
+  --museum-soft: rgba(52, 211, 153, 0.12);
 
   --stamp-dim: #4a4a55;
   --bar-bg: rgba(16, 16, 19, 0.92);
@@ -36,10 +34,8 @@
   --aquarium-soft: rgba(2, 132, 199, 0.09);
   --art: #db2777;
   --art-soft: rgba(219, 39, 119, 0.09);
-  --museum: #d97706;
-  --museum-soft: rgba(217, 119, 6, 0.1);
-  --science: #059669;
-  --science-soft: rgba(5, 150, 105, 0.09);
+  --museum: #059669;
+  --museum-soft: rgba(5, 150, 105, 0.09);
 
   --stamp-dim: #b5b5bf;
   --bar-bg: rgba(246, 246, 244, 0.92);
@@ -209,9 +205,6 @@ body {
 .chip-museum .dot {
   background: var(--museum);
 }
-.chip-science .dot {
-  background: var(--science);
-}
 
 .chip.active {
   border-color: var(--ink);
@@ -246,14 +239,6 @@ body {
 }
 .chip-museum.active .dot {
   background: var(--museum);
-}
-.chip-science.active {
-  border-color: var(--science);
-  background: var(--science-soft);
-  color: var(--science);
-}
-.chip-science.active .dot {
-  background: var(--science);
 }
 
 /* 2行目以降のチップ行(Tier・距離)は直前の行に寄せる */
@@ -325,9 +310,6 @@ body {
 }
 .progress-fill.fill-museum {
   background: var(--museum);
-}
-.progress-fill.fill-science {
-  background: var(--science);
 }
 
 /* ---------- stamp grid ---------- */
@@ -414,11 +396,6 @@ body {
   border-color: var(--museum);
   background: var(--museum-soft);
   color: var(--museum);
-}
-.stamp-circle.stamped.cat-science {
-  border-color: var(--science);
-  background: var(--science-soft);
-  color: var(--science);
 }
 
 @keyframes stamp-in {
@@ -611,11 +588,6 @@ body {
   border-color: var(--museum);
   background: var(--museum-soft);
 }
-.cat-badge.cat-science {
-  color: var(--science);
-  border-color: var(--science);
-  background: var(--science-soft);
-}
 
 .tier-badge {
   display: inline-block;
@@ -733,11 +705,6 @@ body {
   border-color: var(--museum);
   color: var(--museum);
   background: var(--museum-soft);
-}
-.stamped-mark.cat-science {
-  border-color: var(--science);
-  color: var(--science);
-  background: var(--science-soft);
 }
 
 .field {
@@ -866,10 +833,6 @@ body {
   background: var(--museum);
   color: var(--bg);
 }
-.map-pin.cat-science {
-  background: var(--science);
-  color: var(--bg);
-}
 
 /* 訪問済み: 未訪問の色反転(白地+カテゴリ色のふち・✓)。cat-*より後に置いて上書き */
 .map-pin.visited {
@@ -889,10 +852,6 @@ body {
 .map-pin.visited.cat-museum {
   border-color: var(--museum);
   color: var(--museum);
-}
-.map-pin.visited.cat-science {
-  border-color: var(--science);
-  color: var(--science);
 }
 
 .map-pin.home {
