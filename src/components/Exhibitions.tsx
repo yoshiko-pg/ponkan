@@ -7,6 +7,8 @@ const DATA = exhibitionData as ExhibitionData;
 
 interface Props {
   store: Store;
+  // 施設名タップで施設詳細モーダルを開く(スタンプ帳と同じ挙動)
+  onSelect: (f: Facility) => void;
 }
 
 function toDateString(d: Date): string {
@@ -36,22 +38,28 @@ function ExhibitionCard({
   facility,
   upcoming,
   endingSoon,
+  onZoom,
+  onSelectFacility,
 }: {
   exhibition: Exhibition;
   facility: Facility | undefined;
   upcoming: boolean;
   endingSoon: boolean;
+  onZoom: (imageUrl: string) => void;
+  onSelectFacility: (f: Facility) => void;
 }) {
   const [imgFailed, setImgFailed] = useState(false);
+  const hasImage = exhibition.imageUrl != null && !imgFailed;
+
   return (
-    <a
-      className="expo-card"
-      href={exhibition.url}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <div className="expo-poster">
-        {exhibition.imageUrl && !imgFailed ? (
+    <div className="expo-card">
+      {hasImage ? (
+        <button
+          type="button"
+          className="expo-poster"
+          onClick={() => onZoom(exhibition.imageUrl!)}
+          aria-label="ポスターを拡大表示"
+        >
           <img
             src={exhibition.imageUrl}
             alt=""
@@ -59,28 +67,52 @@ function ExhibitionCard({
             referrerPolicy="no-referrer"
             onError={() => setImgFailed(true)}
           />
-        ) : (
+          {upcoming && <span className="expo-badge">開催予定</span>}
+          {!upcoming && endingSoon && (
+            <span className="expo-badge soon">まもなく終了</span>
+          )}
+        </button>
+      ) : (
+        <div className="expo-poster">
           <span className="expo-noimg">ART</span>
-        )}
-        {upcoming && <span className="expo-badge">開催予定</span>}
-        {!upcoming && endingSoon && (
-          <span className="expo-badge soon">まもなく終了</span>
-        )}
-      </div>
+          {upcoming && <span className="expo-badge">開催予定</span>}
+          {!upcoming && endingSoon && (
+            <span className="expo-badge soon">まもなく終了</span>
+          )}
+        </div>
+      )}
       <div className="expo-meta">
-        <span className="expo-facility">{facility?.name ?? ""}</span>
-        <span className="expo-title">{exhibition.title}</span>
+        {facility && (
+          <button
+            type="button"
+            className="expo-facility"
+            onClick={() => onSelectFacility(facility)}
+          >
+            {facility.name}
+          </button>
+        )}
+        <a
+          className="expo-title"
+          href={exhibition.url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {exhibition.title}
+          <span className="expo-title-arrow"> ↗</span>
+        </a>
         <span className="expo-dates">{formatTerm(exhibition)}</span>
       </div>
-    </a>
+    </div>
   );
 }
 
-export function Exhibitions({ store }: Props) {
+export function Exhibitions({ store, onSelect }: Props) {
   const today = toDateString(new Date());
   const soonLimit = toDateString(
     new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
   );
+  // ポスター拡大表示中の画像URL
+  const [zoomed, setZoomed] = useState<string | null>(null);
 
   // 対象は美術館 tier1/2(非表示にした施設は除く)
   const targets = store.facilities.filter(
@@ -105,6 +137,18 @@ export function Exhibitions({ store }: Props) {
   const covered = new Set(active.map((ex) => ex.facilityId));
   const noInfo = targets.filter((f) => !covered.has(f.id));
 
+  const renderCard = (ex: Exhibition, isUp: boolean) => (
+    <ExhibitionCard
+      key={`${ex.facilityId}-${ex.url}`}
+      exhibition={ex}
+      facility={byId.get(ex.facilityId)}
+      upcoming={isUp}
+      endingSoon={!isUp && ex.endDate != null && ex.endDate <= soonLimit}
+      onZoom={setZoomed}
+      onSelectFacility={onSelect}
+    />
+  );
+
   return (
     <div className="exhibitions">
       <div className="count-row">
@@ -117,15 +161,7 @@ export function Exhibitions({ store }: Props) {
 
       {showing.length > 0 && (
         <div className="expo-grid">
-          {showing.map((ex) => (
-            <ExhibitionCard
-              key={`${ex.facilityId}-${ex.url}`}
-              exhibition={ex}
-              facility={byId.get(ex.facilityId)}
-              upcoming={false}
-              endingSoon={ex.endDate != null && ex.endDate <= soonLimit}
-            />
-          ))}
+          {showing.map((ex) => renderCard(ex, false))}
         </div>
       )}
       {showing.length === 0 && (
@@ -136,15 +172,7 @@ export function Exhibitions({ store }: Props) {
         <>
           <h3 className="expo-section-title">COMING SOON</h3>
           <div className="expo-grid">
-            {upcoming.map((ex) => (
-              <ExhibitionCard
-                key={`${ex.facilityId}-${ex.url}`}
-                exhibition={ex}
-                facility={byId.get(ex.facilityId)}
-                upcoming
-                endingSoon={false}
-              />
-            ))}
+            {upcoming.map((ex) => renderCard(ex, true))}
           </div>
         </>
       )}
@@ -173,6 +201,24 @@ export function Exhibitions({ store }: Props) {
 
       {DATA.updatedAt && (
         <p className="expo-updated">DATA UPDATED {DATA.updatedAt}</p>
+      )}
+
+      {zoomed && (
+        <div
+          className="expo-lightbox"
+          onClick={() => setZoomed(null)}
+          role="dialog"
+          aria-label="ポスター拡大表示"
+        >
+          <button
+            type="button"
+            className="modal-close expo-lightbox-close"
+            onClick={() => setZoomed(null)}
+          >
+            ×
+          </button>
+          <img src={zoomed} alt="" referrerPolicy="no-referrer" />
+        </div>
       )}
     </div>
   );

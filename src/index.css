@@ -982,7 +982,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  text-decoration: none;
   color: inherit;
 }
 
@@ -993,6 +992,15 @@ body {
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--card-2);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  display: block;
+}
+
+button.expo-poster {
+  cursor: zoom-in;
 }
 
 .expo-poster img {
@@ -1043,10 +1051,21 @@ body {
 }
 
 .expo-facility {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  align-self: flex-start;
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--art);
+}
+
+.expo-facility:hover {
+  text-decoration: underline;
 }
 
 .expo-title {
@@ -1054,10 +1073,20 @@ body {
   font-weight: 600;
   line-height: 1.45;
   color: var(--ink);
+  text-decoration: none;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.expo-title:hover {
+  text-decoration: underline;
+}
+
+.expo-title-arrow {
+  font-size: 11px;
+  color: var(--ink-soft);
 }
 
 .expo-dates {
@@ -1108,6 +1137,36 @@ body {
   font-weight: 700;
   letter-spacing: 0.18em;
   color: var(--ink-soft);
+}
+
+/* ポスター拡大表示 */
+.expo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+
+.expo-lightbox img {
+  max-width: min(92vw, 480px);
+  max-height: 85dvh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.expo-lightbox-close {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top));
+  right: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* ---------- sidebar ---------- */

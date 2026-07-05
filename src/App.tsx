@@ -104,7 +104,7 @@ export default function App() {
             onSelect={setSelected}
           />
         )}
-        {tab === "expo" && <Exhibitions store={store} />}
+        {tab === "expo" && <Exhibitions store={store} onSelect={setSelected} />}
       </main>
 
       <nav className="tabbar">
