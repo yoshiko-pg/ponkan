@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "./store";
 import { useTheme } from "./useTheme";
 import type { Facility } from "./types";
@@ -10,12 +10,31 @@ import type { Category, Tier } from "./types";
 
 type Tab = "book" | "map";
 
+const FILTER_KEY = "ponkan:filter";
+const CATEGORIES: Category[] = ["aquarium", "art", "museum", "science"];
+
+// 直近のカテゴリ絞り込みを復元する(不正値は無視)
+function loadFilter(): Category[] {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(FILTER_KEY) ?? "[]");
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((c): c is Category => CATEGORIES.includes(c));
+  } catch {
+    return [];
+  }
+}
+
 export default function App() {
   const store = useStore();
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
-  const [filter, setFilter] = useState<Category[]>([]);
+  const [filter, setFilter] = useState<Category[]>(loadFilter);
   const [tierFilter, setTierFilter] = useState<Tier[]>([]);
+
+  // カテゴリ絞り込みが変わるたびに保存する
+  useEffect(() => {
+    localStorage.setItem(FILTER_KEY, JSON.stringify(filter));
+  }, [filter]);
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pickingHome, setPickingHome] = useState(false);
