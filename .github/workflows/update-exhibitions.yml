@@ -1,0 +1,43 @@
+name: Update exhibitions
+
+on:
+  schedule:
+    # 毎週月曜 6:00 JST (日曜 21:00 UTC)
+    - cron: "0 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: update-exhibitions
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm fetch-exhibitions
+      - name: Commit and deploy if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet src/data/exhibitions.json; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/exhibitions.json
+          git commit -m "特別展データを自動更新"
+          git push
+          # GITHUB_TOKEN によるpushはワークフローを起動しないため、デプロイを明示的に叩く
+          gh workflow run deploy.yml --ref main

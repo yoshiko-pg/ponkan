@@ -4,11 +4,12 @@ import { useTheme } from "./useTheme";
 import type { Facility } from "./types";
 import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
+import { Exhibitions } from "./components/Exhibitions";
 import { Sidebar } from "./components/Sidebar";
 import { FacilityDetail } from "./components/FacilityDetail";
 import type { Category, Tier } from "./types";
 
-type Tab = "book" | "map";
+type Tab = "book" | "map" | "expo";
 
 const FILTER_KEY = "ponkan:filter";
 const TIER_FILTER_KEY = "ponkan:tierFilter";
@@ -118,6 +119,7 @@ export default function App() {
             onSelect={setSelected}
           />
         )}
+        {tab === "expo" && <Exhibitions store={store} onSelect={setSelected} />}
       </main>
 
       <nav className="tabbar">
@@ -134,6 +136,13 @@ export default function App() {
           onClick={() => setTab("map")}
         >
           MAP
+        </button>
+        <button
+          type="button"
+          className={tab === "expo" ? "active" : ""}
+          onClick={() => setTab("expo")}
+        >
+          EXHIBITS
         </button>
       </nav>
 

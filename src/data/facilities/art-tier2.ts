@@ -362,7 +362,7 @@ export const ART_TIER2: Facility[] = [
     station: "北浦和駅(JR京浜東北線)",
     lat: 35.8744,
     lng: 139.6462,
-    url: "https://www.momas.jp/",
+    url: "https://pref.spec.ed.jp/momas/",
     description:
       "黒川紀章設計の建築で知られる県立近代美術館。モネやピカソら近代の名品を収蔵し、名作椅子に自由に座れる「椅子の美術館」としても親しまれる。",
   },
