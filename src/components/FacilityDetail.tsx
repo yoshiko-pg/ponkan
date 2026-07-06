@@ -121,6 +121,9 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             onClick={handleStamp}
             aria-label="スタンプを押す"
           >
+            <span className="stamp-code">
+              {CATEGORY_CODE[facility.category]}
+            </span>
             <span className="stamp-hint">タップでポン</span>
           </button>
         )}
