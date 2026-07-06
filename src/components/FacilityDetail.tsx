@@ -124,6 +124,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             <span className="stamp-code">
               {CATEGORY_CODE[facility.category]}
             </span>
+            <span className="stamp-hint">タップで押す</span>
           </button>
         )}
 

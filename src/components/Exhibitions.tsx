@@ -126,6 +126,10 @@ export function Exhibitions({ store, onSelect }: Props) {
   const [zoomed, setZoomed] = useState<string | null>(null);
 
   const bookmarks = new Set(store.expoBookmarks);
+  // 並び順の判定はタブを開いた時点のブックマーク状態で固定する。
+  // トグルした瞬間にカードが並び替わるとスクロールがガタついて見失うため、
+  // 並び替えは次にタブを開いたときに反映する
+  const [sortBookmarks] = useState(() => new Set(store.expoBookmarks));
 
   // 対象は美術館 tier1/2(非表示にした施設は除く)
   const targets = store.facilities.filter(
@@ -142,7 +146,7 @@ export function Exhibitions({ store, onSelect }: Props) {
 
   // ブックマーク済みを先頭に、あとは会期順
   const byBookmark = (a: Exhibition, b: Exhibition) =>
-    Number(bookmarks.has(b.url)) - Number(bookmarks.has(a.url));
+    Number(sortBookmarks.has(b.url)) - Number(sortBookmarks.has(a.url));
 
   const showing = active
     .filter((ex) => !isUpcoming(ex))
