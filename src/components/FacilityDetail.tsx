@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import exhibitionData from "../data/exhibitions.json";
 import { CATEGORY_CODE, CATEGORY_LABEL, TIER_LABEL } from "../types";
 import { formatDateLines, formatTerm, toDateString } from "../format";
-import { playStampFeedback } from "../stampFeedback";
 import type { ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
 
@@ -37,11 +36,13 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
 
-  // この施設で開催中・開催予定の特別展(会期終了分は除く)
+  // この施設でいま開催中の特別展(終了分と開催前のものは出さない)
   const today = toDateString(new Date());
   const expos = EXHIBITIONS.filter(
     (ex) =>
-      ex.facilityId === facility.id && !(ex.endDate && ex.endDate < today),
+      ex.facilityId === facility.id &&
+      !(ex.endDate && ex.endDate < today) &&
+      !(ex.startDate && ex.startDate > today),
   );
 
   const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(facility.name)}`;
@@ -53,7 +54,8 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
   const handleStamp = () => {
     store.stamp(facility.id);
     setJustStamped(true);
-    playStampFeedback();
+    // 対応端末では押した瞬間に短く振動させる
+    navigator.vibrate?.(60);
   };
 
   const handleUnstamp = () => {
@@ -256,12 +258,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
                   {ex.title}
                   <span className="expo-title-arrow"> ↗</span>
                 </span>
-                <span className="detail-expo-term">
-                  {ex.startDate && ex.startDate > today && (
-                    <span className="detail-expo-badge">開催予定</span>
-                  )}
-                  {formatTerm(ex)}
-                </span>
+                <span className="detail-expo-term">{formatTerm(ex)}</span>
               </a>
             ))}
           </div>

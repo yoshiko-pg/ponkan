@@ -111,19 +111,6 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: relative;
-}
-
-/* バックアップが古いときなどにアイコン右上へ出す通知ドット */
-.badge-dot {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
 }
 
 .icon-btn:hover {
@@ -269,30 +256,6 @@ body {
 .chips + .chips {
   padding-top: 0;
   margin-top: -8px;
-}
-
-/* 施設名検索。チップと同じ行に置くピル型の入力欄 */
-.book-search {
-  flex: 1;
-  min-width: 130px;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  background: transparent;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  padding: 6px 13px;
-}
-
-.book-search::placeholder {
-  color: var(--stamp-dim);
-  font-weight: 500;
-}
-
-.book-search:focus {
-  outline: none;
-  border-color: var(--ink-soft);
 }
 
 /* Tierチップはドットの大きさで規模を表す */
@@ -734,16 +697,6 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-}
-
-.detail-expo-badge {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--line-strong);
-  color: var(--ink-soft);
 }
 
 .detail-links {
@@ -1513,11 +1466,6 @@ body {
 
 .menu-text.backup-status {
   color: var(--ink-soft);
-  font-size: 11.5px;
-}
-
-.menu-text.backup-warn {
-  color: var(--accent);
   font-size: 11.5px;
 }
 

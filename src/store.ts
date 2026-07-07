@@ -6,9 +6,6 @@ import type { Facility, HomePoint, StoreData, VisitRecord } from "./types";
 const STORAGE_KEY = "ponkan:v1";
 const LAST_BACKUP_KEY = "ponkan:lastBackup";
 
-// これ以上バックアップしていない期間が続いたらリマインドを出す
-const BACKUP_STALE_MS = 60 * 24 * 60 * 60 * 1000;
-
 const EMPTY: StoreData = {
   visits: {},
   custom: [],
@@ -181,11 +178,6 @@ export function useStore() {
     [markBackedUp],
   );
 
-  // 訪問記録があるのにバックアップが古い(または一度もない)とき true
-  const backupStale =
-    Object.keys(data.visits).length > 0 &&
-    (lastBackupAt == null || Date.now() - lastBackupAt > BACKUP_STALE_MS);
-
   return {
     facilities,
     visits: data.visits,
@@ -193,7 +185,6 @@ export function useStore() {
     rangeKm: data.rangeKm,
     expoBookmarks: data.expoBookmarks,
     lastBackupAt,
-    backupStale,
     setHome,
     setRangeKm,
     toggleExpoBookmark,

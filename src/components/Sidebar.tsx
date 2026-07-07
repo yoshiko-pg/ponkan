@@ -153,11 +153,6 @@ export function Sidebar({
               ? formatDate(toDateString(new Date(store.lastBackupAt)))
               : "まだありません"}
           </p>
-          {store.backupStale && (
-            <p className="menu-text backup-warn">
-              データはこの端末のブラウザにしかありません。EXPORTでのバックアップをおすすめします。
-            </p>
-          )}
           <div className="data-actions">
             <button type="button" onClick={store.exportJson}>
               EXPORT
