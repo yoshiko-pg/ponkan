@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { requestCurrentLocation } from "../geo";
+import { formatDate, toDateString } from "../format";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
@@ -116,6 +117,17 @@ export function Sidebar({
           <p className="menu-text">
             訪問記録・メモ・リスト編集を含む全データをJSONでバックアップ/復元できます。
           </p>
+          <p className="menu-text backup-status">
+            最終バックアップ:{" "}
+            {store.lastBackupAt
+              ? formatDate(toDateString(new Date(store.lastBackupAt)))
+              : "まだありません"}
+          </p>
+          {store.backupStale && (
+            <p className="menu-text backup-warn">
+              データはこの端末のブラウザにしかありません。EXPORTでのバックアップをおすすめします。
+            </p>
+          )}
           <div className="data-actions">
             <button type="button" onClick={store.exportJson}>
               EXPORT
