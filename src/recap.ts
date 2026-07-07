@@ -1,5 +1,6 @@
 import type { Category } from "./types";
 import { CATEGORIES, CATEGORY_LABEL } from "./types";
+import { formatDateLines } from "./format";
 
 // 年間振り返りのシェア画像をcanvasで生成する(1080×1080、アプリのライトテーマ配色)
 const SIZE = 1080;
@@ -17,6 +18,16 @@ const CAT_COLOR: Record<Category, string> = {
 
 const FONT =
   "'Helvetica Neue', 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif";
+
+// スタンプに重ねる訪問日の色と位置。スタンプ帳のCSS
+// (.stamp-circle.stamped .stamp-date)と同じ値を86pxサークル基準で移植
+const DATE_STYLE: Record<Category, { color: string; dx: number; dy: number }> =
+  {
+    aquarium: { color: "#0050a8", dx: 0, dy: 5 },
+    // artのみ空白が右上にある
+    art: { color: "#e83888", dx: 4, dy: -26 },
+    museum: { color: "#188838", dx: 0, dy: 7 },
+  };
 
 // グリッドに並べるスタンプの上限。超えた分は「+N」で表す
 const MAX_STAMPS = 20;
@@ -131,17 +142,26 @@ export async function generateRecapImage(
     ctx.rotate((wobble(i) * Math.PI) / 180);
     const img = images.get(v.category);
     if (img) ctx.drawImage(img, -size / 2, -size / 2, size, size);
-    // スタンプ帳と同じく訪問日を中央に重ねる(絵柄の上でも読めるよう背景色で縁取る)
-    const [, m, d] = v.date.split("-");
-    const dateText = `${Number(m)}.${Number(d)}`;
-    ctx.font = `700 ${Math.round(size * 0.14)}px ${FONT}`;
+    // スタンプ帳と同じく、絵柄の空白部分に訪問日を年+月日の2行で重ねる
+    const scale = size / 86;
+    const dateStyle = DATE_STYLE[v.category];
+    const [yearLine, dayLine] = formatDateLines(v.date);
+    const lineHeight = 11.2 * scale;
+    ctx.font = `700 ${Math.round(11 * scale)}px ${FONT}`;
     ctx.textAlign = "center";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = BG;
-    ctx.lineWidth = Math.max(3, size * 0.03);
-    ctx.strokeText(dateText, 0, size * 0.05);
-    ctx.fillStyle = CAT_COLOR[v.category];
-    ctx.fillText(dateText, 0, size * 0.05);
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = dateStyle.color;
+    ctx.fillText(
+      yearLine,
+      dateStyle.dx * scale,
+      dateStyle.dy * scale - lineHeight / 2,
+    );
+    ctx.fillText(
+      dayLine,
+      dateStyle.dx * scale,
+      dateStyle.dy * scale + lineHeight / 2,
+    );
+    ctx.textBaseline = "alphabetic";
     ctx.restore();
 
     // スタンプの下に施設名
