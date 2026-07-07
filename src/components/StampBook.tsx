@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { CATEGORIES, CATEGORY_LABEL, TIERS, TIER_LABEL } from "../types";
 import type { Category, Facility, Tier } from "../types";
 import type { Store } from "../store";
@@ -6,6 +7,25 @@ import { StampCircle } from "./StampCircle";
 import { CategoryChips } from "./CategoryChips";
 import { TierChips } from "./TierChips";
 import { RangeChips } from "./RangeChips";
+
+// 訪問状態での絞り込み。null は絞り込みなし
+type VisitFilter = "unvisited" | "visited" | null;
+
+const VISIT_FILTER_KEY = "ponkan:visitFilter";
+
+function loadVisitFilter(): VisitFilter {
+  const v = localStorage.getItem(VISIT_FILTER_KEY);
+  return v === "unvisited" || v === "visited" ? v : null;
+}
+
+// 検索用の正規化: 全半角・大文字小文字・空白の揺れを吸収し、ひらがなはカタカナに寄せる
+function normalizeForSearch(s: string): string {
+  return s
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/[ぁ-ゖ]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0x60));
+}
 
 interface Props {
   store: Store;
@@ -27,6 +47,13 @@ export function StampBook({
   onSelect,
 }: Props) {
   const { home, rangeKm } = store;
+  const [visitFilter, setVisitFilter] = useState<VisitFilter>(loadVisitFilter);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    if (visitFilter) localStorage.setItem(VISIT_FILTER_KEY, visitFilter);
+    else localStorage.removeItem(VISIT_FILTER_KEY);
+  }, [visitFilter]);
 
   // 基準地点があれば距離を計算(座標なしの施設は null のまま残す)
   const withDistance = store.facilities.map((f) => ({
@@ -38,12 +65,16 @@ export function StampBook({
   }));
 
   // Tierで絞り込むときは未分類(カスタム追加分)は表示しない
+  const q = normalizeForSearch(query);
   const shown = withDistance.filter(
     ({ facility, distance }) =>
       (filter.length === 0 || filter.includes(facility.category)) &&
       (tierFilter.length === 0 ||
         (facility.tier != null && tierFilter.includes(facility.tier))) &&
-      (rangeKm == null || distance == null || distance <= rangeKm),
+      (rangeKm == null || distance == null || distance <= rangeKm) &&
+      (visitFilter == null ||
+        (visitFilter === "visited") === Boolean(store.visits[facility.id])) &&
+      (q === "" || normalizeForSearch(facility.name).includes(q)),
   );
   if (home) {
     shown.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
@@ -61,6 +92,27 @@ export function StampBook({
         <TierChips selected={tierFilter} onChange={onTierFilterChange} />
         {home && <RangeChips rangeKm={rangeKm} onChange={store.setRangeKm} />}
 
+        <div className="chips">
+          {(["unvisited", "visited"] as const).map((v) => (
+            <button
+              type="button"
+              key={v}
+              className={`chip ${visitFilter === v ? "active" : ""}`}
+              onClick={() => setVisitFilter(visitFilter === v ? null : v)}
+            >
+              {v === "unvisited" ? "未訪問" : "訪問済み"}
+            </button>
+          ))}
+          <input
+            className="book-search"
+            type="search"
+            placeholder="施設名でさがす"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="施設名で検索"
+          />
+        </div>
+
         <div className="count-row">
           <span className="count-label">
             {(() => {
@@ -75,6 +127,9 @@ export function StampBook({
                   ? TIERS.filter((t) => tierFilter.includes(t)).map(
                       (t) => TIER_LABEL[t],
                     )
+                  : []),
+                ...(visitFilter
+                  ? [visitFilter === "visited" ? "訪問済み" : "未訪問"]
                   : []),
               ];
               const label = conds.length === 0 ? "ALL SPOTS" : conds.join("・");

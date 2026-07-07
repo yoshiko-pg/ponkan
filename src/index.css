@@ -247,6 +247,30 @@ body {
   margin-top: -8px;
 }
 
+/* 施設名検索。チップと同じ行に置くピル型の入力欄 */
+.book-search {
+  flex: 1;
+  min-width: 130px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 6px 13px;
+}
+
+.book-search::placeholder {
+  color: var(--stamp-dim);
+  font-weight: 500;
+}
+
+.book-search:focus {
+  outline: none;
+  border-color: var(--ink-soft);
+}
+
 /* Tierチップはドットの大きさで規模を表す */
 .chip-tier1 .dot {
   width: 9px;
