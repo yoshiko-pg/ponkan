@@ -647,6 +647,57 @@ body {
   line-height: 1.5;
 }
 
+/* 施設詳細内の開催中・開催予定の特別展一覧 */
+.detail-expos {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-expos-title {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+.detail-expo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.detail-expo-name {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.detail-expo-term {
+  font-size: 11px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-expo-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-soft);
+}
+
 .detail-links {
   display: flex;
   gap: 8px;

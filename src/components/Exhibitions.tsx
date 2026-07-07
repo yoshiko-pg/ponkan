@@ -1,5 +1,6 @@
 import { useState } from "react";
 import exhibitionData from "../data/exhibitions.json";
+import { formatTerm, toDateString } from "../format";
 import type { Exhibition, ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
 
@@ -9,28 +10,6 @@ interface Props {
   store: Store;
   // 施設名タップで施設詳細モーダルを開く(スタンプ帳と同じ挙動)
   onSelect: (f: Facility) => void;
-}
-
-function toDateString(d: Date): string {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-}
-
-// "2026-09-23" → "9/23"(年が今年でなければ "2027/1/12")
-function formatDay(date: string): string {
-  const [y, m, d] = date.split("-").map(Number);
-  const thisYear = new Date().getFullYear();
-  return y === thisYear ? `${m}/${d}` : `${y}/${m}/${d}`;
-}
-
-function formatTerm(ex: Exhibition): string {
-  if (ex.startDate && ex.endDate)
-    return `${formatDay(ex.startDate)} – ${formatDay(ex.endDate)}`;
-  if (ex.endDate) return `〜 ${formatDay(ex.endDate)}まで`;
-  if (ex.startDate) return `${formatDay(ex.startDate)} 〜`;
-  return "会期はサイトを確認";
 }
 
 function ExhibitionCard({

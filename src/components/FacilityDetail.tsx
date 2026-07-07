@@ -1,8 +1,11 @@
 import { useState } from "react";
+import exhibitionData from "../data/exhibitions.json";
 import { CATEGORY_CODE, CATEGORY_LABEL, TIER_LABEL } from "../types";
-import { formatDateLines } from "../format";
-import type { Facility } from "../types";
+import { formatDateLines, formatTerm, toDateString } from "../format";
+import type { ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
+
+const EXHIBITIONS = (exhibitionData as ExhibitionData).exhibitions;
 
 interface Props {
   facility: Facility;
@@ -15,6 +18,13 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
   const [justStamped, setJustStamped] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
+
+  // この施設で開催中・開催予定の特別展(会期終了分は除く)
+  const today = toDateString(new Date());
+  const expos = EXHIBITIONS.filter(
+    (ex) =>
+      ex.facilityId === facility.id && !(ex.endDate && ex.endDate < today),
+  );
 
   const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(facility.name)}`;
   const mapUrl =
@@ -183,6 +193,32 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
                 <span className="info-value">{facility.station}</span>
               </div>
             )}
+          </div>
+        )}
+
+        {expos.length > 0 && (
+          <div className="detail-expos">
+            <h3 className="detail-expos-title">EXHIBITIONS</h3>
+            {expos.map((ex) => (
+              <a
+                key={ex.url}
+                className="detail-expo"
+                href={ex.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="detail-expo-name">
+                  {ex.title}
+                  <span className="expo-title-arrow"> ↗</span>
+                </span>
+                <span className="detail-expo-term">
+                  {ex.startDate && ex.startDate > today && (
+                    <span className="detail-expo-badge">開催予定</span>
+                  )}
+                  {formatTerm(ex)}
+                </span>
+              </a>
+            ))}
           </div>
         )}
 
