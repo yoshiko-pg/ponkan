@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { requestCurrentLocation } from "../geo";
 import { formatDate, toDateString } from "../format";
+import { RecapModal } from "./RecapModal";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
@@ -20,6 +21,15 @@ export function Sidebar({
   onClose,
 }: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [recapYear, setRecapYear] = useState<number | null>(null);
+
+  // 訪問記録がある年ごとの件数(新しい年から)
+  const yearCounts = new Map<number, number>();
+  for (const v of Object.values(store.visits)) {
+    const y = Number(v.date.slice(0, 4));
+    if (Number.isFinite(y)) yearCounts.set(y, (yearCounts.get(y) ?? 0) + 1);
+  }
+  const years = [...yearCounts.entries()].sort((a, b) => b[0] - a[0]);
 
   const useCurrentLocation = () => {
     requestCurrentLocation(store.setHome);
@@ -112,6 +122,26 @@ export function Sidebar({
           )}
         </section>
 
+        {years.length > 0 && (
+          <section className="menu-section">
+            <h3>RECAP</h3>
+            <p className="menu-text">
+              1年分の訪問記録をシェア用の画像にまとめられます。
+            </p>
+            {years.map(([year, count]) => (
+              <button
+                type="button"
+                key={year}
+                className="menu-row"
+                onClick={() => setRecapYear(year)}
+              >
+                <span>{year}年のポン</span>
+                <span className="recap-count">{count}館</span>
+              </button>
+            ))}
+          </section>
+        )}
+
         <section className="menu-section">
           <h3>DATA</h3>
           <p className="menu-text">
@@ -200,6 +230,14 @@ export function Sidebar({
             </svg>
           </a>
         </section>
+
+        {recapYear != null && (
+          <RecapModal
+            year={recapYear}
+            store={store}
+            onClose={() => setRecapYear(null)}
+          />
+        )}
       </aside>
     </div>
   );
