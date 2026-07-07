@@ -24,7 +24,9 @@ export function RecapModal({ year, store, onClose }: Props) {
       .filter(([, v]) => v.date.startsWith(`${year}-`))
       .flatMap(([id, v]) => {
         const facility = byId.get(id);
-        return facility ? [{ category: facility.category, date: v.date }] : [];
+        return facility
+          ? [{ category: facility.category, date: v.date, name: facility.name }]
+          : [];
       })
       .sort((a, b) => a.date.localeCompare(b.date));
 

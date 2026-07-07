@@ -30,6 +30,8 @@ export function Sidebar({
     if (Number.isFinite(y)) yearCounts.set(y, (yearCounts.get(y) ?? 0) + 1);
   }
   const years = [...yearCounts.entries()].sort((a, b) => b[0] - a[0]);
+  // 年の振り返りなので12月だけ出す
+  const isDecember = new Date().getMonth() === 11;
 
   const useCurrentLocation = () => {
     requestCurrentLocation(store.setHome);
@@ -122,7 +124,7 @@ export function Sidebar({
           )}
         </section>
 
-        {years.length > 0 && (
+        {isDecember && years.length > 0 && (
           <section className="menu-section">
             <h3>RECAP</h3>
             <p className="menu-text">

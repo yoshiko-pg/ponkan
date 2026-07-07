@@ -1,18 +1,18 @@
 import type { Category } from "./types";
 import { CATEGORIES, CATEGORY_LABEL } from "./types";
 
-// 年間振り返りのシェア画像をcanvasで生成する(1080×1080、アプリのダークテーマ配色)
+// 年間振り返りのシェア画像をcanvasで生成する(1080×1080、アプリのライトテーマ配色)
 const SIZE = 1080;
 const PAD = 84;
 
-const BG = "#101013";
-const INK = "#f4f4f6";
-const INK_SOFT = "#8e8e99";
+const BG = "#f6f6f4";
+const INK = "#17171a";
+const INK_SOFT = "#75757f";
 const ACCENT = "#ff6b2c";
 const CAT_COLOR: Record<Category, string> = {
-  aquarium: "#38bdf8",
-  art: "#f472b6",
-  museum: "#34d399",
+  aquarium: "#0284c7",
+  art: "#db2777",
+  museum: "#059669",
 };
 
 const FONT =
@@ -24,6 +24,21 @@ const MAX_STAMPS = 20;
 export interface RecapVisit {
   category: Category;
   date: string; // YYYY-MM-DD
+  name: string; // 施設名
+}
+
+// セル幅に収まるように末尾を「…」で切り詰める
+function truncateToWidth(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number,
+): string {
+  if (ctx.measureText(text).width <= maxWidth) return text;
+  let t = text;
+  while (t.length > 1 && ctx.measureText(`${t}…`).width > maxWidth) {
+    t = t.slice(0, -1);
+  }
+  return `${t}…`;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -105,11 +120,14 @@ export async function generateRecapImage(
   const offsetY = gridTop + (gridBottom - gridTop - cell * rows) / 2;
 
   shownVisits.forEach((v, i) => {
-    const cx = offsetX + (i % cols) * cell + cell / 2;
-    const cy = offsetY + Math.floor(i / cols) * cell + cell / 2;
-    const size = cell * 0.88;
+    const cellLeft = offsetX + (i % cols) * cell;
+    const cellTop = offsetY + Math.floor(i / cols) * cell;
+    const cx = cellLeft + cell / 2;
+    // 下に施設名を置くぶんスタンプは少し上に寄せる
+    const stampCy = cellTop + cell * 0.42;
+    const size = cell * 0.74;
     ctx.save();
-    ctx.translate(cx, cy);
+    ctx.translate(cx, stampCy);
     ctx.rotate((wobble(i) * Math.PI) / 180);
     const img = images.get(v.category);
     if (img) ctx.drawImage(img, -size / 2, -size / 2, size, size);
@@ -125,12 +143,22 @@ export async function generateRecapImage(
     ctx.fillStyle = CAT_COLOR[v.category];
     ctx.fillText(dateText, 0, size * 0.05);
     ctx.restore();
+
+    // スタンプの下に施設名
+    ctx.fillStyle = INK;
+    ctx.font = `600 ${Math.max(18, Math.round(cell * 0.09))}px ${FONT}`;
+    ctx.textAlign = "center";
+    ctx.fillText(
+      truncateToWidth(ctx, v.name, cell * 0.96),
+      cx,
+      cellTop + cell * 0.92,
+    );
   });
 
   if (overflow > 0) {
     const i = shownVisits.length;
     const cx = offsetX + (i % cols) * cell + cell / 2;
-    const cy = offsetY + Math.floor(i / cols) * cell + cell / 2;
+    const cy = offsetY + Math.floor(i / cols) * cell + cell * 0.42;
     ctx.fillStyle = INK_SOFT;
     ctx.font = `700 ${Math.round(cell * 0.22)}px ${FONT}`;
     ctx.textAlign = "center";
