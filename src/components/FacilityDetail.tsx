@@ -1,11 +1,29 @@
 import { useState } from "react";
+import type { CSSProperties } from "react";
 import exhibitionData from "../data/exhibitions.json";
 import { CATEGORY_CODE, CATEGORY_LABEL, TIER_LABEL } from "../types";
 import { formatDateLines, formatTerm, toDateString } from "../format";
+import { playStampFeedback } from "../stampFeedback";
 import type { ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
 
 const EXHIBITIONS = (exhibitionData as ExhibitionData).exhibitions;
+
+// 紙吹雪のパラメータ。ランダムだと再レンダーで飛び直すので、indexから決定的に作る
+const CONFETTI = Array.from({ length: 14 }, (_, i) => {
+  const angle = ((i * (360 / 14) + ((i * 37) % 20) - 10) * Math.PI) / 180;
+  const dist = 62 + ((i * 53) % 48);
+  return {
+    dx: `${Math.round(Math.cos(angle) * dist)}px`,
+    // 少し上向きに散らすとスタンプを「押した」感が出る
+    dy: `${Math.round(Math.sin(angle) * dist - 16)}px`,
+    rot: `${(i * 97) % 360}deg`,
+    color: ["var(--aquarium)", "var(--art)", "var(--museum)", "var(--accent)"][
+      i % 4
+    ],
+    delay: `${(i % 5) * 20}ms`,
+  };
+});
 
 interface Props {
   facility: Facility;
@@ -35,6 +53,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
   const handleStamp = () => {
     store.stamp(facility.id);
     setJustStamped(true);
+    playStampFeedback();
   };
 
   const handleUnstamp = () => {
@@ -123,6 +142,26 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
                 <span key={line}>{line}</span>
               ))}
             </span>
+            {justStamped &&
+              !window.matchMedia("(prefers-reduced-motion: reduce)")
+                .matches && (
+                <span className="confetti" aria-hidden="true">
+                  {CONFETTI.map((p, i) => (
+                    <i
+                      key={i}
+                      style={
+                        {
+                          "--dx": p.dx,
+                          "--dy": p.dy,
+                          "--rot": p.rot,
+                          background: p.color,
+                          animationDelay: p.delay,
+                        } as CSSProperties
+                      }
+                    />
+                  ))}
+                </span>
+              )}
           </div>
         ) : (
           <button
@@ -136,6 +175,12 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             </span>
             <span className="stamp-hint">タップでポン</span>
           </button>
+        )}
+
+        {visit && justStamped && (
+          <p className="stamp-note">
+            {Object.keys(store.visits).length}館目のポン!
+          </p>
         )}
 
         {facility.description && (

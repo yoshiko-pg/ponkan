@@ -773,6 +773,65 @@ body {
   gap: 1px;
   transform: rotate(-6deg);
   margin: 6px auto;
+  position: relative;
+}
+
+/* スタンプ直後に円の中心から飛び散る紙吹雪 */
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 9px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti-fly 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes confetti-fly {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+      rotate(var(--rot)) scale(0.6);
+  }
+}
+
+/* スタンプ直後の「N館目のポン!」 */
+.stamp-note {
+  margin: 2px 0 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  animation: stamp-note-in 0.4s ease-out 0.15s both;
+}
+
+@keyframes stamp-note-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti i,
+  .stamp-note {
+    animation: none;
+  }
 }
 
 /* 未スタンプ時のプレースホルダー: タップでスタンプできることをパルスと文言で示す */
