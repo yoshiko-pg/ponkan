@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useStore } from "./store";
 import { useTheme } from "./useTheme";
-import type { Facility } from "./types";
+import exhibitionData from "./data/exhibitions.json";
+import { toDateString } from "./format";
+import type { ExhibitionData, Facility } from "./types";
 import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
 import { Exhibitions } from "./components/Exhibitions";
@@ -10,6 +12,8 @@ import { FacilityDetail } from "./components/FacilityDetail";
 import type { Category, Tier } from "./types";
 
 type Tab = "book" | "map" | "expo";
+
+const EXHIBITIONS = (exhibitionData as ExhibitionData).exhibitions;
 
 const FILTER_KEY = "ponkan:filter";
 const TIER_FILTER_KEY = "ponkan:tierFilter";
@@ -59,6 +63,19 @@ export default function App() {
   const selectedFacility = selected
     ? (store.facilities.find((f) => f.id === selected.id) ?? null)
     : null;
+
+  // ブックマークした特別展が2週間以内に終了するときはEXHIBITSタブで知らせる
+  const today = toDateString(new Date());
+  const soonLimit = toDateString(
+    new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+  );
+  const bookmarkEndingSoon = EXHIBITIONS.some(
+    (ex) =>
+      store.expoBookmarks.includes(ex.url) &&
+      ex.endDate != null &&
+      ex.endDate >= today &&
+      ex.endDate <= soonLimit,
+  );
 
   return (
     <div className="app">
@@ -146,6 +163,12 @@ export default function App() {
           onClick={() => setTab("expo")}
         >
           EXHIBITS
+          {bookmarkEndingSoon && (
+            <span
+              className="tab-dot"
+              aria-label="ブックマークした特別展がまもなく終了"
+            />
+          )}
         </button>
       </nav>
 
