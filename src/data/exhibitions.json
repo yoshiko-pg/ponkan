@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05",
+  "updatedAt": "2026-07-12",
   "exhibitions": [
     {
       "facilityId": "nmwa",
@@ -23,14 +23,6 @@
       "imageUrl": "https://www.nmwa.go.jp/jp/exhibitions/img/2026rembrandt.png",
       "startDate": "2026-07-07",
       "endDate": "2026-09-23"
-    },
-    {
-      "facilityId": "nact",
-      "title": "生誕100年 森英恵 ヴァイタル・タイプ",
-      "url": "https://www.nact.jp/exhibition_special/2026/hanaemori/",
-      "imageUrl": "https://www.nact.jp/exhibition_special/media/HM_03.jpg",
-      "startDate": "2026-04-15",
-      "endDate": "2026-07-06"
     },
     {
       "facilityId": "nact",
@@ -123,7 +115,7 @@
       "facilityId": "mot",
       "title": "多田美波―光、凛と ゆれる",
       "url": "https://www.mot-art-museum.jp/exhibitions/Tada-Minami/",
-      "imageUrl": "https://www.mot-art-museum.jp/exhibitions/images/mototada_web_img_GIF.gif",
+      "imageUrl": "https://www.mot-art-museum.jp/exhibitions/mototada_web_img_GIF.gif",
       "startDate": "2026-08-29",
       "endDate": "2026-12-06"
     },
@@ -333,6 +325,14 @@
       "endDate": "2026-08-30"
     },
     {
+      "facilityId": "sompo-museum",
+      "title": "【開館50周年記念 アルベール・マルケ展】",
+      "url": "https://www.sompo-museum.org/exhibitions/2025/albertmarquet/",
+      "imageUrl": "https://www.sompo-museum.org/wp-content/uploads/2026/06/img_ex_index_marquet_mainvisual_pc.jpg",
+      "startDate": "2026-09-22",
+      "endDate": "2026-12-13"
+    },
+    {
       "facilityId": "tokyo-station-gallery",
       "title": "生誕130年 前田寛治 ポエジイとレアリスム 一九三〇年協会設立100年",
       "url": "https://www.ejrcf.or.jp/gallery/exhibition/202607_maeda.html",
@@ -398,9 +398,9 @@
     },
     {
       "facilityId": "hakone-glass-forest",
-      "title": "箱根ガラスの森美術館2026年初夏 所蔵作品展：ヴェネチアン・グラスでみせる驚異の部屋 ～世界の創生～",
-      "url": "https://www.hakone-garasunomori.jp/event/2026_venetianglass_cabinetofcuriosities/",
-      "imageUrl": "https://www.hakone-garasunomori.jp/wp-content/uploads/2026/03/1800-900b.jpg",
+      "title": "過去の企画展・イベント",
+      "url": "https://www.hakone-garasunomori.jp/event/pastlist/",
+      "imageUrl": "https://www.hakone-garasunomori.jp/wp-content/themes/HAKONE-GLASSMUSEUM_JP_DESIGN/common/images/ogp.jpg",
       "startDate": "2026-04-18",
       "endDate": "2026-07-12"
     },
@@ -486,9 +486,9 @@
     },
     {
       "facilityId": "omiya-bonsai-museum",
-      "title": "【予告】企画展「夏休み子どもぼんさい美術館」",
-      "url": "https://www.bonsai-art-museum.jp/ja/exhibition/exhibition-11602/",
-      "imageUrl": "https://www.bonsai-art-museum.jp/wp-content/uploads/2026/03/IMG_7223-300x200.jpg",
+      "title": "企画展「夏休み子どもぼんさい美術館」",
+      "url": "https://www.bonsai-art-museum.jp/ja/exhibition/exhibition-11873/",
+      "imageUrl": "https://www.bonsai-art-museum.jp/wp-content/uploads/2026/07/IMG_7224-300x200.jpg",
       "startDate": "2026-07-18",
       "endDate": "2026-08-26"
     },
