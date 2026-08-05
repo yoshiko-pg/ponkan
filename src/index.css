@@ -738,6 +738,9 @@ body {
   transform: rotate(-6deg);
   margin: 6px auto;
   position: relative;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 /* スタンプ直後に円の中心から飛び散る紙吹雪 */

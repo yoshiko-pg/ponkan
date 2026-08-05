@@ -83,7 +83,10 @@ export function useStore() {
   const stamp = useCallback((id: string) => {
     setData((d) => ({
       ...d,
-      visits: { ...d.visits, [id]: { date: today(), memo: "" } },
+      visits: {
+        ...d.visits,
+        [id]: { date: today(), memo: d.visits[id]?.memo ?? "" },
+      },
     }));
   }, []);
 

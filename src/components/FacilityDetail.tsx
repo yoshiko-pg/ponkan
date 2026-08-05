@@ -133,8 +133,11 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
         </div>
 
         {visit ? (
-          <div
+          <button
+            type="button"
             className={`stamped-mark cat-${facility.category} ${justStamped ? "pop" : ""}`}
+            onClick={handleStamp}
+            aria-label="スタンプを今日の日付で押し直す"
           >
             <span className="stamp-code">
               {CATEGORY_CODE[facility.category]}
@@ -164,7 +167,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
                   ))}
                 </span>
               )}
-          </div>
+          </button>
         ) : (
           <button
             type="button"
