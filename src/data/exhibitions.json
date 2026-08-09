@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02",
+  "updatedAt": "2026-08-09",
   "exhibitions": [
     {
       "facilityId": "nmwa",
@@ -59,7 +59,7 @@
       "facilityId": "momat",
       "title": "杉本博司 絶滅写真",
       "url": "https://www.momat.go.jp/exhibitions/569",
-      "imageUrl": "https://www.momat.go.jp/wp-content/uploads/2025/09/exhibitions_569.jpeg",
+      "imageUrl": "https://www.momat.go.jp/wp-content/uploads/2025/10/exhibitions_569_2.jpg",
       "startDate": "2026-06-16",
       "endDate": "2026-09-13"
     },
@@ -251,7 +251,8 @@
     {
       "facilityId": "ueno-royal-museum",
       "title": "第47回 雪心会選抜書作展",
-      "url": "https://www.ueno-mori.org/exhibitions/article.cgi?id=12694621"
+      "url": "https://www.ueno-mori.org/exhibitions/article.cgi?id=12694621",
+      "imageUrl": "https://www.ueno-mori.org/mrmm/media/0x960_exhibit_12694621_130789107.png"
     },
     {
       "facilityId": "teien-art-museum",
@@ -289,12 +290,13 @@
       "facilityId": "top-museum",
       "title": "TOKYOスマート・カルチャー・プロジェクト 奈良女子大学 長谷研究室「複製される感性－森山大道」",
       "url": "https://topmuseum.jp/exhibition/12474/",
+      "imageUrl": "https://topmuseum.jp/wp-content/uploads/2026/08/DAIDO-MORIYAMA.jpg",
       "startDate": "2026-09-05",
       "endDate": "2026-10-18"
     },
     {
       "facilityId": "top-museum",
-      "title": "アジアン・コンテンポラリー（仮）",
+      "title": "デュエット――アジアン・コンテンポラリー",
       "url": "https://topmuseum.jp/exhibition/5421/",
       "imageUrl": "https://topmuseum.jp/wp-content/uploads/2026/06/DarkAddictionjiangPengyi2013.jpg",
       "startDate": "2026-09-30",
@@ -331,6 +333,14 @@
       "imageUrl": "https://www.yamatane-museum.jp/uploads/68cf0433e2924f2c52e2cedccf0a95921ec4eadc.jpg",
       "startDate": "2026-08-08",
       "endDate": "2026-10-04"
+    },
+    {
+      "facilityId": "yamatane-museum",
+      "title": "ザ・ベスト・オブ・山種コレクションⅠ",
+      "url": "https://www.yamatane-museum.jp/exhibitions/2026/yamatane-collection1.html",
+      "imageUrl": "https://www.yamatane-museum.jp/uploads/9aa8dc1d512503fc8901d698bae3145a30ee0810.jpg",
+      "startDate": "2026-10-10",
+      "endDate": "2026-12-06"
     },
     {
       "facilityId": "ota-memorial",
@@ -507,6 +517,14 @@
       "imageUrl": "https://kadcul.com/storage/files/shares/1F%E9%8A%80%E6%B2%B3%E9%89%84%E9%81%93999/GX999_%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB_m.jpg?u=1773705271983",
       "startDate": "2026-04-25",
       "endDate": "2026-10-26"
+    },
+    {
+      "facilityId": "kadokawa-musashino-museum",
+      "title": "ギャラクシー☆パーク －銀河のアソビバ－",
+      "url": "https://kadcul.com/event/269",
+      "imageUrl": "https://kadcul.com/storage/files/shares/3F%202026%E5%A4%8F/%E3%82%AE%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%B7%E3%83%BC%E3%83%91%E3%83%BC%E3%82%AF_web%E7%94%A8.png?u=1783674147968",
+      "startDate": "2026-08-05",
+      "endDate": "2026-08-17"
     },
     {
       "facilityId": "omiya-bonsai-museum",
