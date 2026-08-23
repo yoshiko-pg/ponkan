@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-16",
+  "updatedAt": "2026-08-23",
   "exhibitions": [
     {
       "facilityId": "nmwa",
@@ -117,6 +117,22 @@
       "imageUrl": "https://tobikan.jp/media/img/poster/2026_orsay_l.jpg",
       "startDate": "2026-11-14",
       "endDate": "2027-03-28"
+    },
+    {
+      "facilityId": "tobikan",
+      "title": "東京都美術館開館100周年記念 あなたが世界を読むために",
+      "url": "https://www.tobikan.jp/exhibition/2026_waysofreading.html",
+      "imageUrl": "https://tobikan.jp/media/img/poster/2026_waysofreading_l.jpg?r1",
+      "startDate": "2026-11-19",
+      "endDate": "2027-01-11"
+    },
+    {
+      "facilityId": "tobikan",
+      "title": "東京都美術館開館100周年記念 はじまりをひらく 東京都美術館の100年",
+      "url": "https://www.tobikan.jp/exhibition/2026_archives.html",
+      "imageUrl": "https://tobikan.jp/media/img/poster/2026_archives_l.jpg",
+      "startDate": "2026-11-19",
+      "endDate": "2027-01-11"
     },
     {
       "facilityId": "mot",
@@ -280,11 +296,11 @@
     },
     {
       "facilityId": "top-museum",
-      "title": "Nikon Small World / NIKON JOICO AWARD展",
-      "url": "https://topmuseum.jp/exhibition/5476/",
-      "imageUrl": "https://topmuseum.jp/wp-content/uploads/2026/05/nikon600.jpg",
-      "startDate": "2026-07-25",
-      "endDate": "2026-08-23"
+      "title": "TOKYOスマート・カルチャー・プロジェクト 奈良女子大学 長谷研究室「複製される感性－森山大道」",
+      "url": "https://topmuseum.jp/exhibition/12474/",
+      "imageUrl": "https://topmuseum.jp/wp-content/uploads/2026/08/Tokyo-Smart-Culture-Project_flyer1-scaled.jpg",
+      "startDate": "2026-09-05",
+      "endDate": "2026-10-18"
     },
     {
       "facilityId": "top-museum",
@@ -431,6 +447,14 @@
       "endDate": "2026-08-26"
     },
     {
+      "facilityId": "moma-kanagawa-hayama",
+      "title": "銅版画家・駒井哲郎 掌上にひろがる星座のように",
+      "url": "https://www.moma.pref.kanagawa.jp/exhibition/2026-komai-tetsuro/",
+      "imageUrl": "https://www.moma.pref.kanagawa.jp/wordpress/wp-content/uploads/2026-komai-tetsuro-w_A-360x234.jpg",
+      "startDate": "2026-09-12",
+      "endDate": "2026-11-15"
+    },
+    {
       "facilityId": "okada-museum",
       "title": "金銀雲母きら ―かがやきの日本美術―",
       "url": "https://www.okada-museum.com/exhibition/",
@@ -517,14 +541,6 @@
       "imageUrl": "https://kadcul.com/storage/files/shares/1F%E9%8A%80%E6%B2%B3%E9%89%84%E9%81%93999/GX999_%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB_m.jpg?u=1773705271983",
       "startDate": "2026-04-25",
       "endDate": "2026-10-26"
-    },
-    {
-      "facilityId": "kadokawa-musashino-museum",
-      "title": "ギャラクシー☆パーク －銀河のアソビバ－",
-      "url": "https://kadcul.com/event/269",
-      "imageUrl": "https://kadcul.com/storage/files/shares/3F%202026%E5%A4%8F/%E3%82%AE%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%B7%E3%83%BC%E3%83%91%E3%83%BC%E3%82%AF_web%E7%94%A8.png?u=1783674147968",
-      "startDate": "2026-08-05",
-      "endDate": "2026-08-17"
     },
     {
       "facilityId": "omiya-bonsai-museum",
