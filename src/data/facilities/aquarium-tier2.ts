@@ -46,6 +46,20 @@ export const AQUARIUM_TIER2: Facility[] = [
       "しながわ区民公園内にある親しみやすい水族館。海中にいるようなトンネル水槽や、イルカ・アシカ・アザラシのショーが楽しめる。",
   },
   {
+    id: "art-aquarium-ginza",
+    name: "アートアクアリウム美術館 GINZA",
+    category: "aquarium",
+    tier: 2,
+    pref: "東京都",
+    address: "東京都中央区銀座4-6-16 銀座三越 新館8F",
+    station: "銀座駅 / 銀座一丁目駅",
+    lat: 35.6716,
+    lng: 139.7649,
+    url: "https://artaquarium.jp/",
+    description:
+      "銀座三越にある金魚アートの美術館。光や香りの演出とともに、無数の金魚が泳ぐアクアリウム作品を鑑賞できる。",
+  },
+  {
     id: "kawasui",
     name: "カワスイ 川崎水族館",
     category: "aquarium",
