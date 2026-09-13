@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-13",
   "exhibitions": [
     {
       "facilityId": "nmwa",
@@ -106,7 +106,7 @@
       "facilityId": "tobikan",
       "title": "東京都美術館開館100周年記念 大英博物館日本美術コレクション 百花繚乱～海を越えた江戸絵画",
       "url": "https://www.tobikan.jp/exhibition/2026_britishmuseum.html",
-      "imageUrl": "https://tobikan.jp/media/img/poster/2026_britishmuseum_l.jpg",
+      "imageUrl": "https://tobikan.jp/media/img/poster/2026_britishmuseum_l.jpg?r1",
       "startDate": "2026-07-25",
       "endDate": "2026-10-18"
     },
@@ -264,14 +264,6 @@
     },
     {
       "facilityId": "teien-art-museum",
-      "title": "ルーシー・リー展―東西をつなぐ優美のうつわ―",
-      "url": "https://www.teien-art-museum.ne.jp/exhibition/lucie-rie/",
-      "imageUrl": "https://www.teien-art-museum.ne.jp/wp-content/uploads/2025/12/lucierie_teien_B2poster_final.jpg",
-      "startDate": "2026-07-04",
-      "endDate": "2026-09-13"
-    },
-    {
-      "facilityId": "teien-art-museum",
       "title": "マリメッコ展 模様のちから",
       "url": "https://www.teien-art-museum.ne.jp/exhibition/20261003-1220_marimekko/",
       "imageUrl": "https://www.teien-art-museum.ne.jp/wp-content/uploads/2025/12/c8170d710a9451adc7b936158658228d.jpg",
@@ -368,14 +360,6 @@
     },
     {
       "facilityId": "setagaya-art-museum",
-      "title": "MEMORIES OF WEST AFRICA ふたりのアフリカ、手仕事の宇宙",
-      "url": "https://www.setagayaartmuseum.or.jp/exhibition/special/detail.php?id=sp00229",
-      "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01049_c.jpg?d=1788501545",
-      "startDate": "2026-07-11",
-      "endDate": "2026-09-06"
-    },
-    {
-      "facilityId": "setagaya-art-museum",
       "title": "スウェーデン・テキスタイル",
       "url": "https://www.setagayaartmuseum.or.jp/exhibition/special/detail.php?id=sp00230",
       "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01049_c.jpg",
@@ -386,7 +370,7 @@
       "facilityId": "setagaya-art-museum",
       "title": "銅版画家・駒井哲郎",
       "url": "https://www.setagayaartmuseum.or.jp/exhibition/special/detail.php?id=sp00231",
-      "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01050_c.jpg",
+      "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01173_c.jpg",
       "startDate": "2026-11-28",
       "endDate": "2027-01-31"
     },
@@ -496,14 +480,6 @@
     },
     {
       "facilityId": "kadokawa-musashino-museum",
-      "title": "池上彰と考える現代アート Vol.1 Empowered by Taguchi Art Collection 「われわれが何をしたのか」",
-      "url": "https://kadcul.com/event/255",
-      "imageUrl": "https://kadcul.com/storage/files/shares/4F%E3%82%BF%E3%82%B0%E3%82%B3%E3%83%AC2026/%E3%82%BF%E3%82%B0%E3%82%B3%E3%83%AC%E5%B1%95_HP%E3%83%90%E3%83%8A%E3%83%BC%E7%AD%89_%E5%BB%B6%E9%95%B7_HP%E3%83%88%E3%83%83%E3%83%97%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%89%E3%83%90%E3%83%8A%E3%83%BC.jpg?u=1781575691280",
-      "startDate": "2026-03-28",
-      "endDate": "2026-09-07"
-    },
-    {
-      "facilityId": "kadokawa-musashino-museum",
       "title": "ワンダーバードに憧れて 鳥に取り憑かれた人々",
       "url": "https://kadcul.com/event/261",
       "imageUrl": "https://kadcul.com/storage/files/shares/%E8%8D%92%E4%BF%A3%E3%83%AF%E3%83%B3%E3%83%80%E3%83%BC%E7%A7%98%E5%AE%9D%E9%A4%A8(%E7%89%B9%E5%88%A5%E5%B1%95%E7%A4%BA%E5%90%AB%E3%82%80)/%E3%83%AF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%90%E3%83%BC%E3%83%89/WB_PR_0406_m.jpg?u=1775446848646",
@@ -565,6 +541,14 @@
       "imageUrl": "https://www.ccma-net.jp/wp-content/uploads/2026/07/2022%E5%B9%B48%E6%9C%883%E6%97%A5-%E9%87%9D%E8%B0%B7%E7%95%B3%E5%B7%A5%E6%A5%AD%E3%81%AE1%E3%83%88%E3%83%B3-1200x630.jpg",
       "startDate": "2026-10-17",
       "endDate": "2027-01-31"
+    },
+    {
+      "facilityId": "chiba-city-museum-art",
+      "title": "八木一夫、その家族",
+      "url": "https://www.ccma-net.jp/exhibitions/special/26-12-9-27-2-11/",
+      "imageUrl": "https://www.ccma-net.jp/wp-content/uploads/2026/03/collection_3040017-1200x630.jpg",
+      "startDate": "2026-12-09",
+      "endDate": "2027-02-11"
     },
     {
       "facilityId": "hoki-museum",
