@@ -1,4 +1,5 @@
 import { HOKKAIDO } from "./hokkaido";
+import { TOHOKU } from "./tohoku";
 import { AQUARIUM_TIER1 } from "./aquarium-tier1";
 import { AQUARIUM_TIER2 } from "./aquarium-tier2";
 import { AQUARIUM_TIER3 } from "./aquarium-tier3";
@@ -22,6 +23,7 @@ import type { Facility } from "../../types";
 // 並び順(北→南)がそのまま基準地点未設定時のスタンプ帳の並び順になる
 export const SEED_FACILITIES: Facility[] = [
   ...HOKKAIDO,
+  ...TOHOKU,
   ...AQUARIUM_TIER1,
   ...AQUARIUM_TIER2,
   ...AQUARIUM_TIER3,
