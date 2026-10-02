@@ -84,7 +84,6 @@ export function MapView({
       (tierFilter.length === 0 ||
         (f.tier != null && tierFilter.includes(f.tier))),
   );
-  const tileStyle = theme === "dark" ? "dark_all" : "light_all";
 
   return (
     <div className="map-wrap">
@@ -98,10 +97,13 @@ export function MapView({
         className="leaflet-root"
         scrollWheelZoom
       >
+        {/* 国土地理院の淡色地図(APIキー不要)。ダークモードはCSSフィルタで反転する */}
         <TileLayer
-          key={tileStyle}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url={`https://basemaps.cartocdn.com/${tileStyle}/{z}/{x}/{y}{r}.png`}
+          key={theme}
+          className={theme === "dark" ? "map-tiles-dark" : undefined}
+          attribution='<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>'
+          url="https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"
+          maxNativeZoom={18}
         />
         <PickHandler enabled={picking} onPick={onPickPoint} />
         {store.home && (
