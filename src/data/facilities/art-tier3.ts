@@ -296,4 +296,63 @@ export const ART_TIER3: Facility[] = [
     description:
       "「見返り美人図」で知られる浮世絵の祖・菱川師宣の出身地に建つ記念館。師宣の生涯と江戸での活動をたどり、肉筆掛軸や絵入り本のほか、広重ら他の浮世絵師の作品も展示する。",
   },
+  // ---- 茨城県 ----
+  {
+    id: "kasama-nichido-museum",
+    name: "笠間日動美術館",
+    category: "art",
+    tier: 3,
+    pref: "茨城県",
+    address: "茨城県笠間市笠間978-4",
+    station: "笠間駅(JR水戸線)からバス",
+    lat: 36.388,
+    lng: 140.2675,
+    url: "https://www.nichido-museum.or.jp/",
+    description:
+      "日動画廊の創業者・長谷川仁が開いた美術館。ゴッホなど西洋近代絵画から鴨居玲ら日本の洋画までを収蔵し、画家たちのパレットのコレクションも見どころ。",
+  },
+  // ---- 栃木県 ----
+  {
+    id: "bato-hiroshige-museum",
+    name: "那珂川町馬頭広重美術館",
+    category: "art",
+    tier: 3,
+    pref: "栃木県",
+    address: "栃木県那須郡那珂川町馬頭116-9",
+    station: "烏山駅(JR烏山線)からバス",
+    lat: 36.7389,
+    lng: 140.1866,
+    url: "http://www.hiroshige.bato.tochigi.jp/",
+    description:
+      "隈研吾設計、八溝杉の格子が印象的な町立美術館。歌川広重の肉筆画など青木コレクションを中心に、浮世絵や近代美術の企画展を開催する。",
+  },
+  // ---- 群馬県 ----
+  {
+    id: "arts-maebashi",
+    name: "アーツ前橋",
+    category: "art",
+    tier: 3,
+    pref: "群馬県",
+    address: "群馬県前橋市千代田町5-1-16",
+    station: "前橋駅(JR両毛線)から徒歩約10分",
+    lat: 36.3906,
+    lng: 139.0714,
+    url: "https://artsmaebashi.jp/",
+    description:
+      "商業施設を改修して2013年に開館した前橋市の美術館。地域ゆかりの作家の作品を収集するほか、現代アートの企画展や街なかでのアートプロジェクトを展開する。",
+  },
+  {
+    id: "tomihiro-museum",
+    name: "富弘美術館",
+    category: "art",
+    tier: 3,
+    pref: "群馬県",
+    address: "群馬県みどり市東町草木86",
+    station: "神戸駅(わたらせ渓谷鐵道)からバス",
+    lat: 36.5535,
+    lng: 139.373,
+    url: "https://www.city.midori.gunma.jp/tomihiro/",
+    description:
+      "草木湖のほとりにある、星野富弘の詩画を展示する美術館。口に筆をくわえて描いた草花の詩画を紹介し、円形の部屋が連なる独特の建物も特徴。",
+  },
 ];

@@ -409,4 +409,28 @@ export const MUSEUM_TIER3: Facility[] = [
     lat: 35.95,
     lng: 139.877,
   },
+  // ---- 茨城県 ----
+  {
+    id: "yokaren-peace-museum",
+    name: "予科練平和記念館",
+    category: "museum",
+    tier: 3,
+    pref: "茨城県",
+    address: "茨城県稲敷郡阿見町廻戸5-1",
+    station: "土浦駅(JR常磐線)からバス",
+    lat: 36.0405,
+    lng: 140.214,
+  },
+  // ---- 栃木県 ----
+  {
+    id: "nasunogahara-museum",
+    name: "那須野が原博物館",
+    category: "museum",
+    tier: 3,
+    pref: "栃木県",
+    address: "栃木県那須塩原市三島5-1",
+    station: "西那須野駅(JR宇都宮線)からバス",
+    lat: 36.8757,
+    lng: 139.9806,
+  },
 ];

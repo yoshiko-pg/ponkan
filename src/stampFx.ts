@@ -14,7 +14,8 @@ export interface StampFx {
   id: number;
   // new: はじめて押した / revisit: 別の日に押し直した / again: 同じ日にもう一度押した
   kind: "new" | "revisit" | "again";
-  message: string;
+  // 押した直後に出す一言。ふつうの1館では出さない
+  message: string | null;
   // はじめての1館・節目・コンプリートは演出を派手にする
   big: boolean;
   // 押した後のカテゴリ内の訪問済み数と施設数
@@ -76,12 +77,8 @@ export function makeStampFx(
     return celebrate(`${CATEGORY_LABEL[facility.category]}コンプリート!`);
   }
   if (total === 1) return celebrate("はじめてのポン!");
-  return {
-    ...base,
-    kind: "new",
-    message: `${total}館目のポン!`,
-    big: MILESTONES.includes(total),
-  };
+  if (MILESTONES.includes(total)) return celebrate(`${total}館達成!`);
+  return { ...base, kind: "new", message: null };
 }
 
 // 前回の訪問日から今日までを「3か月ぶり」のように言う。前回が未来の日付なら null

@@ -7,10 +7,19 @@ interface Props {
   facility: Facility;
   visit?: VisitRecord;
   distance?: number | null;
+  // 距離が出せないときに代わりに表示する都道府県(略称)
+  pref?: string;
   onClick: () => void;
 }
 
-export function StampCircle({ facility, visit, distance, onClick }: Props) {
+export function StampCircle({
+  facility,
+  visit,
+  distance,
+  pref,
+  onClick,
+}: Props) {
+  const place = distance != null ? formatKm(distance) : pref;
   const rotation = (hash(facility.id) % 13) - 6;
   return (
     <button className="stamp-cell" onClick={onClick} type="button">
@@ -30,13 +39,13 @@ export function StampCircle({ facility, visit, distance, onClick }: Props) {
       <span className={`stamp-name ${visit ? "" : "unvisited"}`}>
         {facility.name}
       </span>
-      {(facility.tier != null || distance != null) && (
+      {(facility.tier != null || place != null) && (
         <span className="stamp-dist">
           {facility.tier != null && (
             <span className="stamp-tier">{TIER_LABEL[facility.tier]}</span>
           )}
-          {facility.tier != null && distance != null && " ・ "}
-          {distance != null && formatKm(distance)}
+          {facility.tier != null && place != null && " ・ "}
+          {place}
         </span>
       )}
     </button>

@@ -3,11 +3,17 @@ import exhibitionData from "../data/exhibitions.json";
 import { formatTerm, toDateString } from "../format";
 import type { Exhibition, ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
+import { areaLabel, matchesArea } from "../area";
+import type { Area } from "../area";
+import { AreaSelect } from "./AreaSelect";
 
 const DATA = exhibitionData as ExhibitionData;
 
 interface Props {
   store: Store;
+  // スタンプ帳・マップと共通のエリア絞り込み
+  area: Area | null;
+  onAreaChange: (area: Area | null) => void;
   // 施設名タップで施設詳細モーダルを開く(スタンプ帳と同じ挙動)
   onSelect: (f: Facility) => void;
 }
@@ -96,7 +102,7 @@ function ExhibitionCard({
   );
 }
 
-export function Exhibitions({ store, onSelect }: Props) {
+export function Exhibitions({ store, area, onAreaChange, onSelect }: Props) {
   const today = toDateString(new Date());
   const soonLimit = toDateString(
     new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
@@ -112,7 +118,10 @@ export function Exhibitions({ store, onSelect }: Props) {
 
   // 対象は美術館 tier1/2(非表示にした施設は除く)
   const targets = store.facilities.filter(
-    (f) => f.category === "art" && (f.tier === 1 || f.tier === 2),
+    (f) =>
+      f.category === "art" &&
+      (f.tier === 1 || f.tier === 2) &&
+      matchesArea(f, area),
   );
   const targetIds = new Set(targets.map((f) => f.id));
   const byId = new Map(targets.map((f) => [f.id, f]));
@@ -159,8 +168,15 @@ export function Exhibitions({ store, onSelect }: Props) {
 
   return (
     <div className="exhibitions">
+      <div className="chips">
+        <AreaSelect area={area} onChange={onAreaChange} />
+      </div>
       <div className="count-row">
-        <span className="count-label">特別展 ・ 美術館 MAJOR/BASIC</span>
+        <span className="count-label">
+          {area != null
+            ? `特別展 ・ ${areaLabel(area)}`
+            : "特別展 ・ 美術館 MAJOR/BASIC"}
+        </span>
         <span className="count-num">
           {showing.length}
           <small> 開催中</small>
@@ -186,8 +202,14 @@ export function Exhibitions({ store, onSelect }: Props) {
       )}
 
       {noInfo.length > 0 && (
-        <>
-          <h3 className="expo-section-title">情報を取得できていない施設</h3>
+        // 全国だと館数が多いので、少ないときかこのエリアに特別展情報が1件もないときだけ開いておく
+        <details
+          className="expo-missing-wrap"
+          open={noInfo.length <= 6 || active.length === 0}
+        >
+          <summary className="expo-section-title">
+            情報を取得できていない施設({noInfo.length})
+          </summary>
           <div className="expo-missing">
             {noInfo.map((f) => (
               <a
@@ -204,7 +226,7 @@ export function Exhibitions({ store, onSelect }: Props) {
               </a>
             ))}
           </div>
-        </>
+        </details>
       )}
 
       {DATA.updatedAt && (

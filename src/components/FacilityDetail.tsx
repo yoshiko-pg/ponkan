@@ -294,13 +294,15 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
   );
 }
 
-// 押した直後に出す「N館目のポン!」と、カテゴリの達成度バー
+// 押した直後に出す一言(節目や再訪のときだけ)と、カテゴリの達成度バー
 function StampResult({ fx, category }: { fx: StampFx; category: Category }) {
   const grew = fx.kind === "new";
   const percent = (n: number) => `${(n / fx.catTotal) * 100}%`;
   return (
     <div className="stamp-result">
-      <p className={`stamp-note ${fx.big ? "big" : ""}`}>{fx.message}</p>
+      {fx.message && (
+        <p className={`stamp-note ${fx.big ? "big" : ""}`}>{fx.message}</p>
+      )}
       <div className="stamp-progress">
         <span className="stamp-progress-label">{CATEGORY_LABEL[category]}</span>
         <span className="stamp-progress-track">

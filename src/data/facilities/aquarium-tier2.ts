@@ -46,6 +46,20 @@ export const AQUARIUM_TIER2: Facility[] = [
       "しながわ区民公園内にある親しみやすい水族館。海中にいるようなトンネル水槽や、イルカ・アシカ・アザラシのショーが楽しめる。",
   },
   {
+    id: "art-aquarium-ginza",
+    name: "アートアクアリウム美術館 GINZA",
+    category: "aquarium",
+    tier: 2,
+    pref: "東京都",
+    address: "東京都中央区銀座4-6-16 銀座三越 新館8F",
+    station: "銀座駅 / 銀座一丁目駅",
+    lat: 35.6716,
+    lng: 139.7649,
+    url: "https://artaquarium.jp/",
+    description:
+      "銀座三越にある金魚アートの美術館。光や香りの演出とともに、無数の金魚が泳ぐアクアリウム作品を鑑賞できる。",
+  },
+  {
     id: "kawasui",
     name: "カワスイ 川崎水族館",
     category: "aquarium",
@@ -58,5 +72,20 @@ export const AQUARIUM_TIER2: Facility[] = [
     url: "https://kawa-sui.com/",
     description:
       "川崎駅近くの商業施設内にある水族館。多摩川から南米・アフリカなど世界各地の水辺まで、環境ごとの生態系を再現している。",
+  },
+  // ---- 栃木県 ----
+  {
+    id: "nakagawa-suiyuen",
+    name: "栃木県なかがわ水遊園",
+    category: "aquarium",
+    tier: 2,
+    pref: "栃木県",
+    address: "栃木県大田原市佐良土2686",
+    station: "西那須野駅(JR宇都宮線)から車で約30分",
+    lat: 36.788,
+    lng: 140.119,
+    url: "https://tnap.jp/",
+    description:
+      "那珂川のほとりに建つ栃木県の淡水魚水族館。那珂川流域の魚をはじめ、アマゾンなど世界の淡水魚を展示し、周囲には水辺で遊べる広い公園が広がる。",
   },
 ];
