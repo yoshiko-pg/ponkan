@@ -65,24 +65,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ページ自体はスクロールさせず .content の中だけをスクロールさせる。
-   iOS(特にホーム画面アプリ)は文書の高さがタブ切り替えで大きく変わると
-   fixed のタブバーと表示領域がずれ、タブバーが下に埋もれることがある */
 .app {
-  position: relative;
   max-width: 520px;
   margin: 0 auto;
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 /* ---------- header ---------- */
 .header {
   padding: 0 16px;
   height: 56px;
-  flex-shrink: 0;
+  position: sticky;
+  top: 0;
   background: var(--bg);
   z-index: 500;
   display: flex;
@@ -133,9 +129,6 @@ body {
 /* ---------- layout ---------- */
 .content {
   flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
   padding: 4px 16px 90px;
 }
 
@@ -146,10 +139,12 @@ body {
 }
 
 .tabbar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 520px;
   display: flex;
   background: var(--bar-bg);
   backdrop-filter: blur(8px);
@@ -191,8 +186,7 @@ body {
 /* ---------- book head (sticky: chips + count + progress) ---------- */
 .book-head {
   position: sticky;
-  /* .content の上パディングぶんずらしてヘッダー直下に貼りつける */
-  top: -4px;
+  top: 56px;
   z-index: 400;
   background: var(--bg);
   margin: 0 -16px;
