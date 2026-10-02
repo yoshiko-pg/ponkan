@@ -779,6 +779,11 @@ body {
   width: 96px;
   height: 96px;
   margin: 6px auto;
+  /* 連打や長押しで日付の文字が範囲選択されたり、タップのハイライトが出たりしないように */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .stamped-mark {
