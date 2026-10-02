@@ -725,79 +725,495 @@ body {
   gap: 12px;
 }
 
+/* スタンプ欄。--impact(ハンコが紙に当たるまでの時間)はJSから渡し、各演出のタイミングをそろえる */
+.stamp-area.cat-aquarium {
+  --fx-color: var(--aquarium);
+  --fx-ink: #0050a8;
+}
+.stamp-area.cat-art {
+  --fx-color: var(--art);
+  --fx-ink: #e83888;
+}
+.stamp-area.cat-museum {
+  --fx-color: var(--museum);
+  --fx-ink: #188838;
+}
+
+.stamp-stage {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 6px auto;
+}
+
 .stamped-mark {
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  border: 3px solid;
+  border: none;
+  background: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1px;
   transform: rotate(-6deg);
-  margin: 6px auto;
   position: relative;
   padding: 0;
   font: inherit;
   cursor: pointer;
 }
 
-/* スタンプ直後に円の中心から飛び散る紙吹雪 */
-.confetti {
+/* 押されたインク。はじめての1押しはハンコが当たるまで隠し、濡れた色で現れて乾いていく */
+.stamp-ink {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: center / 100% no-repeat;
+}
+.stamped-mark.cat-aquarium .stamp-ink {
+  background-image: url("/stamps/aquarium.png");
+}
+.stamped-mark.cat-art .stamp-ink {
+  background-image: url("/stamps/art.png");
+}
+.stamped-mark.cat-museum .stamp-ink {
+  background-image: url("/stamps/museum.png");
+}
+
+.stamp-ink.ink-new {
+  animation: ink-new 0.9s ease-out var(--impact) backwards;
+}
+.stamp-ink.ink-again {
+  animation: ink-wet 0.9s ease-out var(--impact);
+}
+
+@keyframes ink-new {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: saturate(1.6) brightness(0.85);
+  }
+  8% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes ink-wet {
+  0% {
+    transform: scale(1.04);
+    filter: saturate(1.6) brightness(0.85);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---------- スタンプを押した瞬間の演出 ---------- */
+.stamp-fx {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  rotate: -6deg;
 }
 
-.confetti i {
+/* はじめて押すとき、ハンコが当たるまで紙に残しておく点線の的 */
+.fx-target {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 6px;
-  height: 9px;
-  border-radius: 2px;
-  opacity: 0;
-  animation: confetti-fly 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed var(--line-strong);
+  animation: fx-hide var(--impact) step-end forwards;
 }
 
-@keyframes confetti-fly {
+@keyframes fx-hide {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ハンコ本体。ゴム面が円をほぼ覆う位置に置き、ゴム面の下端を支点に潰れる */
+.fx-hanko {
+  position: absolute;
+  left: -8px;
+  top: -34px;
+  overflow: visible;
+  transform-origin: 50% 98%;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.28));
+  animation:
+    hanko-drop var(--impact) cubic-bezier(0.55, 0, 1, 0.45) both,
+    hanko-lift 0.56s var(--impact) forwards;
+}
+
+.hanko-top {
+  fill: #d9b183;
+}
+.hanko-bevel {
+  fill: #ecd2ac;
+}
+.hanko-side {
+  fill: #b98858;
+}
+.hanko-neck {
+  fill: #a8744a;
+}
+.hanko-neck-light {
+  fill: #c4925f;
+}
+.hanko-rubber {
+  fill: var(--fx-ink);
+}
+
+@keyframes hanko-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.12);
+  }
+  35% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hanko-lift {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    transform: none;
+    animation-timing-function: ease-out;
+  }
+  14% {
+    transform: scale(1.06, 0.88);
+    animation-timing-function: ease-in-out;
+  }
+  32% {
+    transform: scale(0.98, 1.03);
+  }
+  46% {
+    opacity: 1;
+    transform: none;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.7, 1);
   }
   100% {
     opacity: 0;
-    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
-      rotate(var(--rot)) scale(0.6);
+    transform: translateY(-46px) scale(1.1) rotate(8deg);
   }
 }
 
-/* スタンプ直後の「N館目のポン!」 */
-.stamp-note {
-  margin: 2px 0 0;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 700;
+/* 当たった瞬間に紙の上を広がる輪 */
+.fx-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--fx-color);
+  opacity: 0;
+  animation: fx-ring 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) var(--impact)
+    forwards;
+}
+.fx-ring.late {
+  animation-delay: calc(var(--impact) + 0.15s);
+}
+
+@keyframes fx-ring {
+  from {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+/* 当たった瞬間に飛び出す「ポン!」の文字。効果音の代わり */
+.fx-pon {
+  position: absolute;
+  left: 88px;
+  top: -2px;
+  font-size: 19px;
+  font-weight: 800;
+  font-style: italic;
+  white-space: nowrap;
   color: var(--accent);
-  animation: stamp-note-in 0.4s ease-out 0.15s both;
+  text-shadow:
+    2px 0 var(--card),
+    -2px 0 var(--card),
+    0 2px var(--card),
+    0 -2px var(--card),
+    1.5px 1.5px var(--card),
+    -1.5px 1.5px var(--card),
+    1.5px -1.5px var(--card),
+    -1.5px -1.5px var(--card);
+  opacity: 0;
+  animation: fx-pon 0.9s ease-out var(--impact) forwards;
+}
+.fx-pon.big {
+  left: 84px;
+  top: -8px;
+  font-size: 24px;
+}
+
+@keyframes fx-pon {
+  0% {
+    opacity: 0;
+    transform: rotate(12deg) translateY(0) scale(0.3);
+  }
+  16% {
+    opacity: 1;
+    transform: rotate(12deg) translateY(0) scale(1.2);
+  }
+  30% {
+    transform: rotate(12deg) translateY(0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: rotate(12deg) translateY(-4px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(12deg) translateY(-12px) scale(1);
+  }
+}
+
+/* 当たった瞬間に飛ぶ粒(泡・絵の具・きらめき)。位置や大きさはJSからCSS変数で受け取る */
+.fx-p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  opacity: 0;
+  animation-duration: var(--dur);
+  animation-delay: calc(var(--impact) + var(--d));
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.fx-bubble {
+  animation-name: fx-bubble;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  background: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.fx-paint {
+  animation-name: fx-paint;
+  border-radius: var(--br);
+  background: currentColor;
+}
+
+.fx-sparkle {
+  animation-name: fx-sparkle;
+  background: currentColor;
+  clip-path: polygon(
+    50% 0,
+    62% 38%,
+    100% 50%,
+    62% 62%,
+    50% 100%,
+    38% 62%,
+    0 50%,
+    38% 38%
+  );
+}
+
+@keyframes fx-bubble {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x0), var(--y0)) scale(0.3);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(var(--mx), var(--my)) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x1), var(--y1)) scale(1.1);
+  }
+}
+
+@keyframes fx-paint {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x0), var(--y0)) rotate(0deg) scale(0.3);
+  }
+  8% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+    transform: translate(var(--mx), var(--my)) rotate(var(--r)) scale(1);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x1), var(--y1)) rotate(var(--r)) scale(0.8);
+  }
+}
+
+@keyframes fx-sparkle {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x0), var(--y0)) rotate(0deg) scale(0);
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--mx), var(--my)) rotate(calc(var(--r) * 0.6))
+      scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x1), var(--y1)) rotate(var(--r)) scale(0.2);
+  }
+}
+
+/* 押した直後の「N館目のポン!」とカテゴリの達成度 */
+.stamp-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: min(220px, 100%);
+  margin: 4px auto 0;
+}
+
+.stamp-note {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  animation: stamp-note-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)
+    calc(var(--impact) + 0.25s) both;
+}
+.stamp-note.big {
+  font-size: 17px;
 }
 
 @keyframes stamp-note-in {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(6px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+  }
+}
+
+.stamp-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  animation: stamp-note-in 0.4s ease-out calc(var(--impact) + 0.35s) both;
+}
+
+.stamp-progress-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.stamp-progress-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.stamp-progress-fill {
+  display: block;
+  height: 100%;
+  width: var(--to);
+  background: var(--fx-color);
+  animation: progress-grow 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)
+    calc(var(--impact) + 0.6s) both;
+}
+
+@keyframes progress-grow {
+  from {
+    width: var(--from);
+  }
+}
+
+.stamp-progress-num {
+  font-size: 13px;
+  font-weight: 800;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.stamp-progress-num small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* 訪問数が1つ増える瞬間、古い数字が上へ抜けて新しい数字が下から入る */
+.num-flip {
+  display: inline-grid;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-right: 2px;
+}
+
+.num-flip > span {
+  grid-area: 1 / 1;
+  text-align: right;
+}
+
+.num-old {
+  animation: num-out 0.3s ease-in calc(var(--impact) + 0.7s) forwards;
+}
+
+.num-new {
+  animation: num-in 0.3s ease-out calc(var(--impact) + 0.7s) backwards;
+}
+
+@keyframes num-out {
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes num-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .confetti i,
-  .stamp-note {
+  .stamp-ink.ink-new,
+  .stamp-ink.ink-again,
+  .stamp-note,
+  .stamp-progress,
+  .stamp-progress-fill,
+  .num-new {
     animation: none;
+  }
+  .num-old {
+    display: none;
   }
 }
 
@@ -844,29 +1260,6 @@ body {
 
 .stamped-mark .stamp-code {
   font-size: 20px;
-}
-
-.stamped-mark.pop {
-  animation: stamp-in 0.35s ease-out;
-}
-
-.stamped-mark:not(.unstamped) .stamp-code {
-  display: none;
-}
-.stamped-mark.cat-aquarium {
-  border: none;
-  color: var(--aquarium);
-  background: url("/stamps/aquarium.png") center / 100% no-repeat;
-}
-.stamped-mark.cat-art {
-  border: none;
-  color: var(--art);
-  background: url("/stamps/art.png") center / 100% no-repeat;
-}
-.stamped-mark.cat-museum {
-  border: none;
-  color: var(--museum);
-  background: url("/stamps/museum.png") center / 100% no-repeat;
 }
 
 .field {

@@ -1,28 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import exhibitionData from "../data/exhibitions.json";
 import { CATEGORY_CODE, CATEGORY_LABEL, TIER_LABEL } from "../types";
 import { formatDateLines, formatTerm, toDateString } from "../format";
-import type { ExhibitionData, Facility } from "../types";
+import { STAMP_IMPACT_MS, makeStampFx, prefersReducedMotion } from "../stampFx";
+import type { StampFx } from "../stampFx";
+import type { Category, ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
+import { StampEffect } from "./StampEffect";
 
 const EXHIBITIONS = (exhibitionData as ExhibitionData).exhibitions;
-
-// 紙吹雪のパラメータ。ランダムだと再レンダーで飛び直すので、indexから決定的に作る
-const CONFETTI = Array.from({ length: 14 }, (_, i) => {
-  const angle = ((i * (360 / 14) + ((i * 37) % 20) - 10) * Math.PI) / 180;
-  const dist = 62 + ((i * 53) % 48);
-  return {
-    dx: `${Math.round(Math.cos(angle) * dist)}px`,
-    // 少し上向きに散らすとスタンプを「押した」感が出る
-    dy: `${Math.round(Math.sin(angle) * dist - 16)}px`,
-    rot: `${(i * 97) % 360}deg`,
-    color: ["var(--aquarium)", "var(--art)", "var(--museum)", "var(--accent)"][
-      i % 4
-    ],
-    delay: `${(i % 5) * 20}ms`,
-  };
-});
 
 interface Props {
   facility: Facility;
@@ -32,9 +19,11 @@ interface Props {
 
 export function FacilityDetail({ facility, store, onClose }: Props) {
   const visit = store.visits[facility.id];
-  const [justStamped, setJustStamped] = useState(false);
+  // 直前に押したスタンプの演出。押すたびに作り直す
+  const [fx, setFx] = useState<StampFx | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   // この施設でいま開催中の特別展(終了分と開催前のものは出さない)
   const today = toDateString(new Date());
@@ -52,16 +41,40 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
       : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(facility.name)}`;
 
   const handleStamp = () => {
+    const next = makeStampFx(
+      facility,
+      store.facilities,
+      store.visits,
+      fx,
+      new Date(),
+    );
     store.stamp(facility.id);
-    setJustStamped(true);
-    // 対応端末では押した瞬間に短く振動させる
-    navigator.vibrate?.(60);
+    setFx(next);
+
+    if (prefersReducedMotion()) {
+      navigator.vibrate?.(60);
+      return;
+    }
+    // 対応端末ではハンコが紙に当たる瞬間に振動させる(節目は2回)
+    navigator.vibrate?.(
+      next.big ? [0, STAMP_IMPACT_MS, 50, 90, 70] : [0, STAMP_IMPACT_MS, 50],
+    );
+    // 当たった瞬間にシートごと少し沈ませて、押した重みを出す
+    modalRef.current?.animate(
+      [
+        { transform: "none" },
+        { transform: "translateY(3px)" },
+        { transform: "none" },
+      ],
+      { duration: 180, delay: STAMP_IMPACT_MS, easing: "ease-out" },
+    );
   };
 
   const handleUnstamp = () => {
     setMenuOpen(false);
     if (window.confirm("スタンプを取り消しますか?(訪問日とメモも消えます)")) {
       store.unstamp(facility.id);
+      setFx(null);
       setEditing(false);
     }
   };
@@ -76,7 +89,11 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal"
+        ref={modalRef}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           type="button"
           className="modal-kebab"
@@ -132,61 +149,58 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
           {!facility.address && <p className="detail-pref">{facility.pref}</p>}
         </div>
 
-        {visit ? (
-          <button
-            type="button"
-            className={`stamped-mark cat-${facility.category} ${justStamped ? "pop" : ""}`}
-            onClick={handleStamp}
-            aria-label="スタンプを今日の日付で押し直す"
-          >
-            <span className="stamp-code">
-              {CATEGORY_CODE[facility.category]}
-            </span>
-            <span className="stamp-date">
-              {formatDateLines(visit.date).map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </span>
-            {justStamped &&
-              !window.matchMedia("(prefers-reduced-motion: reduce)")
-                .matches && (
-                <span className="confetti" aria-hidden="true">
-                  {CONFETTI.map((p, i) => (
-                    <i
-                      key={i}
-                      style={
-                        {
-                          "--dx": p.dx,
-                          "--dy": p.dy,
-                          "--rot": p.rot,
-                          background: p.color,
-                          animationDelay: p.delay,
-                        } as CSSProperties
-                      }
-                    />
-                  ))}
+        <div
+          className={`stamp-area cat-${facility.category}`}
+          style={{ "--impact": `${STAMP_IMPACT_MS}ms` } as CSSProperties}
+        >
+          <div className="stamp-stage">
+            {visit ? (
+              <button
+                type="button"
+                className={`stamped-mark cat-${facility.category}`}
+                onClick={handleStamp}
+                aria-label="スタンプを今日の日付で押し直す"
+              >
+                {/* 押すたびにkeyを変えて作り直し、インクが付くアニメーションを再生する */}
+                <span
+                  key={fx?.id}
+                  className={`stamp-ink ${fx ? (fx.kind === "new" ? "ink-new" : "ink-again") : ""}`}
+                >
+                  <span className="stamp-date">
+                    {formatDateLines(visit.date).map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </span>
                 </span>
-              )}
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="stamped-mark unstamped"
-            onClick={handleStamp}
-            aria-label="スタンプを押す"
-          >
-            <span className="stamp-code">
-              {CATEGORY_CODE[facility.category]}
-            </span>
-            <span className="stamp-hint">タップでポン</span>
-          </button>
-        )}
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="stamped-mark unstamped"
+                onClick={handleStamp}
+                aria-label="スタンプを押す"
+              >
+                <span className="stamp-code">
+                  {CATEGORY_CODE[facility.category]}
+                </span>
+                <span className="stamp-hint">タップでポン</span>
+              </button>
+            )}
+            {visit && fx && !prefersReducedMotion() && (
+              <StampEffect
+                key={fx.id}
+                category={facility.category}
+                fresh={fx.kind === "new"}
+                big={fx.big}
+                seed={fx.id}
+              />
+            )}
+          </div>
 
-        {visit && justStamped && (
-          <p className="stamp-note">
-            {Object.keys(store.visits).length}館目のポン!
-          </p>
-        )}
+          {visit && fx && (
+            <StampResult key={fx.id} fx={fx} category={facility.category} />
+          )}
+        </div>
 
         {facility.description && (
           <p className="detail-description">{facility.description}</p>
@@ -275,6 +289,44 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             GOOGLE MAPS
           </a>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// 押した直後に出す「N館目のポン!」と、カテゴリの達成度バー
+function StampResult({ fx, category }: { fx: StampFx; category: Category }) {
+  const grew = fx.kind === "new";
+  const percent = (n: number) => `${(n / fx.catTotal) * 100}%`;
+  return (
+    <div className="stamp-result">
+      <p className={`stamp-note ${fx.big ? "big" : ""}`}>{fx.message}</p>
+      <div className="stamp-progress">
+        <span className="stamp-progress-label">{CATEGORY_LABEL[category]}</span>
+        <span className="stamp-progress-track">
+          <span
+            className="stamp-progress-fill"
+            style={
+              {
+                "--from": percent(grew ? fx.catVisited - 1 : fx.catVisited),
+                "--to": percent(fx.catVisited),
+              } as CSSProperties
+            }
+          />
+        </span>
+        <span className="stamp-progress-num">
+          {grew ? (
+            <span className="num-flip">
+              <span className="num-old" aria-hidden="true">
+                {fx.catVisited - 1}
+              </span>
+              <span className="num-new">{fx.catVisited}</span>
+            </span>
+          ) : (
+            fx.catVisited
+          )}
+          <small> / {fx.catTotal}</small>
+        </span>
       </div>
     </div>
   );
