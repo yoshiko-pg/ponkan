@@ -25,14 +25,11 @@ export function StampEffect({ category, fresh, big, seed }: Props) {
       {particles.map((p, i) => (
         <i key={i} className={`fx-p fx-${p.kind}`} style={p.style} />
       ))}
-      <span className={`fx-pon ${big ? "big" : ""}`}>
-        {big ? "ポーン!" : "ポン!"}
-      </span>
     </span>
   );
 }
 
-// 斜め上から見た木の台のハンコ。持ち手はポンカン。
+// 斜め上から見たハンコ。インクと同じ墨色の円柱に、細い軸と丸いつまみ。
 // ゴム面(下端の楕円)の中心が (56, 88) で、ここをスタンプの円の中心付近に合わせる
 function Hanko() {
   return (
@@ -46,30 +43,17 @@ function Hanko() {
         d="M8 84V88A48 38 0 0 0 104 88V84A48 38 0 0 1 8 84Z"
       />
       <ellipse className="hanko-top" cx="56" cy="72" rx="48" ry="38" />
-      <ellipse className="hanko-bevel" cx="56" cy="70" rx="43" ry="33" />
-      <path className="hanko-neck" d="M47 36V72A9 7 0 0 0 65 72V36Z" />
-      <path
-        className="hanko-neck-light"
-        d="M50 36V77.2A9 7 0 0 0 54 78.8V36Z"
-      />
-      <circle cx="56" cy="26" r="19" fill="#e4571d" />
-      <circle cx="54.2" cy="24.2" r="16.5" fill="#ff6b2c" />
+      <ellipse className="hanko-rim" cx="56" cy="72" rx="40" ry="31.5" />
+      <path className="hanko-neck" d="M50 34V72A6 5 0 0 0 62 72V34Z" />
+      <circle className="hanko-knob" cx="56" cy="26" r="14" />
       <ellipse
-        cx="48"
-        cy="17"
+        className="hanko-shine"
+        cx="51"
+        cy="20"
         rx="5"
-        ry="3.4"
-        fill="#fff"
-        opacity="0.55"
-        transform="rotate(-35 48 17)"
+        ry="3"
+        transform="rotate(-30 51 20)"
       />
-      <path
-        d="M56 8L57 2.5"
-        stroke="#6b4a2b"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path d="M57 5.5C61 0 68 -1.5 74 0.5C70 6 63 8 57 5.5Z" fill="#3f9a4a" />
     </svg>
   );
 }

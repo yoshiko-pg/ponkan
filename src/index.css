@@ -18,6 +18,11 @@
   --stamp-dim: #4a4a55;
   --bar-bg: rgba(16, 16, 19, 0.92);
 
+  /* スタンプを押すときに出るハンコ。背景と反対の明るさのモノトーン */
+  --hanko-top: #e6e6ea;
+  --hanko-side: #b4b4bd;
+  --hanko-line: rgba(255, 255, 255, 0.7);
+
   color-scheme: dark;
 }
 
@@ -39,6 +44,10 @@
 
   --stamp-dim: #b5b5bf;
   --bar-bg: rgba(246, 246, 244, 0.92);
+
+  --hanko-top: #2a2a30;
+  --hanko-side: #121215;
+  --hanko-line: rgba(255, 255, 255, 0.14);
 
   color-scheme: light;
 }
@@ -880,19 +889,24 @@ body {
 }
 
 .hanko-top {
-  fill: #d9b183;
+  fill: var(--hanko-top);
 }
-.hanko-bevel {
-  fill: #ecd2ac;
+.hanko-rim {
+  fill: none;
+  stroke: var(--hanko-line);
+  stroke-width: 1;
 }
-.hanko-side {
-  fill: #b98858;
-}
+.hanko-side,
 .hanko-neck {
-  fill: #a8744a;
+  fill: var(--hanko-side);
 }
-.hanko-neck-light {
-  fill: #c4925f;
+.hanko-knob {
+  fill: var(--hanko-top);
+  stroke: var(--hanko-line);
+  stroke-width: 1;
+}
+.hanko-shine {
+  fill: var(--hanko-line);
 }
 .hanko-rubber {
   fill: var(--fx-ink);
@@ -958,56 +972,6 @@ body {
   to {
     opacity: 0;
     transform: scale(1.6);
-  }
-}
-
-/* 当たった瞬間に飛び出す「ポン!」の文字。効果音の代わり */
-.fx-pon {
-  position: absolute;
-  left: 88px;
-  top: -2px;
-  font-size: 19px;
-  font-weight: 800;
-  font-style: italic;
-  white-space: nowrap;
-  color: var(--accent);
-  text-shadow:
-    2px 0 var(--card),
-    -2px 0 var(--card),
-    0 2px var(--card),
-    0 -2px var(--card),
-    1.5px 1.5px var(--card),
-    -1.5px 1.5px var(--card),
-    1.5px -1.5px var(--card),
-    -1.5px -1.5px var(--card);
-  opacity: 0;
-  animation: fx-pon 0.9s ease-out var(--impact) forwards;
-}
-.fx-pon.big {
-  left: 84px;
-  top: -8px;
-  font-size: 24px;
-}
-
-@keyframes fx-pon {
-  0% {
-    opacity: 0;
-    transform: rotate(12deg) translateY(0) scale(0.3);
-  }
-  16% {
-    opacity: 1;
-    transform: rotate(12deg) translateY(0) scale(1.2);
-  }
-  30% {
-    transform: rotate(12deg) translateY(0) scale(1);
-  }
-  70% {
-    opacity: 1;
-    transform: rotate(12deg) translateY(-4px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(12deg) translateY(-12px) scale(1);
   }
 }
 
