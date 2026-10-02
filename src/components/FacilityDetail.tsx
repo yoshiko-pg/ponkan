@@ -182,12 +182,6 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
           </button>
         )}
 
-        {visit && justStamped && (
-          <p className="stamp-note">
-            {Object.keys(store.visits).length}館目のポン!
-          </p>
-        )}
-
         {facility.description && (
           <p className="detail-description">{facility.description}</p>
         )}

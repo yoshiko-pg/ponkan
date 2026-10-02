@@ -799,30 +799,8 @@ body {
   }
 }
 
-/* スタンプ直後の「N館目のポン!」 */
-.stamp-note {
-  margin: 2px 0 0;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  animation: stamp-note-in 0.4s ease-out 0.15s both;
-}
-
-@keyframes stamp-note-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .confetti i,
-  .stamp-note {
+  .confetti i {
     animation: none;
   }
 }
