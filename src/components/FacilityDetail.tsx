@@ -5,7 +5,7 @@ import { CATEGORY_CODE, CATEGORY_LABEL, TIER_LABEL } from "../types";
 import { formatDateLines, formatTerm, toDateString } from "../format";
 import { STAMP_IMPACT_MS, makeStampFx, prefersReducedMotion } from "../stampFx";
 import type { StampFx } from "../stampFx";
-import type { Category, ExhibitionData, Facility } from "../types";
+import type { ExhibitionData, Facility } from "../types";
 import type { Store } from "../store";
 import { StampEffect } from "./StampEffect";
 
@@ -45,7 +45,6 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
       facility,
       store.facilities,
       store.visits,
-      fx,
       new Date(),
     );
     store.stamp(facility.id);
@@ -164,7 +163,7 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
                 {/* 押すたびにkeyを変えて作り直し、インクが付くアニメーションを再生する */}
                 <span
                   key={fx?.id}
-                  className={`stamp-ink ${fx ? (fx.kind === "new" ? "ink-new" : "ink-again") : ""}`}
+                  className={`stamp-ink ${fx ? (fx.fresh ? "ink-new" : "ink-again") : ""}`}
                 >
                   <span className="stamp-date">
                     {formatDateLines(visit.date).map((line) => (
@@ -190,16 +189,12 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
               <StampEffect
                 key={fx.id}
                 category={facility.category}
-                fresh={fx.kind === "new"}
+                fresh={fx.fresh}
                 big={fx.big}
                 seed={fx.id}
               />
             )}
           </div>
-
-          {visit && fx && (
-            <StampResult key={fx.id} fx={fx} category={facility.category} />
-          )}
         </div>
 
         {facility.description && (
@@ -289,46 +284,6 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
             GOOGLE MAPS
           </a>
         </div>
-      </div>
-    </div>
-  );
-}
-
-// 押した直後に出す一言(節目や再訪のときだけ)と、カテゴリの達成度バー
-function StampResult({ fx, category }: { fx: StampFx; category: Category }) {
-  const grew = fx.kind === "new";
-  const percent = (n: number) => `${(n / fx.catTotal) * 100}%`;
-  return (
-    <div className="stamp-result">
-      {fx.message && (
-        <p className={`stamp-note ${fx.big ? "big" : ""}`}>{fx.message}</p>
-      )}
-      <div className="stamp-progress">
-        <span className="stamp-progress-label">{CATEGORY_LABEL[category]}</span>
-        <span className="stamp-progress-track">
-          <span
-            className="stamp-progress-fill"
-            style={
-              {
-                "--from": percent(grew ? fx.catVisited - 1 : fx.catVisited),
-                "--to": percent(fx.catVisited),
-              } as CSSProperties
-            }
-          />
-        </span>
-        <span className="stamp-progress-num">
-          {grew ? (
-            <span className="num-flip">
-              <span className="num-old" aria-hidden="true">
-                {fx.catVisited - 1}
-              </span>
-              <span className="num-new">{fx.catVisited}</span>
-            </span>
-          ) : (
-            fx.catVisited
-          )}
-          <small> / {fx.catTotal}</small>
-        </span>
       </div>
     </div>
   );
