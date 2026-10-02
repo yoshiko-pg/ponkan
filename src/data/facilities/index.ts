@@ -11,6 +11,8 @@ import { MUSEUM_TIER3 } from "./museum-tier3";
 import { SCIENCE_TIER1 } from "./science-tier1";
 import { SCIENCE_TIER2 } from "./science-tier2";
 import { SCIENCE_TIER3 } from "./science-tier3";
+import { TOKAI } from "./tokai";
+import { CHUGOKU } from "./chugoku";
 import { SHIKOKU } from "./shikoku";
 
 import type { Facility } from "../../types";
@@ -32,5 +34,7 @@ export const SEED_FACILITIES: Facility[] = [
   ...SCIENCE_TIER1,
   ...SCIENCE_TIER2,
   ...SCIENCE_TIER3,
+  ...TOKAI,
+  ...CHUGOKU,
   ...SHIKOKU,
 ];
