@@ -118,7 +118,7 @@ export default function App() {
         </button>
       </header>
 
-      <main className="content">
+      <main className={tab === "map" ? "content content-map" : "content"}>
         {tab === "book" && (
           <StampBook
             store={store}

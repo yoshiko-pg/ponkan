@@ -132,6 +132,12 @@ body {
   padding: 4px 16px 90px;
 }
 
+/* 地図はタブバーの上で収まる高さにしているので、一覧用の下余白を付けると
+   ビューポートからはみ出してスクロールできてしまう */
+.content-map {
+  padding-bottom: 0;
+}
+
 .tabbar {
   position: fixed;
   bottom: 0;
