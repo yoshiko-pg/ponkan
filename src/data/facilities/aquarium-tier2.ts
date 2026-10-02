@@ -73,4 +73,19 @@ export const AQUARIUM_TIER2: Facility[] = [
     description:
       "川崎駅近くの商業施設内にある水族館。多摩川から南米・アフリカなど世界各地の水辺まで、環境ごとの生態系を再現している。",
   },
+  // ---- 栃木県 ----
+  {
+    id: "nakagawa-suiyuen",
+    name: "栃木県なかがわ水遊園",
+    category: "aquarium",
+    tier: 2,
+    pref: "栃木県",
+    address: "栃木県大田原市佐良土2686",
+    station: "西那須野駅(JR宇都宮線)から車で約30分",
+    lat: 36.788,
+    lng: 140.119,
+    url: "https://tnap.jp/",
+    description:
+      "那珂川のほとりに建つ栃木県の淡水魚水族館。那珂川流域の魚をはじめ、アマゾンなど世界の淡水魚を展示し、周囲には水辺で遊べる広い公園が広がる。",
+  },
 ];
