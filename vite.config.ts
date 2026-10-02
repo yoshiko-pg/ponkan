@@ -26,7 +26,7 @@ export default defineConfig({
       manifest: {
         name: "PONKAN — museum stamp rally",
         short_name: "PONKAN",
-        description: "関東近郊の水族館・美術館・博物館・科学館スタンプラリー",
+        description: "全国の水族館・美術館・博物館・科学館スタンプラリー",
         lang: "ja",
         theme_color: "#101013",
         background_color: "#101013",

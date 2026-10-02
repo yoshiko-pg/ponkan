@@ -3,6 +3,8 @@ import { useStore } from "./store";
 import { useTheme } from "./useTheme";
 import exhibitionData from "./data/exhibitions.json";
 import { toDateString } from "./format";
+import { isArea } from "./area";
+import type { Area } from "./area";
 import type { ExhibitionData, Facility } from "./types";
 import { StampBook } from "./components/StampBook";
 import { MapView } from "./components/MapView";
@@ -17,6 +19,7 @@ const EXHIBITIONS = (exhibitionData as ExhibitionData).exhibitions;
 
 const FILTER_KEY = "ponkan:filter";
 const TIER_FILTER_KEY = "ponkan:tierFilter";
+const AREA_KEY = "ponkan:area";
 const CATEGORIES: Category[] = ["aquarium", "art", "museum"];
 const TIERS: Tier[] = [1, 2, 3];
 
@@ -41,20 +44,31 @@ function loadTierFilter(): Tier[] {
   }
 }
 
+// 地方ID("kinki")か都道府県名。未選択(全国)は保存しない
+function loadArea(): Area | null {
+  const saved = localStorage.getItem(AREA_KEY);
+  return isArea(saved) ? saved : null;
+}
+
 export default function App() {
   const store = useStore();
   const { theme, toggle } = useTheme();
   const [tab, setTab] = useState<Tab>("book");
   const [filter, setFilter] = useState<Category[]>(loadFilter);
   const [tierFilter, setTierFilter] = useState<Tier[]>(loadTierFilter);
+  const [area, setArea] = useState<Area | null>(loadArea);
 
-  // カテゴリ・Tier絞り込みが変わるたびに保存する
+  // カテゴリ・Tier・エリアの絞り込みが変わるたびに保存する
   useEffect(() => {
     localStorage.setItem(FILTER_KEY, JSON.stringify(filter));
   }, [filter]);
   useEffect(() => {
     localStorage.setItem(TIER_FILTER_KEY, JSON.stringify(tierFilter));
   }, [tierFilter]);
+  useEffect(() => {
+    if (area) localStorage.setItem(AREA_KEY, area);
+    else localStorage.removeItem(AREA_KEY);
+  }, [area]);
   const [selected, setSelected] = useState<Facility | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pickingHome, setPickingHome] = useState(false);
@@ -112,6 +126,8 @@ export default function App() {
             onFilterChange={setFilter}
             tierFilter={tierFilter}
             onTierFilterChange={setTierFilter}
+            area={area}
+            onAreaChange={setArea}
             onPickOnMap={() => {
               setTab("map");
               setPickingHome(true);
@@ -127,6 +143,8 @@ export default function App() {
             onFilterChange={setFilter}
             tierFilter={tierFilter}
             onTierFilterChange={setTierFilter}
+            area={area}
+            onAreaChange={setArea}
             picking={pickingHome}
             onPickPoint={(lat, lng) => {
               store.setHome({ lat, lng });
@@ -136,7 +154,14 @@ export default function App() {
             onSelect={setSelected}
           />
         )}
-        {tab === "expo" && <Exhibitions store={store} onSelect={setSelected} />}
+        {tab === "expo" && (
+          <Exhibitions
+            store={store}
+            area={area}
+            onAreaChange={setArea}
+            onSelect={setSelected}
+          />
+        )}
       </main>
 
       <nav className="tabbar">

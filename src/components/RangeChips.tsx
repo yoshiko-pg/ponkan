@@ -1,6 +1,7 @@
 import { RANGE_OPTIONS } from "../types";
 
 // 単一選択トグル。選択中のチップをもう一度押すと解除(=制限なし)
+// エリア選択と同じ行に並べるため、ラッパーの .chips は呼び出し側で持つ
 interface Props {
   rangeKm: number | null;
   onChange: (rangeKm: number | null) => void;
@@ -8,7 +9,7 @@ interface Props {
 
 export function RangeChips({ rangeKm, onChange }: Props) {
   return (
-    <div className="chips">
+    <>
       {RANGE_OPTIONS.map((km) => (
         <button
           type="button"
@@ -19,6 +20,6 @@ export function RangeChips({ rangeKm, onChange }: Props) {
           {km}km以内
         </button>
       ))}
-    </div>
+    </>
   );
 }
