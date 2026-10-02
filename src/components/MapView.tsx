@@ -49,7 +49,7 @@ const HOME_ICON = divIcon({
   iconAnchor: [15, 15],
 });
 
-// 日本全体(与那国島〜知床)
+// 日本全体(与那国島〜知床)。座標つきの施設が1つもないときの表示範囲
 const JAPAN_BOUNDS = latLngBounds([24.0, 122.9], [45.6, 145.9]);
 
 // 上側は右上に浮かべたエリア選択のぶん余白を広めにとる
@@ -59,7 +59,14 @@ const FIT_OPTIONS: FitBoundsOptions = {
   maxZoom: 11,
 };
 
-// 表示範囲: エリア選択中はそのエリアの施設全体、なければ基準地点の周辺、どちらもなければ日本全体
+function facilityBounds(facilities: Facility[]): LatLngBounds | null {
+  const points = facilities
+    .filter((f) => f.lat != null && f.lng != null)
+    .map((f) => [f.lat!, f.lng!] as [number, number]);
+  return points.length > 0 ? latLngBounds(points) : null;
+}
+
+// 表示範囲: エリア選択中はそのエリアの施設全体、なければ基準地点の周辺、どちらもなければ全施設(日本全体)
 function viewBounds(
   facilities: Facility[],
   area: Area | null,
@@ -67,10 +74,10 @@ function viewBounds(
   rangeKm: number | null,
 ): LatLngBounds {
   if (area != null) {
-    const points = facilities
-      .filter((f) => f.lat != null && f.lng != null && matchesArea(f, area))
-      .map((f) => [f.lat!, f.lng!] as [number, number]);
-    if (points.length > 0) return latLngBounds(points);
+    const bounds = facilityBounds(
+      facilities.filter((f) => matchesArea(f, area)),
+    );
+    if (bounds) return bounds;
   }
   if (home) {
     const km = rangeKm ?? DEFAULT_RANGE_KM;
@@ -81,7 +88,7 @@ function viewBounds(
       [home.lat + dLat, home.lng + dLng],
     );
   }
-  return JAPAN_BOUNDS;
+  return facilityBounds(facilities) ?? JAPAN_BOUNDS;
 }
 
 // エリアを切り替えたら、そのエリアが収まるように地図を動かす(初期表示は MapContainer の bounds で行う)
@@ -170,6 +177,8 @@ export function MapView({
         <MapContainer
           bounds={bounds}
           boundsOptions={FIT_OPTIONS}
+          // 縦長の日本列島を画面いっぱいに収めるため、ズームは0.5刻みで合わせる
+          zoomSnap={0.5}
           className="leaflet-root"
           scrollWheelZoom
         >

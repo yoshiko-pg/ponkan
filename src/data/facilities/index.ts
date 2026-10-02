@@ -14,6 +14,7 @@ import { SCIENCE_TIER2 } from "./science-tier2";
 import { SCIENCE_TIER3 } from "./science-tier3";
 import { HOKURIKU_KOSHINETSU } from "./hokuriku-koshinetsu";
 import { TOKAI } from "./tokai";
+import { KINKI } from "./kinki";
 import { CHUGOKU } from "./chugoku";
 import { SHIKOKU } from "./shikoku";
 import { KYUSHU_OKINAWA } from "./kyushu-okinawa";
@@ -40,6 +41,7 @@ export const SEED_FACILITIES: Facility[] = [
   ...SCIENCE_TIER3,
   ...HOKURIKU_KOSHINETSU,
   ...TOKAI,
+  ...KINKI,
   ...CHUGOKU,
   ...SHIKOKU,
   ...KYUSHU_OKINAWA,
