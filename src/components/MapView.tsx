@@ -15,6 +15,9 @@ import { formatDate } from "../format";
 import type { Store } from "../store";
 import type { Theme } from "../useTheme";
 
+// CARTOのbasemaps用APIキー(ブラウザに配信される前提の公開キー)
+const CARTO_KEY = "cb1_47gg_1_758596f4421e625a0e7ceaa6";
+
 // 未訪問(=これから行く場所)を目立たせ、訪問済みは控えめに表示する
 function markerIcon(f: Facility, visited: boolean) {
   const cls = visited ? `visited cat-${f.category}` : `cat-${f.category}`;
@@ -84,6 +87,7 @@ export function MapView({
       (tierFilter.length === 0 ||
         (f.tier != null && tierFilter.includes(f.tier))),
   );
+  const tileStyle = theme === "dark" ? "dark_all" : "light_all";
 
   return (
     <div className="map-wrap">
@@ -97,13 +101,10 @@ export function MapView({
         className="leaflet-root"
         scrollWheelZoom
       >
-        {/* 国土地理院の淡色地図(APIキー不要)。ダークモードはCSSフィルタで反転する */}
         <TileLayer
-          key={theme}
-          className={theme === "dark" ? "map-tiles-dark" : undefined}
-          attribution='<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>'
-          url="https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"
-          maxNativeZoom={18}
+          key={tileStyle}
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url={`https://basemaps.cartocdn.com/${tileStyle}/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`}
         />
         <PickHandler enabled={picking} onPick={onPickPoint} />
         {store.home && (

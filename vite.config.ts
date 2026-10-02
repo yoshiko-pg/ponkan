@@ -56,7 +56,7 @@ export default defineConfig({
         // 地図タイルはキャッシュしすぎないよう上限を設ける
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/cyberjapandata\.gsi\.go\.jp\/xyz\/.*/,
+            urlPattern: /^https:\/\/basemaps\.cartocdn\.com\/.*/,
             handler: "CacheFirst",
             options: {
               cacheName: "map-tiles",

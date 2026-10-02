@@ -963,10 +963,6 @@ body {
   background: var(--bg);
 }
 
-.map-tiles-dark {
-  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
-}
-
 .map-pin-wrap {
   background: none;
   border: none;
