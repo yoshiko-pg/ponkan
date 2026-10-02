@@ -10,10 +10,13 @@ import { MUSEUM_TIER3 } from "./museum-tier3";
 import { SCIENCE_TIER1 } from "./science-tier1";
 import { SCIENCE_TIER2 } from "./science-tier2";
 import { SCIENCE_TIER3 } from "./science-tier3";
+import { SHIKOKU } from "./shikoku";
 
 import type { Facility } from "../../types";
 
-// 座標・住所はおおよその値。カテゴリ・tier別の各ファイルを直接編集して調整できます。
+// 座標・住所はおおよその値。各ファイルを直接編集して調整できます。
+// 関東はカテゴリ・tier別、それ以外は地方別のファイル。
+// 並び順(北→南)がそのまま基準地点未設定時のスタンプ帳の並び順になる
 export const SEED_FACILITIES: Facility[] = [
   ...AQUARIUM_TIER1,
   ...AQUARIUM_TIER2,
@@ -27,4 +30,5 @@ export const SEED_FACILITIES: Facility[] = [
   ...SCIENCE_TIER1,
   ...SCIENCE_TIER2,
   ...SCIENCE_TIER3,
+  ...SHIKOKU,
 ];
