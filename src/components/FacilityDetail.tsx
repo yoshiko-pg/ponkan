@@ -35,10 +35,9 @@ export function FacilityDetail({ facility, store, onClose }: Props) {
   );
 
   const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(facility.name)}`;
-  const mapUrl =
-    facility.lat != null && facility.lng != null
-      ? `https://www.google.com/maps/search/?api=1&query=${facility.lat},${facility.lng}`
-      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(facility.name)}`;
+  // 座標だとピンが立つだけなので、施設名で検索して施設ページを開く。
+  // 同名施設に当たらないよう都道府県を添える
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${facility.name} ${facility.pref}`)}`;
 
   const handleStamp = () => {
     const next = makeStampFx(
