@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12",
+  "updatedAt": "2026-10-18",
   "exhibitions": [
     {
       "facilityId": "nmwa",
@@ -15,14 +15,6 @@
       "url": "https://www.nmwa.go.jp/jp/exhibitions/2026showa100.html",
       "startDate": "2026-06-30",
       "endDate": "2027-01-11"
-    },
-    {
-      "facilityId": "nmwa",
-      "title": "神話、寓意、祝祭——ルネサンスからバロックにおけるイタリア宮廷と版画",
-      "url": "https://www.nmwa.go.jp/jp/exhibitions/2026italy.html",
-      "imageUrl": "https://www.nmwa.go.jp/wp-content/uploads/2026/09/2026italy.jpg",
-      "startDate": "2026-06-30",
-      "endDate": "2026-10-12"
     },
     {
       "facilityId": "nmwa",
@@ -163,17 +155,16 @@
       "facilityId": "artizon",
       "title": "ジャム・セッション 石橋財団コレクション×藤井光 WHOSE LIGHT? —だれのひかりか",
       "url": "https://www.artizon.museum/exhibition/detail/608",
-      "imageUrl": "https://atz-image.s3.ap-northeast-1.amazonaws.com/3678615006a28ca8b58b5d2.63325826.png",
+      "imageUrl": "https://atz-image.s3.ap-northeast-1.amazonaws.com/4158128316ad1852e99ab06.65644646.png",
       "startDate": "2026-10-24",
       "endDate": "2027-01-31"
     },
     {
-      "facilityId": "nezu-museum",
-      "title": "企画展 やきもの名品紀行 中国・日本・朝鮮半島",
-      "url": "https://www.nezu-muse.or.jp/jp/exhibitions/current/",
-      "imageUrl": "https://www.nezu-muse.or.jp/jp/exhibitions/images/main20260815.jpg?v5",
-      "startDate": "2026-08-15",
-      "endDate": "2026-10-12"
+      "facilityId": "mimt",
+      "title": "フォンタネージ――イタリアの光・心の風景",
+      "url": "https://mimt.jp/ex_sp/fontanesi/",
+      "imageUrl": "https://mimt.jp/wp-content/themes/mimt/assets/ex_sp/img/fontanesi/top/fv_key-visual.webp",
+      "startDate": "2025-04-05"
     },
     {
       "facilityId": "nezu-museum",
@@ -222,12 +213,12 @@
       "endDate": "2026-12-20"
     },
     {
-      "facilityId": "top-museum",
-      "title": "TOKYOスマート・カルチャー・プロジェクト 奈良女子大学 長谷研究室「複製される感性－森山大道」",
-      "url": "https://topmuseum.jp/exhibition/12474/",
-      "imageUrl": "https://topmuseum.jp/wp-content/uploads/2026/08/Tokyo-Smart-Culture-Project_flyer1-scaled.jpg",
-      "startDate": "2026-09-05",
-      "endDate": "2026-10-18"
+      "facilityId": "teien-art-museum",
+      "title": "愛を紡ぎ、祈りを刻む―リトアニアの手仕事―",
+      "url": "https://www.teien-art-museum.ne.jp/exhibition/270116-0328_lithuania/",
+      "imageUrl": "https://www.teien-art-museum.ne.jp/wp-content/uploads/2026/02/lithuania-teien_KV300_final-1.jpg",
+      "startDate": "2027-01-16",
+      "endDate": "2027-03-28"
     },
     {
       "facilityId": "top-museum",
@@ -249,6 +240,7 @@
       "facilityId": "top-museum",
       "title": "木村伊兵衛写真賞第50回記念写真展",
       "url": "https://topmuseum.jp/exhibition/5478/",
+      "imageUrl": "https://topmuseum.jp/wp-content/uploads/2026/03/kimura_flyer_omote-scaled.jpg",
       "startDate": "2026-10-31",
       "endDate": "2026-11-23"
     },
@@ -309,6 +301,14 @@
       "endDate": "2027-02-21"
     },
     {
+      "facilityId": "tokyo-station-gallery",
+      "title": "ニコライ・アストルップ 創造する庭",
+      "url": "https://www.ejrcf.or.jp/gallery/exhibition/202611_astrup.html",
+      "imageUrl": "https://www.ejrcf.or.jp/gallery/common/img/exhibition/202611_astrup/img_mv_202611_astrup_pc.jpg",
+      "startDate": "2026-11-21",
+      "endDate": "2027-01-31"
+    },
+    {
       "facilityId": "setagaya-art-museum",
       "title": "スウェーデン・テキスタイル",
       "url": "https://www.setagayaartmuseum.or.jp/exhibition/special/detail.php?id=sp00230",
@@ -320,7 +320,7 @@
       "facilityId": "setagaya-art-museum",
       "title": "銅版画家・駒井哲郎",
       "url": "https://www.setagayaartmuseum.or.jp/exhibition/special/detail.php?id=sp00231",
-      "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01173_c.jpg",
+      "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01174_c.jpg",
       "startDate": "2026-11-28",
       "endDate": "2027-01-31"
     },
@@ -451,6 +451,14 @@
       "imageUrl": "https://kadcul.com/storage/files/shares/1F%E9%8A%80%E6%B2%B3%E9%89%84%E9%81%93999/GX999_%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB_m.jpg?u=1773705271983",
       "startDate": "2026-09-19",
       "endDate": "2026-10-26"
+    },
+    {
+      "facilityId": "kadokawa-musashino-museum",
+      "title": "虫へんはみんなむし－蟲をめぐる博物誌",
+      "url": "https://kadcul.com/event/289",
+      "imageUrl": "https://kadcul.com/storage/files/shares/%E8%8D%92%E4%BF%A3%E3%83%AF%E3%83%B3%E3%83%80%E3%83%BC%E7%A7%98%E5%AE%9D%E9%A4%A8(%E7%89%B9%E5%88%A5%E5%B1%95%E7%A4%BA%E5%90%AB%E3%82%80)/%E8%99%AB%E5%B1%95/mushi_KV_0928_yoko_m.jpg?u=1790746307243",
+      "startDate": "2026-10-17",
+      "endDate": "2027-04-05"
     },
     {
       "facilityId": "omiya-bonsai-museum",
