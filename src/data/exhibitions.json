@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18",
+  "updatedAt": "2026-10-25",
   "exhibitions": [
     {
       "facilityId": "nmwa",
@@ -14,6 +14,14 @@
       "title": "「昭和100年」 昭和時代 当館における保存修復の変遷",
       "url": "https://www.nmwa.go.jp/jp/exhibitions/2026showa100.html",
       "startDate": "2026-06-30",
+      "endDate": "2027-01-11"
+    },
+    {
+      "facilityId": "nmwa",
+      "title": "劇場をめぐるイメージ―ドラクロワ、ドーミエからトゥールーズ=ロートレック、クリンガーまで",
+      "url": "https://www.nmwa.go.jp/jp/exhibitions/2026theater.html",
+      "imageUrl": "https://www.nmwa.go.jp/wp-content/uploads/2026/09/%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC-scaled.jpg",
+      "startDate": "2026-10-20",
       "endDate": "2027-01-11"
     },
     {
@@ -89,14 +97,6 @@
     },
     {
       "facilityId": "tobikan",
-      "title": "東京都美術館開館100周年記念 大英博物館日本美術コレクション 百花繚乱～海を越えた江戸絵画",
-      "url": "https://www.tobikan.jp/exhibition/2026_britishmuseum.html",
-      "imageUrl": "https://tobikan.jp/media/img/poster/2026_britishmuseum_l.jpg?r1",
-      "startDate": "2026-07-25",
-      "endDate": "2026-10-18"
-    },
-    {
-      "facilityId": "tobikan",
       "title": "東京都美術館開館100周年記念 オルセー美術館所蔵 いまを生きる歓び",
       "url": "https://www.tobikan.jp/exhibition/2026_orsay.html",
       "imageUrl": "https://tobikan.jp/media/img/poster/2026_orsay_l.jpg",
@@ -169,10 +169,18 @@
     {
       "facilityId": "nezu-museum",
       "title": "特別展 舞楽装束 受け継がれる染織の美",
-      "url": "https://www.nezu-muse.or.jp/jp/exhibitions/upcoming/",
+      "url": "https://www.nezu-muse.or.jp/jp/exhibitions/current/",
       "imageUrl": "https://www.nezu-muse.or.jp/jp/exhibitions/images/main20261024.jpg?v5",
       "startDate": "2026-10-24",
       "endDate": "2026-11-23"
+    },
+    {
+      "facilityId": "nezu-museum",
+      "title": "企画展 彫る漆",
+      "url": "https://www.nezu-muse.or.jp/jp/exhibitions/upcoming/",
+      "imageUrl": "https://www.nezu-muse.or.jp/jp/exhibitions/images/main20261205.jpg?v5",
+      "startDate": "2026-12-05",
+      "endDate": "2027-01-17"
     },
     {
       "facilityId": "2121-design-sight",
@@ -317,14 +325,6 @@
       "endDate": "2026-11-15"
     },
     {
-      "facilityId": "setagaya-art-museum",
-      "title": "銅版画家・駒井哲郎",
-      "url": "https://www.setagayaartmuseum.or.jp/exhibition/special/detail.php?id=sp00231",
-      "imageUrl": "https://www.setagayaartmuseum.or.jp/assets/exhibition/images/sp_upld01174_c.jpg",
-      "startDate": "2026-11-28",
-      "endDate": "2027-01-31"
-    },
-    {
       "facilityId": "opera-city-gallery",
       "title": "種と根っこ ─ 都市の耕し方",
       "url": "https://www.operacity.jp/ag/exh303/",
@@ -352,9 +352,7 @@
       "facilityId": "moma-kanagawa-hayama",
       "title": "銅版画家・駒井哲郎 掌上にひろがる星座のように",
       "url": "https://www.moma.pref.kanagawa.jp/exhibition/2026-komai-tetsuro/",
-      "imageUrl": "https://www.moma.pref.kanagawa.jp/wordpress/wp-content/uploads/2026-komai-tetsuro-w_A-360x234.jpg",
-      "startDate": "2026-09-12",
-      "endDate": "2026-11-15"
+      "imageUrl": "https://www.moma.pref.kanagawa.jp/wordpress/wp-content/uploads/2026-komai-tetsuro-w_A-360x234.jpg"
     },
     {
       "facilityId": "okada-museum",
